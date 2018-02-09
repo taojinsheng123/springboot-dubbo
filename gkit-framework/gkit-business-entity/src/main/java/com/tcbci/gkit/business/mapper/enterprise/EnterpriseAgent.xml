@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.enterprise.EnterpriseAgentMapper">
+	<resultMap id="enterpriseagentResultMap" type="com.tcbci.gkit.business.domain.enterprise.EnterpriseAgent">
+			<result column="id" property="id"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="agent_enterprise_id" property="agentEnterpriseId"/>
+			<result column="agent_enterprise_name" property="agentEnterpriseName"/>
+			<result column="brand_ids" property="brandIds"/>
+			<result column="brand_names" property="brandNames"/>
+			<result column="province_codes" property="provinceCodes"/>
+			<result column="status" property="status"/>
+			<result column="remark" property="remark"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_user_name" property="auditUserName"/>
+			<result column="audit_user_true_name" property="auditUserTrueName"/>
+			<result column="audit_date" property="auditDate"/>
+			<result column="province_names" property="provinceNames"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				enterprise_id,
+				agent_enterprise_id,
+				agent_enterprise_name,
+				brand_ids,
+				brand_names,
+				province_codes,
+				status,
+				remark,
+				create_user,
+				create_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				province_names,
+				create_user_scope,
+				edit_user,
+				edit_date,
+				edit_user_scope
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{enterpriseId},
+				#{agentEnterpriseId},
+				#{agentEnterpriseName},
+				#{brandIds},
+				#{brandNames},
+				#{provinceCodes},
+				#{status},
+				#{remark},
+				#{createUser},
+				#{createDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{provinceNames},
+				#{createUserScope},
+				#{editUser},
+				#{editDate},
+				#{editUserScope}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_enterprise_agent
+	</sql>
+	
+	<select id="findById" resultMap="enterpriseagentResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseAgent" resultMap="enterpriseagentResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="agentEnterpriseId != null">
+					AND agent_enterprise_id=#{agentEnterpriseId}
+				</if>
+				<if test="agentEnterpriseName != null">
+					AND agent_enterprise_name=#{agentEnterpriseName}
+				</if>
+				<if test="brandIds != null">
+					AND brand_ids=#{brandIds}
+				</if>
+				<if test="brandNames != null">
+					AND brand_names=#{brandNames}
+				</if>
+				<if test="provinceCodes != null">
+					AND province_codes=#{provinceCodes}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="remark != null">
+					AND remark=#{remark}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="provinceNames != null">
+					AND province_names=#{provinceNames}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope =#{editUserScope}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseAgent" resultMap="enterpriseagentResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="agentEnterpriseId != null">
+					AND agent_enterprise_id=#{agentEnterpriseId}
+				</if>
+				<if test="agentEnterpriseName != null">
+					AND agent_enterprise_name=#{agentEnterpriseName}
+				</if>
+				<if test="brandIds != null">
+					AND brand_ids=#{brandIds}
+				</if>
+				<if test="brandNames != null">
+					AND brand_names=#{brandNames}
+				</if>
+				<if test="provinceCodes != null">
+					AND province_codes=#{provinceCodes}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="remark != null">
+					AND remark=#{remark}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="provinceNames != null">
+					AND province_names=#{provinceNames}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope =#{editUserScope}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseAgent">
+		INSERT INTO 
+			t_gb_enterprise_agent(
+				enterprise_id,
+				agent_enterprise_id,
+				agent_enterprise_name,
+				brand_ids,
+				brand_names,
+				province_codes,
+				status,
+				remark,
+				create_user,
+				create_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				province_names,
+				create_user_scope,
+				edit_user,
+				edit_date,
+				edit_user_scope
+			)VALUES(
+				#{enterpriseId},
+				#{agentEnterpriseId},
+				#{agentEnterpriseName},
+				#{brandIds},
+				#{brandNames},
+				#{provinceCodes},
+				#{status},
+				#{remark},
+				#{createUser},
+				#{createDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{provinceNames},
+				#{createUserScope},
+				#{editUser},
+				#{editDate},
+				#{editUserScope}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseAgent">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="enterpriseId != null">
+						enterprise_id=#{enterpriseId},
+					</if>
+					<if test="agentEnterpriseId != null">
+						agent_enterprise_id=#{agentEnterpriseId},
+					</if>
+					<if test="agentEnterpriseName != null">
+						agent_enterprise_name=#{agentEnterpriseName},
+					</if>
+					<if test="brandIds != null">
+						brand_ids=#{brandIds},
+					</if>
+					<if test="brandNames != null">
+						brand_names=#{brandNames},
+					</if>
+					<if test="provinceCodes != null">
+						province_codes=#{provinceCodes},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="remark != null">
+						remark=#{remark},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditUserName != null">
+						audit_user_name=#{auditUserName},
+					</if>
+					<if test="auditUserTrueName != null">
+						audit_user_true_name=#{auditUserTrueName},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate},
+					</if>
+					<if test="provinceNames != null">
+						province_names=#{provinceNames},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope=#{createUserScope},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate},
+					</if>
+					<if test="editUserScope != null">
+						edit_user_scope =#{editUserScope}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="enterpriseagentResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_enterprise_agent(
+				enterprise_id,
+				agent_enterprise_id,
+				agent_enterprise_name,
+				brand_ids,
+				brand_names,
+				province_codes,
+				status,
+				remark,
+				create_user,
+				create_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				province_names,
+				create_user_scope,
+				edit_user,
+				edit_date,
+				edit_user_scope
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{list[${index}].enterpriseId},
+		           				#{list[${index}].agentEnterpriseId},
+		           				#{list[${index}].agentEnterpriseName},
+		           				#{list[${index}].brandIds},
+		           				#{list[${index}].brandNames},
+		           				#{list[${index}].provinceCodes},
+		           				#{list[${index}].status},
+		           				#{list[${index}].remark},
+		           				#{list[${index}].createUser},
+		           				#{list[${index}].createDate},
+		           				#{list[${index}].auditUser},
+		           				#{list[${index}].auditUserName},
+		           				#{list[${index}].auditUserTrueName},
+		           				#{list[${index}].auditDate},
+		           				#{list[${index}].provinceNames}
+		           				#{list[${index}].createUserScope},
+		           				#{list[${index}].editUser},
+		           				#{list[${index}].editDate},
+		           				#{list[${index}].editUserScope}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseAgent" resultMap="enterpriseagentResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="agentEnterpriseId != null">
+					AND agent_enterprise_id=#{agentEnterpriseId}
+				</if>
+				<if test="agentEnterpriseName != null">
+					AND agent_enterprise_name=#{agentEnterpriseName}
+				</if>
+				<if test="brandIds != null">
+					AND brand_ids=#{brandIds}
+				</if>
+				<if test="brandNames != null">
+					AND brand_names=#{brandNames}
+				</if>
+				<if test="provinceCodes != null">
+					AND province_codes=#{provinceCodes}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="remark != null">
+					AND remark=#{remark}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="provinceNames != null">
+					AND province_names=#{provinceNames}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope =#{editUserScope}
+				</if>
+		</where>
+	</select>
+	
+	<select id="getByEnterpriseId" resultMap="enterpriseagentResultMap">
+		SELECT	
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" /> 
+		<where>
+			<if test="status != null">
+				AND status=#{status}
+			</if>
+			<if test="enterpriseId != null">
+				AND enterprise_id=#{enterpriseId}
+			</if>
+		</where>
+			
+	</select>
+</mapper>

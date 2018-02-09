@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.product.ProductImageMapper">
+	<resultMap id="productimageResultMap" type="com.tcbci.gkit.business.domain.product.ProductImage">
+			<result column="id" property="id"/>
+			<result column="product_id" property="productId"/>
+			<result column="flag" property="flag"/>
+			<result column="url" property="url"/>
+			<result column="name" property="name"/>
+			<result column="create_date" property="createDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				product_id,
+				flag,
+				url,
+				name,
+				create_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{productId},
+				#{flag},
+				#{url},
+				#{name},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_product_image
+	</sql>
+	
+	<select id="findById" resultMap="productimageResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.product.ProductImage">
+		INSERT INTO 
+			t_gb_product_image(
+				product_id,
+				flag,
+				url,
+				name,
+				create_date
+			)VALUES(
+				#{productId},
+				#{flag},
+				#{url},
+				#{name},
+				#{createDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.product.ProductImage">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="productId != null">
+						product_id=#{productId},
+					</if>
+					<if test="flag != null">
+						flag=#{flag},
+					</if>
+					<if test="url != null">
+						url=#{url},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate}
+					</if>
+		</set>
+		WHERE 
+			id=#{id}
+		AND
+			flag=0
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="productimageResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="productimageResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_product_image(
+				product_id,
+				flag,
+				url,
+				name,
+				create_date
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{list[${index}].productId},
+		           				#{list[${index}].flag},
+		           				#{list[${index}].url},
+		           				#{list[${index}].name},
+		           				#{list[${index}].createDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.product.ProductImage" resultMap="productimageResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="productId != null">
+					AND product_id=#{productId}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="url != null">
+					AND url=#{url}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<delete id="deleteByProductId">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			product_id=#{productId}
+		AND
+			flag=#{flag}
+	</delete>
+</mapper>

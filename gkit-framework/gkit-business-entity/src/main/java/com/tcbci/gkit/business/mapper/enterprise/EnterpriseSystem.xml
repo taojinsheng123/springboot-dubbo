@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.enterprise.EnterpriseSystemMapper">
+	<select id="getStatistics" resultType="com.tcbci.gkit.business.domain.enterprise.EnterpriseStatistics">
+		SELECT 
+		(SELECT COUNT(*) FROM t_gb_product WHERE enterprise_id=en.enterprise_id AND flag=1 AND is_delete!=1) AS productCount,
+		(SELECT COUNT(*) FROM t_gb_case WHERE enterprise_id=en.enterprise_id AND flag=1 AND is_delete!=1) AS caseCount,
+		(SELECT COUNT(*) FROM t_gb_enterprise_news WHERE enterprise_id=en.enterprise_id AND is_delete!=1) AS newsCount,
+		(SELECT COUNT(*) 
+		FROM t_gb_product a
+		JOIN t_gb_enterprise b on 
+			 b.enterprise_id = a.enterprise_id
+		AND a.flag = 1 
+		 AND a.is_delete = 0 
+		 AND a.is_shelve = 1  
+		 AND b.flag = 1
+		 AND b.is_delete = 0) AS totalProductCount,
+		(SELECT COUNT(*) FROM `t_gb_case` `c`
+		JOIN `t_gb_enterprise` `e` ON (
+			(
+				`e`.`enterprise_id` = `c`.`enterprise_id`
+				AND (`e`.`flag` = 1)
+				AND (`e`.`is_delete` = 0)
+			)
+		) WHERE c.flag=1 AND c.is_delete!=1 AND `c`.`is_hidden` = 0) AS totalCaseCount
+		FROM
+		t_gb_enterprise as en
+		WHERE en.enterprise_id=#{enterpriseId} AND flag=0
+	</select>
+	<select id="getTotalStatistics" resultType="com.tcbci.gkit.business.domain.enterprise.Statistics">
+		SELECT 
+		(SELECT COUNT(*) FROM t_gb_enterprise WHERE flag=1 AND is_delete!=1) AS totalEnterpriseCount,
+		(SELECT COUNT(*) 
+		FROM t_gb_product a
+		JOIN t_gb_enterprise b on 
+			 b.enterprise_id = a.enterprise_id
+		AND a.flag = 1 
+		 AND a.is_delete = 0 
+		 AND a.is_shelve = 1  
+		 AND b.flag = 1
+		 AND b.is_delete = 0) AS totalProductCount,
+		(SELECT COUNT(*) FROM t_gb_case WHERE flag=1 AND is_delete!=1) AS totalCaseCount
+	</select>
+	<!-- 执行存储过程，获取单号 -->
+	<select id="generateCode" statementType="CALLABLE">
+		<![CDATA[
+			{call sp_generate_code(#{v_code,mode=IN,jdbcType=VARCHAR},#{t_date,mode=IN,jdbcType=DATE},#{rult,mode=OUT,jdbcType=VARCHAR})}
+		]]>
+	</select>
+</mapper>

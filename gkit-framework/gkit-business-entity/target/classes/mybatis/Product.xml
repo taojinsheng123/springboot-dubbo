@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.product.ProductMapper">
+	<resultMap id="productResultMap" type="com.tcbci.gkit.business.domain.product.Product">
+			<result column="id" property="id"/>
+			<result column="product_id" property="productId"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="enterprise_full_name" property="enterpriseFullName"/>
+			<result column="enterprise_short_name" property="enterpriseShortName"/>
+			<result column="name" property="name"/>
+			<result column="category_code" property="categoryCode"/>
+			<result column="category_path" property="categoryPath"/>
+			<result column="category_name" property="categoryName"/>
+			<result column="category_ext_name" property="categoryExtName"/>
+			<result column="brand_id" property="brandId"/>
+			<result column="brand_name" property="brandName"/>
+			<result column="model" property="model"/>
+			<result column="is_price_section" property="isPriceSection"/>
+			<result column="price_unit" property="priceUnit"/>
+			<result column="min_price" property="minPrice"/>
+			<result column="max_price" property="maxPrice"/>
+			<result column="is_purchase_negotiable" property="isPurchaseNegotiable"/>
+			<result column="min_purchase_price" property="minPurchasePrice"/>
+			<result column="max_purchase_price" property="maxPurchasePrice"/>
+			<result column="basic_parameter" property="basicParameter"/>
+			<result column="basic_parameter_text" property="basicParameterText"/>
+			<result column="technical_index" property="technicalIndex"/>
+			<result column="technical_index_text" property="technicalIndexText"/>
+			<result column="description" property="description"/>
+			<result column="description_text" property="descriptionText"/>
+			<result column="drawing_type" property="drawingType"/>
+			<result column="flag" property="flag"/>
+			<result column="is_shelve" property="isShelve"/>
+			<result column="click_count" property="clickCount"/>
+			<result column="status" property="status"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="submit_user" property="submitUser"/>
+			<result column="submit_date" property="submitDate"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_user_name" property="auditUserName"/>
+			<result column="audit_user_true_name" property="auditUserTrueName"/>
+			<result column="audit_date" property="auditDate"/>
+			<result column="is_delete" property="isDelete"/>
+			<result column="delete_user" property="deleteUser"/>
+			<result column="delete_date" property="deleteDate"/>
+			<result column="seq" property="seq"/>
+			<result column="base_weight" property="baseWeight"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+			<result column="submit_user_scope" property="submitUserScope"/>
+			<result column="series_id" property="seriesId"/>
+			<result column="series_name" property="seriesName"/>
+			<result column="preview_image" property="previewImage"/>
+			<result column="place_country_code" property="placeCountryCode"/>
+			<result column="place_country_name" property="placeCountryName"/>
+			<result column="place_province_code" property="placeProvinceCode"/>
+			<result column="place_province_name" property="placeProvinceName"/>
+			<result column="place_city_code" property="placeCityCode"/>
+			<result column="place_city_name" property="placeCityName"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				product_id,
+				enterprise_id,
+				name,
+				category_code,
+				category_path,
+				brand_id,
+				brand_name,
+				model,
+				is_price_section,
+				price_unit,
+				min_price,
+				max_price,
+				is_purchase_negotiable,
+				min_purchase_price,
+				max_purchase_price,
+				basic_parameter,
+				basic_parameter_text,
+				technical_index,
+				technical_index_text,
+				description,
+				description_text,
+				drawing_type,
+				flag,
+				is_shelve,
+				click_count,
+				status,
+				create_user,
+				create_date,
+				edit_user,
+				edit_date,
+				submit_user,
+				submit_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				is_delete,
+				delete_user,
+				delete_date,
+				seq,
+				base_weight,
+				create_user_scope,
+				edit_user_scope,
+				submit_user_scope,
+				series_id,
+				series_name,
+				preview_image,
+				category_name,
+				category_ext_name,
+				enterprise_full_name,
+				enterprise_short_name,
+				place_country_code,
+				place_country_name,
+				place_province_code,
+				place_province_name,
+				place_city_code,
+				place_city_name
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{productId},
+				#{enterpriseId},
+				#{name},
+				#{categoryCode},
+				#{categoryPath},
+				#{brandId},
+				#{brandName},
+				#{model},
+				#{isPriceSection},
+				#{priceUnit},
+				#{minPrice},
+				#{maxPrice},
+				#{isPurchaseNegotiable},
+				#{minPurchasePrice},
+				#{maxPurchasePrice},
+				#{basicParameter},
+				#{basicParameterText},
+				#{technicalIndex},
+				#{technicalIndexText},
+				#{description},
+				#{descriptionText},
+				#{drawingType},
+				#{flag},
+				#{isShelve},
+				#{clickCount},
+				#{status},
+				#{createUser},
+				#{createDate},
+				#{editUser},
+				#{editDate},
+				#{submitUser},
+				#{submitDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{isDelete},
+				#{deleteUser},
+				#{deleteDate},
+				#{seq},
+				#{baseWeight},
+				#{createUserScope},
+				#{editUserScope},
+				#{submitUserScope},
+				#{seriesId},
+				#{seriesName},
+				#{previewImage},
+				#{categoryName},
+				#{categoryExtName},
+				#{enterpriseFullName},
+				#{enterpriseShortName},
+				#{placeCountryCode},
+				#{placeCountryName},
+				#{placeProvinceCode},
+				#{placeProvinceName},
+				#{placeCityCode},
+				#{placeCityName}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_product
+	</sql>
+	
+	<select id="findById" resultMap="productResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.tcbci.gkit.business.domain.product.Product">
+		INSERT INTO 
+			t_gb_product(
+				product_id,
+				enterprise_id,
+				name,
+				category_code,
+				category_path,
+				brand_id,
+				brand_name,
+				model,
+				is_price_section,
+				price_unit,
+				min_price,
+				max_price,
+				is_purchase_negotiable,
+				min_purchase_price,
+				max_purchase_price,
+				basic_parameter,
+				basic_parameter_text,
+				technical_index,
+				technical_index_text,
+				description,
+				description_text,
+				drawing_type,
+				flag,
+				is_shelve,
+				click_count,
+				status,
+				create_user,
+				create_date,
+				edit_user,
+				edit_date,
+				submit_user,
+				submit_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				is_delete,
+				delete_user,
+				delete_date,
+				seq,
+				base_weight,
+				create_user_scope,
+				edit_user_scope,
+				submit_user_scope,
+				series_id,
+				series_name,
+				preview_image,
+				category_name,
+				category_ext_name,
+				enterprise_full_name,
+				enterprise_short_name,
+				place_country_code,
+				place_country_name,
+				place_province_code,
+				place_province_name,
+				place_city_code,
+				place_city_name
+			)VALUES(
+				#{productId},
+				#{enterpriseId},
+				#{name},
+				#{categoryCode},
+				#{categoryPath},
+				#{brandId},
+				#{brandName},
+				#{model},
+				#{isPriceSection},
+				#{priceUnit},
+				#{minPrice},
+				#{maxPrice},
+				#{isPurchaseNegotiable},
+				#{minPurchasePrice},
+				#{maxPurchasePrice},
+				#{basicParameter},
+				#{basicParameterText},
+				#{technicalIndex},
+				#{technicalIndexText},
+				#{description},
+				#{descriptionText},
+				#{drawingType},
+				#{flag},
+				#{isShelve},
+				#{clickCount},
+				#{status},
+				#{createUser},
+				#{createDate},
+				#{editUser},
+				#{editDate},
+				#{submitUser},
+				#{submitDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{isDelete},
+				#{deleteUser},
+				#{deleteDate},
+				#{seq},
+				#{baseWeight},
+				#{createUserScope},
+				#{editUserScope},
+				#{submitUserScope},
+				#{seriesId},
+				#{seriesName},
+				#{previewImage},
+				#{categoryName},
+				#{categoryExtName},
+				#{enterpriseFullName},
+				#{enterpriseShortName},
+				#{placeCountryCode},
+				#{placeCountryName},
+				#{placeProvinceCode},
+				#{placeProvinceName},
+				#{placeCityCode},
+				#{placeCityName}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.product.Product">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="productId != null">
+						product_id=#{productId},
+					</if>
+					<if test="enterpriseId != null">
+						enterprise_id=#{enterpriseId},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="categoryCode != null">
+						category_code=#{categoryCode},
+					</if>
+					<if test="categoryPath != null">
+						category_path=#{categoryPath},
+					</if>
+					<if test="brandId != null">
+						brand_id=#{brandId},
+					</if>
+					<if test="brandName != null">
+						brand_name=#{brandName},
+					</if>
+					<if test="model != null">
+						model=#{model},
+					</if>
+					<if test="isPriceSection != null">
+						is_price_section=#{isPriceSection},
+					</if>
+					<if test="priceUnit != null">
+						price_unit=#{priceUnit},
+					</if>
+					<if test="minPrice != null">
+						min_price=#{minPrice},
+					</if>
+					<if test="maxPrice != null">
+						max_price=#{maxPrice},
+					</if>
+					<if test="isPurchaseNegotiable != null">
+						is_purchase_negotiable=#{isPurchaseNegotiable},
+					</if>
+					<if test="minPurchasePrice != null">
+						min_purchase_price=#{minPurchasePrice},
+					</if>
+					<if test="maxPurchasePrice != null">
+						max_purchase_price=#{maxPurchasePrice},
+					</if>
+					<if test="basicParameter != null">
+						basic_parameter=#{basicParameter},
+					</if>
+					<if test="basicParameterText != null">
+						basic_parameter_text=#{basicParameterText},
+					</if>
+					<if test="technicalIndex != null">
+						technical_index=#{technicalIndex},
+					</if>
+					<if test="technicalIndexText != null">
+						technical_index_text=#{technicalIndexText},
+					</if>
+					<if test="description != null">
+						description=#{description},
+					</if>
+					<if test="descriptionText != null">
+						description_text=#{descriptionText},
+					</if>
+					<if test="drawingType != null">
+						drawing_type=#{drawingType},
+					</if>
+					<if test="flag != null">
+						flag=#{flag},
+					</if>
+					<if test="isShelve != null">
+						is_shelve=#{isShelve},
+					</if>
+					<if test="clickCount != null">
+						click_count=#{clickCount},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate},
+					</if>
+					<if test="submitUser != null">
+						submit_user=#{submitUser},
+					</if>
+					<if test="submitDate != null">
+						submit_date=#{submitDate},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditUserName != null">
+						audit_user_name=#{auditUserName},
+					</if>
+					<if test="auditUserTrueName != null">
+						audit_user_true_name=#{auditUserTrueName},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate},
+					</if>
+					<if test="isDelete != null">
+						is_delete=#{isDelete},
+					</if>
+					<if test="deleteUser != null">
+						delete_user=#{deleteUser},
+					</if>
+					<if test="deleteDate != null">
+						delete_date=#{deleteDate},
+					</if>
+					<if test="seq != null">
+						seq=#{seq},
+					</if>
+					<if test="baseWeight != null">
+						base_weight =#{baseWeight},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope =#{createUserScope},
+					</if>
+					<if test="editUserScope != null">
+						edit_user_scope =#{editUserScope},
+					</if>
+					<if test="submitUserScope != null">
+						submit_user_scope =#{submitUserScope},
+					</if>
+					<if test="seriesId != null">
+						series_id =#{seriesId},
+					</if>
+					<if test="seriesName != null">
+						series_name =#{seriesName},
+					</if>
+					<if test="previewImage != null">
+						preview_image =#{previewImage},
+					</if>
+					<if test="categoryName != null">
+						category_name =#{categoryName},
+					</if>
+					<if test="categoryExtName != null">
+						category_ext_name =#{categoryExtName},
+					</if>
+					<if test="enterpriseFullName != null">
+						enterprise_full_name =#{enterpriseFullName},
+					</if>
+					<if test="enterpriseShortName != null">
+						enterprise_short_name =#{enterpriseShortName},
+					</if>
+					<if test="placeCountryCode != null">
+						place_country_code =#{placeCountryCode},
+					</if>
+					<if test="placeCountryName != null">
+						place_country_name =#{placeCountryName},
+					</if>
+					<if test="placeProvinceCode != null">
+						place_province_code =#{placeProvinceCode},
+					</if>
+					<if test="placeProvinceName != null">
+						place_province_name =#{placeProvinceName},
+					</if>
+					<if test="placeCityCode != null">
+						place_city_code =#{placeCityCode},
+					</if>
+					<if test="placeCityName != null">
+						place_city_name =#{placeCityName}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="productResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	
+	<select id="findByMarketId" resultType="java.lang.String">
+		SELECT
+		category_path
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			enterprise_id
+		IN
+        (select  enterprise_id from t_gb_market_enterprise where market_id= #{marketId})
+        AND
+        flag=1
+        AND
+        status=2
+	</select>
+	
+	<select id="queryAll" resultMap="productResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_product(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.productId},
+		           				#{item.enterpriseId},
+		           				#{item.name},
+		           				#{item.categoryCode},
+		           				#{item.categoryPath},
+		           				#{item.brandId},
+		           				#{item.brandName},
+		           				#{item.model},
+		           				#{item.isPriceSection},
+		           				#{item.priceUnit},
+		           				#{item.minPrice},
+		           				#{item.maxPrice},
+		           				#{item.isPurchaseNegotiable},
+		           				#{item.minPurchasePrice},
+		           				#{item.maxPurchasePrice},
+		           				#{item.basicParameter},
+		           				#{item.basicParameterText},
+		           				#{item.technicalIndex},
+		           				#{item.technicalIndexText},
+		           				#{item.description},
+		           				#{item.descriptionText},
+		           				#{item.drawingType},
+		           				#{item.flag},
+		           				#{item.isShelve},
+		           				#{item.clickCount},
+		           				#{item.status},
+		           				#{item.createUser},
+		           				#{item.createDate},
+		           				#{item.editUser},
+		           				#{item.editDate},
+		           				#{item.submitUser},
+		           				#{item.submitDate},
+		           				#{item.auditUser},
+		           				#{item.auditUserName},
+		           				#{item.auditUserTrueName},
+		           				#{item.auditDate},
+		           				#{item.isDelete},
+		           				#{item.deleteUser},
+		           				#{item.deleteDate},
+		           				#{item.seq},
+		           				#{item.baseWeight},
+		           				#{item.createUserScope},
+		           				#{item.editUserScope},
+		           				#{item.submitUserScope},
+		           				#{item.seriesId},
+		           				#{item.seriesName},
+		           				#{item.previewImage},
+								#{item.categoryName},
+								#{item.categoryExtName},
+								#{item.enterpriseFullName},
+								#{item.enterpriseShortName},
+								#{item.placeCountryCode},
+								#{item.placeCountryName},
+								#{item.placeProvinceCode},
+								#{item.placeProvinceName},
+								#{item.placeCityCode},
+								#{item.placeCityName}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.product.Product" resultMap="productResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="productId != null">
+					AND product_id=#{productId}
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="categoryCode != null">
+					AND category_code=#{categoryCode}
+				</if>
+				<if test="categoryPath != null">
+					AND category_path=#{categoryPath}
+				</if>
+				<if test="brandId != null">
+					AND brand_id=#{brandId}
+				</if>
+				<if test="brandName != null">
+					AND brand_name=#{brandName}
+				</if>
+				<if test="model != null">
+					AND model=#{model}
+				</if>
+				<if test="isPriceSection != null">
+					AND is_price_section=#{isPriceSection}
+				</if>
+				<if test="priceUnit != null">
+					AND price_unit=#{priceUnit}
+				</if>
+				<if test="minPrice != null">
+					AND min_price=#{minPrice}
+				</if>
+				<if test="maxPrice != null">
+					AND max_price=#{maxPrice}
+				</if>
+				<if test="isPurchaseNegotiable != null">
+					AND is_purchase_negotiable=#{isPurchaseNegotiable}
+				</if>
+				<if test="minPurchasePrice != null">
+					AND min_purchase_price=#{minPurchasePrice}
+				</if>
+				<if test="maxPurchasePrice != null">
+					AND max_purchase_price=#{maxPurchasePrice}
+				</if>
+				<if test="basicParameter != null">
+					AND basic_parameter=#{basicParameter}
+				</if>
+				<if test="basicParameterText != null">
+					AND basic_parameter_text=#{basicParameterText}
+				</if>
+				<if test="technicalIndex != null">
+					AND technical_index=#{technicalIndex}
+				</if>
+				<if test="technicalIndexText != null">
+					AND technical_index_text=#{technicalIndexText}
+				</if>
+				<if test="description != null">
+					AND description=#{description}
+				</if>
+				<if test="descriptionText != null">
+					AND description_text=#{descriptionText}
+				</if>
+				<if test="drawingType != null">
+					AND drawing_type=#{drawingType}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="isShelve != null">
+					AND is_shelve=#{isShelve}
+				</if>
+				<if test="clickCount != null">
+					AND click_count=#{clickCount}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="submitUser != null">
+					AND submit_user=#{submitUser}
+				</if>
+				<if test="submitDate != null">
+					AND submit_date=#{submitDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="baseWeight != null">
+					AND base_weight=#{baseWeight}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope=#{editUserScope}
+				</if>
+				<if test="submitUserScope != null">
+					AND submit_user_scope=#{submitUserScope}
+				</if>
+				<if test="seriesId != null">
+					AND series_id=#{seriesId}
+				</if>
+				<if test="seriesName != null">
+					AND series_name=#{seriesName}
+				</if>
+				<if test="previewImage != null">
+					AND preview_image =#{previewImage}
+				</if>
+				<if test="categoryName != null">
+					AND category_name =#{categoryName}
+				</if>
+				<if test="categoryExtName != null">
+					AND category_ext_name =#{categoryExtName}
+				</if>
+				<if test="enterpriseFullName != null">
+					AND enterprise_full_name =#{enterpriseFullName}
+				</if>
+				<if test="enterpriseShortName != null">
+					AND enterprise_short_name =#{enterpriseShortName}
+				</if>
+				<if test="placeCountryCode != null">
+					AND place_country_code =#{placeCountryCode}
+				</if>
+				<if test="placeCountryName != null">
+					AND place_country_name =#{placeCountryName}
+				</if>
+				<if test="placeProvinceCode != null">
+					AND place_province_code =#{placeProvinceCode}
+				</if>
+				<if test="placeProvinceName != null">
+					AND place_province_name =#{placeProvinceName}
+				</if>
+				<if test="placeCityCode != null">
+					AND place_city_code =#{placeCityCode}
+				</if>
+				<if test="placeCityName != null">
+					AND place_city_name =#{placeCityName}
+				</if>
+		</where>
+	</select>
+	
+	<select id="get" resultMap="productResultMap">
+		SELECT
+				p.id,
+				p.product_id,
+				p.enterprise_id,
+				p.enterprise_full_name,
+				p.enterprise_short_name,
+				p.name,
+				p.category_code,
+				p.category_path,
+				p.category_name,
+				p.category_ext_name,
+				p.brand_id,
+				b.name AS brand_name,
+				p.model,
+				p.is_price_section,
+				p.price_unit,
+				p.min_price,
+				p.max_price,
+				p.is_purchase_negotiable,
+				p.min_purchase_price,
+				p.max_purchase_price,
+				p.basic_parameter,
+				p.basic_parameter_text,
+				p.technical_index,
+				p.technical_index_text,
+				p.description,
+				p.description_text,
+				p.drawing_type,
+				p.flag,
+				p.is_shelve,
+				p.click_count,
+				p.status,
+				p.create_user,
+				p.create_date,
+				p.edit_user,
+				p.edit_date,
+				p.submit_user,
+				p.submit_date,
+				p.audit_user,
+				p.audit_user_name,
+				p.audit_user_true_name,
+				p.audit_date,
+				p.is_delete,
+				p.delete_user,
+				p.delete_date,
+				p.seq,
+				p.base_weight,
+				p.create_user_scope,
+				p.edit_user_scope,
+				p.submit_user_scope,
+				p.series_id,
+				p.series_name,
+				p.preview_image,
+				p.place_country_code,
+				p.place_country_name,
+				p.place_province_code,
+				p.place_province_name,
+				p.place_city_code,
+				p.place_city_name
+		FROM
+			<include refid="TableName" /> AS p
+			LEFT JOIN t_gb_product_category AS c ON c.`code`=p.category_code
+			LEFT JOIN t_gb_brand AS b ON b.brand_id=p.brand_id AND b.flag=#{flag}
+			JOIN t_gb_enterprise AS e ON e.enterprise_id=p.enterprise_id AND e.flag=0
+		WHERE
+			p.product_id=#{productId}
+		AND
+			p.flag=#{flag}
+		AND 
+			ifnull(p.is_delete,0)=0
+	</select>
+	
+	<select id="getProducts" resultMap="productResultMap">
+		SELECT
+				p.id,
+				p.product_id,
+				p.enterprise_id,
+				p.enterprise_full_name,
+				p.enterprise_short_name,
+				p.name,
+				p.category_code,
+				p.category_path,
+				p.category_name,
+				p.category_ext_name,
+				p.brand_id,
+				p.brand_name,
+				p.model,
+				p.is_price_section,
+				p.price_unit,
+				p.min_price,
+				p.max_price,
+				p.is_purchase_negotiable,
+				p.min_purchase_price,
+				p.max_purchase_price,
+				p.basic_parameter,
+				p.basic_parameter_text,
+				p.technical_index,
+				p.technical_index_text,
+				p.description,
+				p.description_text,
+				p.drawing_type,
+				p.flag,
+				p.is_shelve,
+				p.click_count,
+				p.status,
+				p.create_user,
+				p.create_date,
+				p.edit_user,
+				p.edit_date,
+				p.submit_user,
+				p.submit_date,
+				p.audit_user,
+				p.audit_user_name,
+				p.audit_user_true_name,
+				p.audit_date,
+				p.is_delete,
+				p.delete_user,
+				p.delete_date,
+				p.seq,
+				p.base_weight,
+				p.create_user_scope,
+				p.edit_user_scope,
+				p.submit_user_scope,
+				p.series_id,
+				p.series_name,
+				p.preview_image,
+				p.place_country_code,
+				p.place_country_name,
+				p.place_province_code,
+				p.place_province_name,
+				p.place_city_code,
+				p.place_city_name
+		FROM
+			<include refid="TableName" /> AS p
+			JOIN t_gb_enterprise AS e ON e.enterprise_id=p.enterprise_id AND e.flag=0
+		<where>
+				<if test="c.enterpiseId != null">
+					AND p.enterprise_id=#{c.enterpiseId}
+				</if>
+				<if test="c.userId != null">
+					AND e.user_id=#{c.userId}
+				</if>
+				<if test="c.keywords != null">
+					<foreach collection="c.keywords" index="index" open="AND (" separator="AND" close=")">
+						p.name like CONCAT('%', #{c.keywords[${index}]},'%')	
+					</foreach>
+				</if>
+				<if test="c.status != null">
+					AND p.status=#{c.status}
+				</if>
+				<if test="c.isShelve != null">
+					<if test="c.isShelve == true">
+						AND p.is_shelve=1
+					</if>
+					<if test="c.isShelve == false">
+						AND p.is_shelve=0
+					</if>
+				</if>
+				<if test="c.flag != null">
+					AND p.flag=#{c.flag}
+				</if>
+				<if test="c.series != null">
+					AND p.series_id = #{c.series}
+				</if>
+				<if test="c.brand != null">
+					AND p.brand_id = #{c.brand}
+				</if>
+				<if test="c.excludeProductIds != null">
+					<foreach collection="c.excludeProductIds" index="index" open="AND p.product_id NOT IN(" close=")" separator=",">
+						#{c.excludeProductIds[${index}]}
+					</foreach>
+				</if>
+					AND p.is_delete=0
+		</where>
+	</select>
+	<select id="getCollectProduct" resultMap="productResultMap">
+		SELECT
+				p.id,
+				p.product_id,
+				p.enterprise_id,
+				p.enterprise_full_name,
+				p.enterprise_short_name,
+				p.name,
+				p.category_code,
+				p.category_path,
+				p.category_name,
+				p.category_ext_name,
+				p.brand_id,
+				b.name AS brand_name,
+				p.model,
+				p.is_price_section,
+				p.price_unit,
+				p.min_price,
+				p.max_price,
+				p.is_purchase_negotiable,
+				p.min_purchase_price,
+				p.max_purchase_price,
+				p.basic_parameter,
+				p.basic_parameter_text,
+				p.technical_index,
+				p.technical_index_text,
+				p.description,
+				p.description_text,
+				p.drawing_type,
+				p.flag,
+				p.is_shelve,
+				p.click_count,
+				p.status,
+				p.create_user,
+				l.create_date,
+				p.edit_user,
+				p.edit_date,
+				p.submit_user,
+				p.submit_date,
+				p.audit_user,
+				p.audit_user_name,
+				p.audit_user_true_name,
+				p.audit_date,
+				p.is_delete,
+				p.delete_user,
+				p.delete_date,
+				p.seq,
+				p.base_weight,
+				p.create_user_scope,
+				p.edit_user_scope,
+				p.submit_user_scope,
+				p.series_id,
+				p.series_name,
+				p.preview_image,
+				p.place_country_code,
+				p.place_country_name,
+				p.place_province_code,
+				p.place_province_name,
+				p.place_city_code,
+				p.place_city_name
+		FROM
+			<include refid="TableName" /> AS p
+			LEFT JOIN t_gb_product_category AS c ON c.`code`=p.category_code
+			LEFT JOIN t_gb_brand AS b ON b.brand_id=p.brand_id AND b.flag=1
+			JOIN t_gb_enterprise AS e ON e.enterprise_id=p.enterprise_id AND e.flag=1
+			JOIN t_gb_collect AS l ON l.target_id=p.product_id AND l.target_type="t_gb_product"
+			<where>
+				p.flag = 1
+				<if test="user!=null">
+					AND l.user=#{user}
+				</if>
+			</where>
+			ORDER BY l.create_date DESC
+			LIMIT #{count}
+	</select>
+	
+	<select id="selectByEnterpriseId" resultMap="productResultMap">
+		SELECT 
+			product_id,
+			enterprise_id,
+			enterprise_short_name,
+			enterprise_full_name,
+			name,
+			brand_id,
+			brand_name,
+			model,
+			is_price_section,
+			price_unit,
+			min_price,
+			max_price,
+			is_purchase_negotiable,
+			min_purchase_price,
+			max_purchase_price,
+			place_country_code,
+			place_country_name,
+			place_province_code,
+			place_province_name,
+			place_city_code,
+			place_city_name,
+			preview_image
+		FROM
+			t_gb_product
+		WHERE enterprise_id=#{enterpriseId}
+			AND flag = 1 
+			AND is_delete = 0 
+			AND is_shelve = 1  
+		ORDER BY seq desc,base_weight desc
+		LIMIT #{count}
+	</select>
+	
+	<select id="queryByProductIds" resultMap="productResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			product_id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+         AND flag=1
+	</select>
+	<select id="setProductWeight" statementType="CALLABLE" parameterType="INTEGER">
+		<![CDATA[
+			{call sp_product_set_weight(#{id})}
+		]]>
+	</select>
+</mapper>

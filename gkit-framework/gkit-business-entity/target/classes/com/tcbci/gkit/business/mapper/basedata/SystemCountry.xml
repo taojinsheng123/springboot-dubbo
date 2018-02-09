@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.basedata.SystemCountryMapper">
+	<resultMap id="systemcountryResultMap" type="com.tcbci.gkit.business.domain.basedata.SystemCountry">
+			<result column="id" property="id"/>
+			<result column="name" property="name"/>
+			<result column="name_en" property="nameEn"/>
+			<result column="code" property="code"/>
+			<result column="enable" property="enable"/>
+			<result column="creator" property="creator"/>
+			<result column="create_date" property="createDate"/>
+			<result column="editor" property="editor"/>
+			<result column="edit_date" property="editDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				name,
+				name_en,
+				code,
+				enable,
+				creator,
+				create_date,
+				editor,
+				edit_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{name},
+				#{nameEn},
+				#{code},
+				#{enable},
+				#{creator},
+				#{createDate},
+				#{editor},
+				#{editDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_system_country
+	</sql>
+	
+	<select id="findById" resultMap="systemcountryResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.basedata.SystemCountry">
+		INSERT INTO 
+			t_gb_system_country(
+				<include refid="Field" />
+			)VALUES(
+				<include refid="FieldValues" />
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.basedata.SystemCountry">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="nameEn != null">
+						name_en=#{nameEn},
+					</if>
+					<if test="code != null">
+						code=#{code},
+					</if>
+					<if test="enable != null">
+						enable=#{enable},
+					</if>
+					<if test="creator != null">
+						creator=#{creator},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="editor != null">
+						editor=#{editor},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="systemcountryResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" parameterType="com.tcbci.gkit.business.domain.basedata.SystemCountry" resultMap="systemcountryResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_system_country(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.name},
+		           				#{item.nameEn},
+		           				#{item.code},
+		           				#{item.enable},
+		           				#{item.creator},
+		           				#{item.createDate},
+		           				#{item.editor},
+		           				#{item.editDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.basedata.SystemCountry" resultMap="systemcountryResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="nameEn != null">
+					AND name_en=#{nameEn}
+				</if>
+				<if test="code != null">
+					AND code=#{code}
+				</if>
+				<if test="enable != null">
+					AND enable=#{enable}
+				</if>
+				<if test="creator != null">
+					AND creator=#{creator}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editor != null">
+					AND editor=#{editor}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryCountry" resultMap="systemcountryResultMap" parameterType="com.tcbci.gkit.business.domain.page.CommonCountryParams">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="c.keyword != null">
+					name like CONCAT('%', #{c.keyword},'%')		
+				</if>
+		</where>
+	</select>
+</mapper>

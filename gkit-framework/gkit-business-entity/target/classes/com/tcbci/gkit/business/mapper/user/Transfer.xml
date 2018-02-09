@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.user.TransferMapper">
+	<resultMap id="transferResultMap" type="com.tcbci.gkit.business.domain.user.Transfer">
+			<result column="id" property="id"/>
+			<result column="is_invalid" property="isInvalid"/>
+			<result column="enteprise_id" property="entepriseId"/>
+			<result column="user_id" property="userId"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				is_invalid,
+				enteprise_id,
+				user_id,
+				create_user,
+				create_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{isInvalid},
+				#{entepriseId},
+				#{userId},
+				#{createUser},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_transfer
+	</sql>
+	
+	<select id="findById" resultMap="transferResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.user.Transfer" resultMap="transferResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="isInvalid != null">
+					AND is_invalid=#{isInvalid}
+				</if>
+				<if test="entepriseId != null">
+					AND enteprise_id=#{entepriseId}
+				</if>
+				<if test="userId != null">
+					AND user_id=#{userId}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.user.Transfer" resultMap="transferResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="isInvalid != null">
+					AND is_invalid=#{isInvalid}
+				</if>
+				<if test="entepriseId != null">
+					AND enteprise_id=#{entepriseId}
+				</if>
+				<if test="userId != null">
+					AND user_id=#{userId}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.user.Transfer">
+		INSERT INTO 
+			t_gb_transfer(
+				<include refid="Field" />
+			)VALUES(
+				<include refid="FieldValues" />
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.user.Transfer">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="isInvalid != null">
+						is_invalid=#{isInvalid},
+					</if>
+					<if test="entepriseId != null">
+						enteprise_id=#{entepriseId},
+					</if>
+					<if test="userId != null">
+						user_id=#{userId},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="transferResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_transfer(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.isInvalid},
+		           				#{item.entepriseId},
+		           				#{item.userId},
+		           				#{item.createUser},
+		           				#{item.createDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.user.Transfer" resultMap="transferResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="isInvalid != null">
+					AND is_invalid=#{isInvalid}
+				</if>
+				<if test="entepriseId != null">
+					AND enteprise_id=#{entepriseId}
+				</if>
+				<if test="userId != null">
+					AND user_id=#{userId}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+</mapper>

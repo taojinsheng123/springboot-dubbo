@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.basedata.CertificationMapper">
+	<resultMap id="certificationResultMap" type="com.tcbci.gkit.business.domain.basedata.Certification">
+			<result column="id" property="id"/>
+			<result column="name" property="name"/>
+			<result column="path" property="path"/>
+			<result column="status" property="status"/>
+			<result column="type" property="type"/>
+			<result column="type_name" property="typeName"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_date" property="auditDate"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				name,
+				path,
+				status,
+				type,
+				type_name,
+				create_user,
+				create_date,
+				create_user_scope,
+				audit_user,
+				audit_date,
+				edit_user,
+				edit_date,
+				edit_user_scope
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{name},
+				#{path},
+				#{status},
+				#{type},
+				#{typeName},
+				#{createUser},
+				#{createDate},
+				#{createUserScope},
+				#{auditUser},
+				#{auditDate},
+				#{editUser},
+				#{editDate},
+				#{editUserScope}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_certification
+	</sql>
+	
+	<select id="findById" resultMap="certificationResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.basedata.Certification" resultMap="certificationResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="path != null">
+					AND path=#{path}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="type != null">
+					AND type=#{type}
+				</if>
+				<if test="typeName != null">
+					AND type_name=#{typeName}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope =#{editUserScope}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.basedata.Certification" resultMap="certificationResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="path != null">
+					AND path=#{path}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="type != null">
+					AND type=#{type}
+				</if>
+				<if test="typeName != null">
+					AND type_name=#{typeName}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope =#{editUserScope}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.tcbci.gkit.business.domain.basedata.Certification">
+		INSERT INTO 
+			t_gb_certification(
+				name,
+				path,
+				status,
+				type,
+				type_name,
+				create_user,
+				create_date,
+				create_user_scope,
+				audit_user,
+				audit_date,
+				edit_user,
+				edit_date,
+				edit_user_scope
+			)VALUES(
+				#{name},
+				#{path},
+				#{status},
+				#{type},
+				#{typeName},
+				#{createUser},
+				#{createDate},
+				#{createUserScope},
+				#{auditUser},
+				#{auditDate},
+				#{editUser},
+				#{editDate},
+				#{editUserScope}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.basedata.Certification">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="path != null">
+						path=#{path},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="type != null">
+						type=#{type},
+					</if>
+					<if test="typeName != null">
+						type_name=#{typeName},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope=#{createUserScope},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate},
+					</if>
+					<if test="editUserScope != null">
+						edit_user_scope =#{editUserScope}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="certificationResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_certification(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.name},
+		           				#{item.path},
+		           				#{item.status},
+		           				#{item.type},
+		           				#{item.typeName},
+		           				#{item.createUser},
+		           				#{item.createDate},
+		           				#{item.createUserScope},
+		           				#{item.auditUser},
+		           				#{item.auditDate},
+		           				#{item.editUser},
+		           				#{item.editDate},
+		           				#{item.editUserScope}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.page.CertificationParams" resultMap="certificationResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="c.keyword != null">
+					name like CONCAT('%', #{c.keyword},'%')		
+				</if>
+				<if test="c.status != null">
+					AND status=#{c.status}
+				</if>
+		</where>
+	</select>
+</mapper>

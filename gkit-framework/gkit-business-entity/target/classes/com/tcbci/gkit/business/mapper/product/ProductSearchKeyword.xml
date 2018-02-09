@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.product.ProductSearchKeywordMapper">
+	<resultMap id="searchKeywordResultMap" type="com.tcbci.gkit.business.domain.product.SearchKeyword">
+			<result column="id" property="id"/>
+			<result column="search_keyword" property="searchKeyword"/>
+			<result column="result_count" property="resultCount"/>
+			<result column="is_new_word" property="isNewWord"/>
+			<result column="click_count" property="clickCount"/>
+	</resultMap>
+	<sql id="Field">
+				id,
+				search_keyword,
+				result_count,
+				is_new_word,
+				click_count
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{searchKeyword},
+				#{resultCount},
+				#{isNewWord},
+				#{clickCount}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_search_keyword
+	</sql>
+	
+	
+	<select id="query" parameterType="String" resultMap="searchKeywordResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+			1=1
+				<if test="s.searchKeyword != null">
+					AND search_keyword like CONCAT('%', #{s.searchKeyword},'%')
+				</if>
+				<if test="s.isNewWord != null">
+					AND  is_new_word = #{s.isNewWord}
+				</if>
+					AND result_count != 0
+		</where>
+		order by result_count desc
+		limit 0,10;
+	</select>
+	
+		<select id="queryByKeyword"  resultMap="searchKeywordResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				1=1
+				<if test="keyword != null">
+					AND search_keyword =#{keyword}
+				</if>
+				
+		</where>
+	</select>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.product.SearchKeyword">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="searchKeyword != null">
+						search_keyword=#{searchKeyword},
+					</if>
+					<if test="resultCount != null">
+						result_count=#{resultCount},
+					</if>
+					<if test="isNewWord != null">
+						is_new_word=#{isNewWord},
+					</if>
+					<if test="clickCount != null">
+						click_count=#{clickCount},
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+		<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.tcbci.gkit.business.domain.product.SearchKeyword">
+		INSERT INTO 
+			t_gb_search_keyword (
+				search_keyword,
+				result_count,
+				is_new_word,
+				click_count
+			)VALUES(
+				#{searchKeyword},
+				#{resultCount},
+				#{isNewWord},
+				#{clickCount}
+			)
+	</insert>
+</mapper>

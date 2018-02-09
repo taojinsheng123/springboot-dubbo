@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.product.CommentMapper">
+	<resultMap id="commentResultMap" type="com.tcbci.gkit.business.domain.product.Comment">
+			<result column="id" property="id"/>
+			<result column="target_id" property="targetId"/>
+			<result column="target_type" property="targetType"/>
+			<result column="ref_id" property="refId"/>
+			<result column="content" property="content"/>
+			<result column="star" property="star"/>
+			<result column="ref_path" property="refPath"/>
+			<result column="status" property="status"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_user_name" property="createUserName"/>
+			<result column="create_user_photo" property="createUserPhoto"/>
+			<result column="create_date" property="createDate"/>
+			<result column="is_delete" property="isDelete"/>
+			<result column="delete_date" property="deleteDate"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_user_name" property="auditUserName"/>
+			<result column="audit_user_true_name" property="auditUserTrueName"/>
+			<result column="audit_date" property="auditDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				target_id,
+				target_type,
+				ref_id,
+				content,
+				star,
+				ref_path,
+				status,
+				create_user,
+				create_user_name,
+				create_user_photo,
+				create_date,
+				is_delete,
+				delete_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{targetId},
+				#{targetType},
+				#{refId},
+				#{content},
+				#{star},
+				#{refPath},
+				#{status},
+				#{createUser},
+				#{createUserName},
+				#{createUserPhoto},
+				#{createDate},
+				#{isDelete},
+				#{deleteDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_comment
+	</sql>
+	
+	<select id="findById" resultMap="commentResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.product.Comment" resultMap="commentResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="targetId != null">
+					AND target_id=#{targetId}
+				</if>
+				<if test="targetType != null">
+					AND target_type=#{targetType}
+				</if>
+				<if test="refId != null">
+					AND ref_id=#{refId}
+				</if>
+				<if test="content != null">
+					AND content=#{content}
+				</if>
+				<if test="star != null">
+					AND star=#{star}
+				</if>
+				<if test="refPath != null">
+					AND ref_path=#{refPath}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createUserName != null">
+					AND create_user_name=#{createUserName}
+				</if>
+				<if test="createUserPhoto != null">
+					AND create_user_photo=#{createUserPhoto}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.product.Comment" resultMap="commentResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="targetId != null">
+					AND target_id=#{targetId}
+				</if>
+				<if test="targetType != null">
+					AND target_type=#{targetType}
+				</if>
+				<if test="refId != null">
+					AND ref_id=#{refId}
+				</if>
+				<if test="content != null">
+					AND content=#{content}
+				</if>
+				<if test="star != null">
+					AND star=#{star}
+				</if>
+				<if test="refPath != null">
+					AND ref_path=#{refPath}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createUserName != null">
+					AND create_user_name=#{createUserName}
+				</if>
+				<if test="createUserPhoto != null">
+					AND create_user_photo=#{createUserPhoto}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.tcbci.gkit.business.domain.product.Comment">
+		INSERT INTO 
+			t_gb_comment(
+				<include refid="Field" />
+			)VALUES(
+				<include refid="FieldValues" />
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.product.Comment">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="targetId != null">
+						target_id=#{targetId},
+					</if>
+					<if test="targetType != null">
+						target_type=#{targetType},
+					</if>
+					<if test="refId != null">
+						ref_id=#{refId},
+					</if>
+					<if test="content != null">
+						content=#{content},
+					</if>
+					<if test="star != null">
+						star=#{star},
+					</if>
+					<if test="refPath != null">
+						ref_path=#{refPath},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createUserName != null">
+						create_user_name=#{createUserName},
+					</if>
+					<if test="createUserPhoto != null">
+						create_user_photo=#{createUserPhoto},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="isDelete != null">
+						is_delete=#{isDelete},
+					</if>
+					<if test="deleteDate != null">
+						delete_date=#{deleteDate},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditUserName != null">
+						audit_user_name=#{auditUserName},
+					</if>
+					<if test="auditUserTrueName != null">
+						audit_user_true_name=#{auditUserTrueName},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="commentResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_comment(
+				target_id,
+				target_type,
+				ref_id,
+				content,
+				star,
+				ref_path,
+				status,
+				create_user,
+				create_user_name,
+				create_user_photo,
+				create_date,
+				is_delete,
+				delete_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.targetId},
+		           				#{item.targetType},
+		           				#{item.refId},
+		           				#{item.content},
+		           				#{item.star},
+		           				#{item.refPath},
+		           				#{item.status},
+		           				#{item.createUser},
+		           				#{item.createUserName},
+		           				#{item.createUserPhoto},
+		           				#{item.createDate},
+		           				#{item.isDelete},
+		           				#{item.deleteDate},
+		           				#{item.auditUser},
+		           				#{item.auditUserName},
+		           				#{item.auditUserTrueName},
+		           				#{item.auditDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.product.Comment" resultMap="commentResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="c.id != null">
+					id=#{c.id}			
+				</if>
+				<if test="c.targetId != null">
+					AND target_id=#{c.targetId}
+				</if>
+				<if test="c.targetType != null">
+					AND target_type=#{c.targetType}
+				</if>
+				<if test="c.refId != null">
+					AND ref_id=#{c.refId}
+				</if>
+				<if test="c.content != null">
+					AND content=#{c.content}
+				</if>
+				<if test="c.star != null">
+					AND star=#{c.star}
+				</if>
+				<if test="c.refPath != null">
+					AND ref_path=#{c.refPath}
+				</if>
+				<if test="c.status != null">
+					AND status=#{c.status}
+				</if>
+				<if test="c.createUser != null">
+					AND create_user=#{c.createUser}
+				</if>
+				<if test="c.createUserName != null">
+					AND create_user_name=#{c.createUserName}
+				</if>
+				<if test="c.createUserPhoto != null">
+					AND create_user_photo=#{c.createUserPhoto}
+				</if>
+				<if test="c.createDate != null">
+					AND create_date=#{c.createDate}
+				</if>
+				<if test="c.isDelete != null">
+					AND is_delete=#{c.isDelete}
+				</if>
+				<if test="c.deleteDate != null">
+					AND delete_date=#{c.deleteDate}
+				</if>
+				<if test="c.auditUser != null">
+					AND audit_user=#{c.auditUser}
+				</if>
+				<if test="c.auditUserName != null">
+					AND audit_user_name=#{c.auditUserName}
+				</if>
+				<if test="c.auditUserTrueName != null">
+					AND audit_user_true_name=#{c.auditUserTrueName}
+				</if>
+				<if test="c.auditDate != null">
+					AND audit_date=#{c.auditDate}
+				</if>
+		</where>
+	</select>
+	
+	<select id="getByTarget" resultMap="commentResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="targetId != null">
+					target_id=#{targetId}
+				</if>
+				<if test="targetType != null">
+					AND target_type=#{targetType}
+				</if>
+				<if test="refId != null">
+					AND ref_id=#{refId}
+				</if>
+		</where>
+	</select>
+	
+	<select id="getScore" resultType="Integer">
+		SELECT
+			star
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="targetId != null">
+					target_id=#{targetId}
+				</if>
+				<if test="targetType != null">
+					AND target_type=#{targetType}
+				</if>
+					AND ref_id=0
+		</where>
+	</select>
+</mapper>

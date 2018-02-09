@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tcbci.gkit.business.entity.user.UserInfoMapper">
+	<sql id="tableName">
+		[UserInfo]
+	</sql>
+	<select id="select" resultType="com.tcbci.gkit.business.domain.user.UserInfo">
+		SELECT * FROM
+		<include refid="tableName" />
+		WHERE id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.user.UserInfo" useGeneratedKeys="true" keyProperty="id" >
+			INSERT INTO
+						[UserInfo]
+						(
+								UserName,
+								UserEmail,
+								UserTrueName,
+								UserTel,
+								UserMobile,
+								UserTitle,
+								NickName,
+								UserPhoto1,
+								UserPhoto2,
+								UserPhoto3,
+								CustRef_Id,
+								IsInner,
+								UserDuty,
+								WorkAttr,
+								ManagementScope,
+								BusinessLicense,
+								CompanyName,
+								CompanyAddress,
+								Co_Xingzhi,
+								CoProvince,
+								CoProvinceName,
+								CoCity,
+								CoCityName,
+								IsPay,
+								IdenNo,
+								RecIdenNo,
+								NewPlat,
+								CreateDate
+						)
+				VALUES
+						( 
+							#{userName},
+							#{userEmail},
+							#{userTrueName},
+							#{userTel},
+							#{userMobile},
+							#{userTitle},
+							#{nickName},
+							#{UserPhoto1},
+							#{UserPhoto2},
+							#{UserPhoto3},
+							#{custRef_Id},
+							#{IsInner},
+							#{UserDuty},
+							#{WorkAttr},
+							#{ManagementScope},
+							#{BusinessLicense},
+							#{CompanyName},
+							#{CompanyAddress},
+							#{Co_Xingzhi},
+							#{CoProvince},
+							#{CoProvinceName},
+							#{CoCity},
+							#{CoCityName},
+							#{IsPay},
+							#{idenNo},
+							#{recIdenNo},
+							#{newPlat},			
+							#{createDate}
+							
+						)
+			
+	</insert>
+	
+		<select id="selectUserByUserName" resultType="com.tcbci.gkit.business.domain.user.UserInfo">
+		SELECT  TOP 1 * FROM
+		<include refid="tableName" />
+		WHERE 	UserName = #{userName} OR UserMobile = #{userName} 
+		</select>
+		<select id="selectUserByUserEmail" resultType="com.tcbci.gkit.business.domain.user.UserInfo">
+		SELECT TOP 1 * FROM
+		<include refid="tableName" />
+		WHERE 	UserEmail = #{userEmail}
+		</select>
+		
+</mapper>

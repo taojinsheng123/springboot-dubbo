@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.notice.StatisticalMapper">
+	<resultMap id="statisticalResultMap" type="com.tcbci.gkit.business.domain.notice.Statistical">
+			<result column="id" property="id"/>
+			<result column="target_id" property="targetId"/>
+			<result column="target_type" property="targetType"/>
+			<result column="type" property="type"/>
+			<result column="total" property="total"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				target_id,
+				target_type,
+				type,
+				total
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{targetId},
+				#{targetType},
+				#{type},
+				#{total}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_statistical
+	</sql>
+	
+
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.notice.Statistical">
+		INSERT INTO 
+			t_gb_statistical(
+				target_id,
+				target_type,
+				type,
+				total
+			)VALUES(
+				#{targetId},
+				#{targetType},
+				#{type},
+				#{total}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.notice.Statistical">
+		UPDATE
+			<include refid="TableName" />
+		<set>		
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="targetId != null">
+						target_id=#{targetId},
+					</if>
+					<if test="targetType != null">
+						target_type=#{targetType},
+					</if>
+					<if test="type != null">
+						type=#{type},
+					</if>
+					<if test="total != null">
+						total=#{total}
+					</if>
+			
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+		<select id="query" parameterType="com.tcbci.gkit.business.domain.notice.Statistical" resultMap="statisticalResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="targetId != null">
+					AND target_id=#{targetId}
+				</if>
+				<if test="targetType != null">
+					AND target_type=#{targetType}
+				</if>
+				<if test="type != null">
+					AND type=#{type}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+</mapper>

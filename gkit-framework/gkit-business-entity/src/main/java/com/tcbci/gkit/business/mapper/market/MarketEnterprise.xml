@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tcbci.gkit.business.entity.market.MarketEnterpriseMapper">
+	<resultMap id="marketEnterpriseResultMap"
+		type="com.tcbci.gkit.business.domain.market.MarketEnterprise">
+		<result column="id" property="id" />
+		<result column="market_id" property="marketId" />
+		<result column="enterprise_id" property="enterpriseId" />
+		<result column="market_full_name" property="marketFullName" />
+		<result column="enterprise_full_name" property="enterpriseFullName" />
+	</resultMap>
+
+	<sql id="Field">
+		id,
+		market_id,
+		enterprise_id,
+		market_full_name,
+		enterprise_full_name
+	</sql>
+
+	<sql id="FieldValues">
+		#{id},
+		#{marketId},
+		#{enterpriseId},
+		#{marketFullName},
+		#{enterpriseFullName}
+
+	</sql>
+
+	<sql id="TableName">
+		t_gb_market_enterprise
+	</sql>
+
+	<select id="findById" resultMap="marketEnterpriseResultMap"
+		parameterType="Integer">
+		SELECT
+		<include refid="Field" />
+		FROM
+		<include refid="TableName" />
+		WHERE
+		id=#{id}
+	</select>
+
+	<insert id="insert"
+		parameterType="com.tcbci.gkit.business.domain.market.MarketEnterprise">
+		INSERT INTO
+		t_gb_market_enterprise(
+		market_id,
+		enterprise_id,
+		market_full_name,
+		enterprise_full_name
+		)VALUES(
+		#{marketId},
+		#{enterpriseId},
+		#{marketFullName},
+		#{enterpriseFullName}
+		)
+	</insert>
+
+
+
+	<update id="update"
+		parameterType="com.tcbci.gkit.business.domain.market.MarketEnterprise">
+		UPDATE
+		<include refid="TableName" />
+		<set>
+			<if test="id != null">
+				id=#{id},
+			</if>
+			<if test="marketId != null">
+				market_id= #{marketId},
+			</if>
+			<if test="enterpriseId != null">
+				enterprise_id= #{enterpriseId},
+			</if>
+			<if test="marketFullName != null">
+				market_full_name= #{marketFullName},
+			</if>
+			<if test="enterpriseFullName != null">
+				enterprise_full_name= #{enterpriseFullName}
+			</if>
+
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<select id="findByObject" resultMap="marketEnterpriseResultMap"
+		parameterType="com.tcbci.gkit.business.domain.market.MarketEnterprise">
+		SELECT
+		<include refid="Field" />
+		FROM
+		<include refid="TableName" />
+		<where>
+			<if test="id!=null">
+				AND id=#{id}
+			</if>
+			<if test="marketId != null">
+				AND market_id= #{marketId}
+			</if>
+			<if test="enterpriseId != null">
+				AND enterprise_id= #{enterpriseId}
+			</if>
+			<if test="marketFullName != null">
+				AND market_full_name= #{marketFullName}
+			</if>
+			<if test="enterpriseFullName != null">
+				AND enterprise_full_name= #{enterpriseFullName}
+			</if>
+		</where>
+		LIMIT 0,1
+	</select>
+</mapper>

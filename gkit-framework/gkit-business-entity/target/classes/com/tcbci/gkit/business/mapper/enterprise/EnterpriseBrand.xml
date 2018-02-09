@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.enterprise.EnterpriseBrandMapper">
+	<resultMap id="enterprisebrandResultMap" type="com.tcbci.gkit.business.domain.enterprise.EnterpriseBrand">
+			<result column="id" property="id"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="logo" property="logo"/>
+			<result column="brand_id" property="brandId"/>
+			<result column="brand_name" property="brandName"/>
+			<result column="type" property="type"/>
+			<result column="certificate" property="certificate"/>
+			<result column="status" property="status"/>
+			<result column="remark" property="remark"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_user_name" property="auditUserName"/>
+			<result column="audit_user_true_name" property="auditUserTrueName"/>
+			<result column="audit_date" property="auditDate"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				enterprise_id,
+				brand_id,
+				type,
+				certificate,
+				status,
+				remark,
+				create_user,
+				create_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				create_user_scope,
+				edit_user,
+				edit_date,
+				edit_user_scope
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{enterpriseId},
+				#{brandId},
+				#{type},
+				#{certificate},
+				#{status},
+				#{remark},
+				#{createUser},
+				#{createDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{createUserScope},
+				#{editUser},
+				#{editDate},
+				#{editUserScope}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_enterprise_brand
+	</sql>
+	
+	<select id="findById" resultMap="enterprisebrandResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseBrand">
+		INSERT INTO 
+			t_gb_enterprise_brand(
+				enterprise_id,
+				brand_id,
+				type,
+				certificate,
+				status,
+				remark,
+				create_user,
+				create_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				create_user_scope,
+				edit_user,
+				edit_date,
+				edit_user_scope
+			)VALUES(
+				#{enterpriseId},
+				#{brandId},
+				#{type},
+				#{certificate},
+				#{status},
+				#{remark},
+				#{createUser},
+				#{createDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{createUserScope},
+				#{editUser},
+				#{editDate},
+				#{editUserScope}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseBrand">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="enterpriseId != null">
+						enterprise_id=#{enterpriseId},
+					</if>
+					<if test="brandId != null">
+						brand_id=#{brandId},
+					</if>
+					<if test="type != null">
+						type=#{type},
+					</if>
+					<if test="certificate != null">
+						certificate=#{certificate},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="remark != null">
+						remark=#{remark},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditUserName != null">
+						audit_user_name=#{auditUserName},
+					</if>
+					<if test="auditUserTrueName != null">
+						audit_user_true_name=#{auditUserTrueName},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope=#{createUserScope},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate},
+					</if>
+					<if test="editUserScope != null">
+						edit_user_scope =#{editUserScope}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="enterprisebrandResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="enterprisebrandResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_enterprise_brand(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.enterpriseId},
+		           				#{item.brandId},
+		           				#{item.type},
+		           				#{item.certificate},
+		           				#{item.status},
+		           				#{item.remark},
+		           				#{item.createUser},
+		           				#{item.createDate},
+		           				#{item.auditUser},
+		           				#{item.auditUserName},
+		           				#{item.auditUserTrueName},
+		           				#{item.auditDate},
+		           				#{item.createUserScope},
+		           				#{item.editUser},
+		           				#{item.editDate},
+		           				#{item.editUserScope}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseBrand" resultMap="enterprisebrandResultMap">
+		SELECT
+			t1.id,
+			t1.enterprise_id,
+			t2.logo,
+			t1.brand_id,
+			t2.name as brand_name,
+			t1.type,
+			t1.certificate,
+			t1.status,
+			t1.remark,
+			t1.create_user,
+			t1.create_date,
+			t1.audit_user,
+			t1.audit_user_name,
+			t1.audit_user_true_name,
+			t1.audit_date,
+			t1.create_user_scope,
+			t1.edit_user,
+			t1.edit_date,
+			t1.edit_user_scope
+		FROM
+			<include refid="TableName" /> t1
+		LEFT JOIN
+		    t_gb_brand t2
+		ON
+		    t1.brand_id=t2.brand_id
+		<where>
+				<if test="id != null">
+					t1.id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND t1.enterprise_id=#{enterpriseId}
+				</if>
+				<if test="brandId != null">
+					AND t1.brand_id=#{brandId}
+				</if>
+				<if test="type != null">
+					AND type=#{type}
+				</if>
+				<if test="certificate != null">
+					AND t1.certificate=#{certificate}
+				</if>
+				<if test="status != null">
+					AND t1.status=#{status}
+				</if>
+				<if test="remark != null">
+					AND t1.remark=#{remark}
+				</if>
+				<if test="createUser != null">
+					AND t1.create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND t1.create_date=#{createDate}
+				</if>
+				<if test="auditUser != null">
+					AND t1.audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND t1.audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND t1.audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND t1.audit_date=#{auditDate}
+				</if>
+				<if test="brandName != null">
+					AND t2.name=#{brandName}
+				</if>
+				<if test="createUserScope != null">
+					AND t1.create_user_scope=#{createUserScope}
+				</if>
+				<if test="editUser != null">
+					AND t1.edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND t1.edit_date=#{editDate}
+				</if>
+				<if test="editUserScope != null">
+					AND t1.edit_user_scope =#{editUserScope}
+				</if>
+		</where>
+	</select>
+	
+	<select id="getByEnterpriseId" resultMap="enterprisebrandResultMap">
+		SELECT
+			t1.id,
+			t1.enterprise_id,
+			t2.logo,
+			t1.brand_id,
+			t2.name as brand_name,
+			t1.type,
+			t1.certificate,
+			t1.status,
+			t1.remark,
+			t1.create_user,
+			t1.create_date,
+			t1.audit_user,
+			t1.audit_user_name,
+			t1.audit_user_true_name,
+			t1.audit_date,
+			t1.create_user_scope,
+			t1.edit_user,
+			t1.edit_date,
+			t1.edit_user_scope
+		FROM
+			<include refid="TableName" /> t1
+		LEFT JOIN
+		    t_gb_brand t2
+		ON
+		    t1.brand_id=t2.brand_id
+		    AND
+		    t2.flag = 0
+		<where>
+			<if test="enterpriseId != null">
+				AND
+					t1.enterprise_id=#{enterpriseId}
+			</if>
+			<if test="status != null">
+				AND
+					t1.status=#{status}
+			</if>
+		</where>
+	</select>
+</mapper>

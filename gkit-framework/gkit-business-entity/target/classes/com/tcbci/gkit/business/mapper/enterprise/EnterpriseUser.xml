@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.enterprise.EnterpriseUserMapper">
+	<resultMap type="com.tcbci.gkit.business.domain.enterprise.EnterpriseUser" id="resultMap">
+		<result column="id" property="id"/>
+		<result column="enterprise_id" property="enterpriseId"/>
+		<result column="user_id" property="userId"/>
+		<result column="user_name" property="userName"/>
+		<result column="power" property="power"/>
+		<result column="create_date" property="createDate"/>
+	</resultMap>
+	<sql id="fields">
+		id,
+		enterprise_id,
+		user_id,
+		user_name,
+		power,
+		create_date
+	</sql>
+	<sql id="table">
+		t_gb_enterprise_user
+	</sql>
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseUser">
+		INSERT INTO <include refid="table"></include> (
+			enterprise_id,
+			user_id,
+			user_name,
+			power,
+			create_date
+		)
+		VALUES(
+			#{enterpriseId},
+			#{userId},
+			#{userName},
+			#{power},
+			#{createDate}
+		)
+	</insert>
+	<select id="findByObject" resultMap="resultMap" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseUser">
+		SELECT 
+			<include refid="fields"></include>
+		FROM 
+			<include refid="table"></include>
+		<where>
+			<if test="id!=null">
+				AND id=#{id}
+			</if>
+			<if test="enterpriseId!=null">
+				AND enterprise_id = #{enterpriseId}
+			</if>
+			<if test="userId!=null">
+				AND user_id=#{userId}
+			</if>
+			<if test="userName!=null">
+				AND user_name = #{userName}
+			</if>
+			<if test="power!=null">
+				AND power=#{power}
+			</if>
+			<if test="createDate!=null">
+				AND create_date = #{createDate}
+			</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseUser">
+		UPDATE <include refid="table"></include>
+		<set>
+			<if test="enterpriseId!=null">
+				enterprise_id = #{enterpriseId},
+			</if>
+			<if test="userId!=null">
+				user_id=#{userId},
+			</if>
+			<if test="userName!=null">
+				user_name = #{userName},
+			</if>
+			<if test="power!=null">
+				power=#{power},
+			</if>
+			<if test="createDate!=null">
+				create_date = #{createDate}
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	<select id="listByObject" resultMap="resultMap" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseUser">
+		SELECT 
+			<include refid="fields"></include>
+		FROM 
+			<include refid="table"></include>
+		<where>
+			<if test="id!=null">
+				AND id=#{id}
+			</if>
+			<if test="enterpriseId!=null">
+				AND enterprise_id = #{enterpriseId}
+			</if>
+			<if test="userId!=null">
+				AND user_id=#{userId}
+			</if>
+			<if test="userName!=null">
+				AND user_name = #{userName}
+			</if>
+			<if test="power!=null">
+				AND power=#{power}
+			</if>
+			<if test="createDate!=null">
+				AND create_date = #{createDate}
+			</if>
+		</where>
+	</select>
+	<delete id="deleteByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseUser">
+		DELETE FROM <include refid="table"></include>
+		<where>
+			<if test="id!=null">
+				AND id=#{id}
+			</if>
+			<if test="enterpriseId!=null">
+				AND enterprise_id = #{enterpriseId}
+			</if>
+			<if test="userId!=null">
+				AND user_id=#{userId}
+			</if>
+			<if test="userName!=null">
+				AND user_name = #{userName}
+			</if>
+			<if test="power!=null">
+				AND power=#{power}
+			</if>
+			<if test="createDate!=null">
+				AND create_date = #{createDate}
+			</if>
+		</where>
+	</delete>
+</mapper>

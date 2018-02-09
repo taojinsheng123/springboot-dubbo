@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.enterprise.EnterpriseServiceAreaMapper">
+	<resultMap id="enterpriseserviceareaResultMap" type="com.tcbci.gkit.business.domain.enterprise.EnterpriseServiceArea">
+			<result column="id" property="id"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="flag" property="flag"/>
+			<result column="province_code" property="provinceCode"/>
+			<result column="province_name" property="provinceName"/>
+			<result column="city_code" property="cityCode"/>
+			<result column="city_name" property="cityName"/>
+			<result column="create_date" property="createDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				enterprise_id,
+				flag,
+				province_code,
+				province_name,
+				city_code,
+				city_name,
+				create_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{enterpriseId},
+				#{flag},
+				#{provinceCode},
+				#{provinceName},
+				#{cityCode},
+				#{cityName},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_enterprise_service_area
+	</sql>
+	
+	<select id="findById" resultMap="enterpriseserviceareaResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseServiceArea" resultMap="enterpriseserviceareaResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code=#{provinceCode}
+				</if>
+				<if test="provinceName != null">
+					AND province_name=#{provinceName}
+				</if>
+				<if test="cityCode != null">
+					AND city_code=#{cityCode}
+				</if>
+				<if test="cityName != null">
+					AND city_name=#{cityName}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseServiceArea" resultMap="enterpriseserviceareaResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code=#{provinceCode}
+				</if>
+				<if test="provinceName != null">
+					AND province_name=#{provinceName}
+				</if>
+				<if test="cityCode != null">
+					AND city_code=#{cityCode}
+				</if>
+				<if test="cityName != null">
+					AND city_name=#{cityName}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseServiceArea">
+		INSERT INTO 
+			t_gb_enterprise_service_area(
+				enterprise_id,
+				flag,
+				province_code,
+				province_name,
+				city_code,
+				city_name,
+				create_date
+			)VALUES(
+				#{enterpriseId},
+				#{flag},
+				#{provinceCode},
+				#{provinceName},
+				#{cityCode},
+				#{cityName},
+				#{createDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseServiceArea">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="enterpriseId != null">
+						enterprise_id=#{enterpriseId},
+					</if>
+					<if test="flag != null">
+						flag=#{flag},
+					</if>
+					<if test="provinceCode != null">
+						province_code=#{provinceCode},
+					</if>
+					<if test="provinceName != null">
+						province_name=#{provinceName},
+					</if>
+					<if test="cityCode != null">
+						city_code=#{cityCode},
+					</if>
+					<if test="cityName != null">
+						city_name=#{cityName},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="enterpriseserviceareaResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_enterprise_service_area(
+				enterprise_id,
+				flag,
+				province_code,
+				province_name,
+				city_code,
+				city_name,
+				create_date
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{list[${index}].enterpriseId},
+		           				#{list[${index}].flag},
+		           				#{list[${index}].provinceCode},
+		           				#{list[${index}].provinceName},
+		           				#{list[${index}].cityCode},
+		           				#{list[${index}].cityName},
+		           				#{list[${index}].createDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseServiceArea" resultMap="enterpriseserviceareaResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code=#{provinceCode}
+				</if>
+				<if test="provinceName != null">
+					AND province_name=#{provinceName}
+				</if>
+				<if test="cityCode != null">
+					AND city_code=#{cityCode}
+				</if>
+				<if test="cityName != null">
+					AND city_name=#{cityName}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<delete id="deleteByEnterpriseId">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			flag=#{flag}
+		AND
+			enterprise_id=#{enterpriseId}
+	</delete>
+</mapper>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.basedata.CaseProjectCategoryMapper">
+	<resultMap id="caseprojectcategoryResultMap" type="com.tcbci.gkit.business.domain.basedata.CaseProjectCategory">
+			<result column="id" property="id"/>
+			<result column="case_id" property="caseId"/>
+			<result column="flag" property="flag"/>
+			<result column="category" property="category"/>
+			<result column="category_name" property="categoryName"/>
+			<result column="category_path" property="categoryPath"/>
+			<result column="create_date" property="createDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				case_id,
+				flag,
+				category,
+				category_name,
+				category_path,
+				create_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{caseId},
+				#{flag},
+				#{category},
+				#{categoryName},
+				#{categoryPath},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_case_project_category
+	</sql>
+	
+	<select id="findById" resultMap="caseprojectcategoryResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.basedata.CaseProjectCategory">
+		INSERT INTO 
+			t_gb_case_project_category(
+				case_id,
+				flag,
+				category,
+				category_name,
+				category_path,
+				create_date
+			)VALUES(
+				#{caseId},
+				0,
+				#{category},
+				#{categoryName},
+				#{categoryPath},
+				#{createDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.basedata.CaseProjectCategory">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="caseId != null">
+						case_id=#{caseId},
+					</if>
+					<if test="flag != null">
+						flag=#{flag},
+					</if>
+					<if test="category != null">
+						category=#{category},
+					</if>
+					<if test="categoryName != null">
+						category_name=#{categoryName},
+					</if>
+					<if test="categoryPath != null">
+						category_path=#{categoryPath},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="caseprojectcategoryResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" parameterType="com.tcbci.gkit.business.domain.basedata.CaseProjectCategory" resultMap="caseprojectcategoryResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_case_project_category(
+				case_id,
+				flag,
+				category,
+				category_name,
+				category_path,
+				create_date
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.caseId},
+		           				0,
+		           				#{item.category},
+		           				#{item.categoryName},
+		           				#{item.categoryPath},
+		           				#{item.createDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.basedata.CaseProjectCategory" resultMap="caseprojectcategoryResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="caseId != null">
+					AND case_id=#{caseId}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="category != null">
+					AND category=#{category}
+				</if>
+				<if test="categoryName != null">
+					AND category_name=#{categoryName}
+				</if>
+				<if test="categoryPath != null">
+					AND category_path=#{categoryPath}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<delete id="deleteByCaseId" parameterType="String">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			case_id=#{caseId}
+	</delete>
+	
+	<select id="get" resultMap="caseprojectcategoryResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			case_id=#{caseId}
+		AND
+			flag=#{flag}
+	</select>
+</mapper>

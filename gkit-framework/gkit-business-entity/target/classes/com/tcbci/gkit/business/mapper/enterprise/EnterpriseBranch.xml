@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.enterprise.EnterpriseBranchMapper">
+	<resultMap id="enterprisebranchResultMap" type="com.tcbci.gkit.business.domain.enterprise.EnterpriseBranch">
+			<result column="id" property="id"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="type" property="type"/>
+			<result column="type_name" property="typeName"/>
+			<result column="name" property="name"/>
+			<result column="phone_prefix" property="phonePrefix"/>
+			<result column="phone_code" property="phoneCode"/>
+			<result column="phone_number" property="phoneNumber"/>
+			<result column="phone_ext" property="phoneExt"/>
+			<result column="province_code" property="provinceCode"/>
+			<result column="province_name" property="provinceName"/>
+			<result column="city_code" property="cityCode"/>
+			<result column="city_name" property="cityName"/>
+			<result column="area_code" property="areaCode"/>
+			<result column="area_name" property="areaName"/>
+			<result column="address" property="address"/>
+			<result column="status" property="status"/>
+			<result column="remark" property="remark"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_user_name" property="auditUserName"/>
+			<result column="audit_user_true_name" property="auditUserTrueName"/>
+			<result column="audit_date" property="auditDate"/>
+			<result column="is_delete" property="isDelete"/>
+			<result column="delete_user" property="deleteUser"/>
+			<result column="delete_date" property="deleteDate"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="delete_user_scope" property="deleteUserScope"/>
+			<result column="country_code" property="countryCode"/>
+			<result column="country_name" property="countryName"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				enterprise_id,
+				type,
+				type_name,
+				name,
+				phone_prefix,
+				phone_code,
+				phone_number,
+				phone_ext,
+				province_code,
+				province_name,
+				city_code,
+				city_name,
+				area_code,
+				area_name,
+				address,
+				status,
+				remark,
+				create_user,
+				create_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				is_delete,
+				delete_user,
+				delete_date,
+				create_user_scope,
+				delete_user_scope,
+				country_code,
+				country_name,
+				edit_user,
+				edit_date,
+				edit_user_scope
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{enterpriseId},
+				#{type},
+				#{typeName},
+				#{name},
+				#{phonePrefix},
+				#{phoneCode},
+				#{phoneNumber},
+				#{phoneExt},
+				#{provinceCode},
+				#{provinceName},
+				#{cityCode},
+				#{cityName},
+				#{areaCode},
+				#{areaName},
+				#{address},
+				#{status},
+				#{remark},
+				#{createUser},
+				#{createDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{isDelete},
+				#{deleteUser},
+				#{deleteDate},
+				#{createUserScope},
+				#{deleteUserScope},
+				#{countryCode},
+				#{countryName},
+				#{editUser},
+				#{editDate},
+				#{editUserScope}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_enterprise_branch
+	</sql>
+	
+	<select id="findById" resultMap="enterprisebranchResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseBranch">
+		INSERT INTO 
+			t_gb_enterprise_branch(
+				enterprise_id,
+				type,
+				type_name,
+				name,
+				phone_prefix,
+				phone_code,
+				phone_number,
+				phone_ext,
+				province_code,
+				province_name,
+				city_code,
+				city_name,
+				area_code,
+				area_name,
+				address,
+				status,
+				remark,
+				create_user,
+				create_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				is_delete,
+				delete_user,
+				delete_date,
+				create_user_scope,
+				delete_user_scope,
+				country_code,
+				country_name,
+				edit_user,
+				edit_date,
+				edit_user_scope
+			)VALUES(
+				#{enterpriseId},
+				#{type},
+				#{typeName},
+				#{name},
+				#{phonePrefix},
+				#{phoneCode},
+				#{phoneNumber},
+				#{phoneExt},
+				#{provinceCode},
+				#{provinceName},
+				#{cityCode},
+				#{cityName},
+				#{areaCode},
+				#{areaName},
+				#{address},
+				#{status},
+				#{remark},
+				#{createUser},
+				#{createDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{isDelete},
+				#{deleteUser},
+				#{deleteDate},
+				#{createUserScope},
+				#{deleteUserScope},
+				#{countryCode},
+				#{countryName},
+				#{editUser},
+				#{editDate},
+				#{editUserScope}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseBranch">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="enterpriseId != null">
+						enterprise_id=#{enterpriseId},
+					</if>
+					<if test="type != null">
+						type=#{type},
+					</if>
+					<if test="typeName != null">
+						type_name=#{typeName},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="phonePrefix != null">
+						phone_prefix=#{phonePrefix},
+					</if>
+					<if test="phoneCode != null">
+						phone_code=#{phoneCode},
+					</if>
+					<if test="phoneNumber != null">
+						phone_number=#{phoneNumber},
+					</if>
+					<if test="phoneExt != null">
+						phone_ext=#{phoneExt},
+					</if>
+					<if test="provinceCode != null">
+						province_code=#{provinceCode},
+					</if>
+					<if test="provinceName != null">
+						province_name=#{provinceName},
+					</if>
+					<if test="cityCode != null">
+						city_code=#{cityCode},
+					</if>
+					<if test="cityName != null">
+						city_name=#{cityName},
+					</if>
+					<if test="areaCode != null">
+						area_code=#{areaCode},
+					</if>
+					<if test="areaName != null">
+						area_name=#{areaName},
+					</if>
+					<if test="address != null">
+						address=#{address},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="remark != null">
+						remark=#{remark},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditUserName != null">
+						audit_user_name=#{auditUserName},
+					</if>
+					<if test="auditUserTrueName != null">
+						audit_user_true_name=#{auditUserTrueName},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate},
+					</if>
+					<if test="isDelete != null">
+						is_delete=#{isDelete},
+					</if>
+					<if test="deleteUser != null">
+						delete_user=#{deleteUser},
+					</if>
+					<if test="deleteDate != null">
+						delete_date=#{deleteDate},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope=#{createUserScope},
+					</if>
+					<if test="deleteUserScope != null">
+						delete_user_scope=#{deleteUserScope},
+					</if>
+					<if test="countryCode != null">
+						country_code=#{countryCode},
+					</if>
+					<if test="countryName != null">
+						country_name=#{countryName},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate},
+					</if>
+					<if test="editUserScope != null">
+						edit_user_scope =#{editUserScope}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="enterprisebranchResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="enterprisebranchResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_enterprise_branch(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.enterpriseId},
+		           				#{item.type},
+		           				#{item.typeName},
+		           				#{item.name},
+		           				#{item.phonePrefix},
+		           				#{item.phoneCode},
+		           				#{item.phoneNumber},
+		           				#{item.phoneExt},
+		           				#{item.provinceCode},
+		           				#{item.provinceName},
+		           				#{item.cityCode},
+		           				#{item.cityName},
+		           				#{item.areaCode},
+		           				#{item.areaName},
+		           				#{item.address},
+		           				#{item.status},
+		           				#{item.remark},
+		           				#{item.createUser},
+		           				#{item.createDate},
+		           				#{item.auditUser},
+		           				#{item.auditUserName},
+		           				#{item.auditUserTrueName},
+		           				#{item.auditDate},
+		           				#{item.isDelete},
+		           				#{item.deleteUser},
+		           				#{item.deleteDate},
+		           				#{item.createUserScope},
+		           				#{item.deleteUserScope},
+		           				#{item.countryCode},
+		           				#{item.countryName},
+		           				#{item.editUser},
+		           				#{item.editDate},
+		           				#{item.editUserScope}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseBranch" resultMap="enterprisebranchResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="type != null">
+					AND type=#{type}
+				</if>
+				<if test="typeName != null">
+					AND type_name=#{typeName}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="phonePrefix != null">
+					AND phone_prefix=#{phonePrefix}
+				</if>
+				<if test="phoneCode != null">
+					AND phone_code=#{phoneCode}
+				</if>
+				<if test="phoneNumber != null">
+					AND phone_number=#{phoneNumber}
+				</if>
+				<if test="phoneExt != null">
+					AND phone_ext=#{phoneExt}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code=#{provinceCode}
+				</if>
+				<if test="provinceName != null">
+					AND province_name=#{provinceName}
+				</if>
+				<if test="cityCode != null">
+					AND city_code=#{cityCode}
+				</if>
+				<if test="cityName != null">
+					AND city_name=#{cityName}
+				</if>
+				<if test="areaCode != null">
+					AND area_code=#{areaCode}
+				</if>
+				<if test="areaName != null">
+					AND area_name=#{areaName}
+				</if>
+				<if test="address != null">
+					AND address=#{address}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="remark != null">
+					AND remark=#{remark}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="deleteUserScope != null">
+					AND delete_user_scope=#{deleteUserScope}
+				</if>
+				<if test="countryCode != null">
+					AND country_code=#{countryCode}
+				</if>
+				<if test="countryName != null">
+					AND country_name=#{countryName}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope =#{editUserScope}
+				</if>
+		</where>
+	</select>
+		
+	<select id="query" resultMap="enterprisebranchResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			is_delete=0
+			<if test="branchName != null">
+				AND name like CONCAT('%',#{branchName},'%')
+			</if>
+			<if test="enterpriseId != null">
+				AND enterprise_id=#{enterpriseId}
+			</if>
+	</select>
+</mapper>

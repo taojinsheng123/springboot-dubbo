@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.basedata.SystemAreaMapper">
+	<resultMap id="systemareaResultMap" type="com.tcbci.gkit.business.domain.basedata.SystemArea">
+			<result column="id" property="id"/>
+			<result column="country_id" property="countryId"/>
+			<result column="name" property="name"/>
+			<result column="name_en" property="nameEn"/>
+			<result column="enable" property="enable"/>
+			<result column="creator" property="creator"/>
+			<result column="create_date" property="createDate"/>
+			<result column="editor" property="editor"/>
+			<result column="edit_date" property="editDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				country_id,
+				name,
+				name_en,
+				enable,
+				creator,
+				create_date,
+				editor,
+				edit_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{countryId},
+				#{name},
+				#{nameEn},
+				#{enable},
+				#{creator},
+				#{createDate},
+				#{editor},
+				#{editDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_system_country_area
+	</sql>
+	
+	<select id="findById" resultMap="systemareaResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.basedata.SystemArea">
+		INSERT INTO 
+			t_gb_system_country_area(
+				<include refid="Field" />
+			)VALUES(
+				<include refid="FieldValues" />
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.basedata.SystemArea">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="countryId != null">
+						country_id=#{countryId},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="nameEn != null">
+						name_en=#{nameEn},
+					</if>
+					<if test="enable != null">
+						enable=#{enable},
+					</if>
+					<if test="creator != null">
+						creator=#{creator},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="editor != null">
+						editor=#{editor},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="systemareaResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" parameterType="com.tcbci.gkit.business.domain.basedata.SystemArea" resultMap="systemareaResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_system_country_area(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.countryId},
+		           				#{item.name},
+		           				#{item.nameEn},
+		           				#{item.enable},
+		           				#{item.creator},
+		           				#{item.createDate},
+		           				#{item.editor},
+		           				#{item.editDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.basedata.SystemArea" resultMap="systemareaResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="countryId != null">
+					AND country_id=#{countryId}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="nameEn != null">
+					AND name_en=#{nameEn}
+				</if>
+				<if test="enable != null">
+					AND enable=#{enable}
+				</if>
+				<if test="creator != null">
+					AND creator=#{creator}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editor != null">
+					AND editor=#{editor}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryArea" resultMap="systemareaResultMap" parameterType="String">
+		SELECT
+				A.id,
+				A.country_id,
+				A.name,
+				A.name_en,
+				A.enable,
+				A.creator,
+				A.create_date,
+				A.editor,
+				A.edit_date
+		FROM
+			<include refid="TableName" /> AS A
+		JOIN
+			t_gb_system_country AS B ON B.id=A.country_id
+		WHERE
+			B.`code`=#{countryCode}
+	</select>
+</mapper>

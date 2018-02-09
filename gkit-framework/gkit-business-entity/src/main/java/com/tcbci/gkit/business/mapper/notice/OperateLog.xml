@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.notice.OperateLogMapper">
+	<resultMap id="operatelogResultMap" type="com.tcbci.gkit.business.domain.notice.OperateLog">
+			<result column="id" property="id"/>
+			<result column="target_id" property="targetId"/>
+			<result column="target_type" property="targetType"/>
+			<result column="target_user" property="targetUser"/>
+			<result column="group" property="group"/>
+			<result column="title" property="title"/>
+			<result column="state" property="state"/>
+			<result column="state_name" property="stateName"/>
+			<result column="remark" property="remark"/>
+			<result column="level" property="level"/>
+			<result column="user_name" property="userName"/>
+			<result column="create_date" property="createDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				target_id,
+				target_type,
+				target_user,
+				`group`,
+				title,
+				state,
+				state_name,
+				remark,
+				`level`,
+				user_name,
+				create_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{targetId},
+				#{targetType},
+				#{targetUser},
+				#{group},
+				#{title},
+				#{state},
+				#{stateName},
+				#{remark},
+				#{level},
+				#{userName},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_operate_log
+	</sql>
+	
+	<select id="findById" resultMap="operatelogResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.notice.OperateLog" resultMap="operatelogResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="targetId != null">
+					AND target_id=#{targetId}
+				</if>
+				<if test="targetType != null">
+					AND target_type=#{targetType}
+				</if>
+				<if test="targetUser != null">
+					AND target_user=#{targetUser}
+				</if>
+				<if test="group != null">
+					AND `group`=#{group}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="state != null">
+					AND state=#{state}
+				</if>
+				<if test="stateName != null">
+					AND state_name=#{stateName}
+				</if>
+				<if test="remark != null">
+					AND remark=#{remark}
+				</if>
+				<if test="level != null">
+					AND `level`=#{level}
+				</if>
+				<if test="userName != null">
+					AND user_name=#{userName}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.notice.OperateLog" resultMap="operatelogResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="targetId != null">
+					AND target_id=#{targetId}
+				</if>
+				<if test="targetType != null">
+					AND target_type=#{targetType}
+				</if>
+				<if test="targetUser != null">
+					AND target_user=#{targetUser}
+				</if>
+				<if test="group != null">
+					AND `group`=#{group}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="state != null">
+					AND state=#{state}
+				</if>
+				<if test="stateName != null">
+					AND state_name=#{stateName}
+				</if>
+				<if test="remark != null">
+					AND remark=#{remark}
+				</if>
+				<if test="level != null">
+					AND `level`=#{level}
+				</if>
+				<if test="userName != null">
+					AND user_name=#{userName}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.notice.OperateLog">
+		INSERT INTO 
+			t_gb_operate_log(
+				target_id,
+				target_type,
+				target_user,
+				`group`,
+				title,
+				state,
+				state_name,
+				remark,
+				`level`,
+				user_name,
+				create_date
+			)VALUES(
+				#{targetId},
+				#{targetType},
+				#{targetUser},
+				#{group},
+				#{title},
+				#{state},
+				#{stateName},
+				#{remark},
+				#{level},
+				#{userName},
+				#{createDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.notice.OperateLog">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="targetId != null">
+						target_id=#{targetId},
+					</if>
+					<if test="targetType != null">
+						target_type=#{targetType},
+					</if>
+					<if test="targetUser != null">
+						target_user=#{targetUser},
+					</if>
+					<if test="group != null">
+						`group`=#{group},
+					</if>
+					<if test="title != null">
+						title=#{title},
+					</if>
+					<if test="state != null">
+						state=#{state},
+					</if>
+					<if test="stateName != null">
+						state_name=#{stateName},
+					</if>
+					<if test="remark != null">
+						remark=#{remark},
+					</if>
+					<if test="level != null">
+						`level`=#{level},
+					</if>
+					<if test="userName != null">
+						user_name=#{userName},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="operatelogResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_operate_log(
+				target_id,
+				target_type,
+				target_user,
+				`group`,
+				title,
+				state,
+				state_name,
+				remark,
+				`level`,
+				user_name,
+				create_date
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.targetId},
+		           				#{item.targetType},
+		           				#{item.targetUser},
+		           				#{item.group},
+		           				#{item.title},
+		           				#{item.state},
+		           				#{item.stateName},
+		           				#{item.remark},
+		           				#{item.level},
+		           				#{item.userName},
+		           				#{item.createDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="queryByObject" parameterType="com.tcbci.gkit.business.domain.notice.OperateLog" resultMap="operatelogResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="targetId != null">
+					AND target_id=#{targetId}
+				</if>
+				<if test="targetType != null">
+					AND target_type=#{targetType}
+				</if>
+				<if test="targetUser != null">
+					AND target_user=#{targetUser}
+				</if>
+				<if test="group != null">
+					AND `group`=#{group}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="state != null">
+					AND state=#{state}
+				</if>
+				<if test="stateName != null">
+					AND state_name=#{stateName}
+				</if>
+				<if test="remark != null">
+					AND remark=#{remark}
+				</if>
+				<if test="level != null">
+					AND `level`=#{level}
+				</if>
+				<if test="userName != null">
+					AND user_name=#{userName}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.page.OperateLogParams" resultMap="operatelogResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+		    1=1
+				<if test="o.targetType != null">
+					AND target_type=#{o.targetType}			
+				</if>
+				<if test="o.group != null">
+					AND `group`=#{o.group}
+				</if>
+				<if test="o.targetUser != null">
+					AND target_user=#{o.targetUser}
+				</if>
+		</where>
+	</select>
+</mapper>

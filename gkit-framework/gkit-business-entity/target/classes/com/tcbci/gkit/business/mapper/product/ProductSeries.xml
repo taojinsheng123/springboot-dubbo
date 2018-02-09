@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.product.ProductSeriesMapper">
+	<resultMap id="productseriesResultMap" type="com.tcbci.gkit.business.domain.product.ProductSeries">
+			<result column="id" property="id"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="name" property="name"/>
+			<result column="seq" property="seq"/>
+			<result column="is_delete" property="isDelete"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="create_date" property="createDate"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="delete_user" property="deleteUser"/>
+			<result column="delete_user_scope" property="deleteUserScope"/>
+			<result column="delete_date" property="deleteDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				enterprise_id,
+				name,
+				seq,
+				is_delete,
+				create_user,
+				create_user_scope,
+				create_date,
+				edit_user,
+				edit_user_scope,
+				edit_date,
+				delete_user,
+				delete_user_scope,
+				delete_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{enterpriseId},
+				#{name},
+				#{seq},
+				#{isDelete},
+				#{createUser},
+				#{createUserScope},
+				#{createDate},
+				#{editUser},
+				#{editUserScope},
+				#{editDate},
+				#{deleteUser},
+				#{deleteUserScope},
+				#{deleteDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_product_series
+	</sql>
+	
+	<select id="findById" resultMap="productseriesResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.product.ProductSeries" resultMap="productseriesResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					AND id=#{id}
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope=#{editUserScope}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="deleteUserScope != null">
+					AND delete_user_scope=#{deleteUserScope}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.product.ProductSeries" resultMap="productseriesResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					AND id=#{id}
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope=#{editUserScope}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="deleteUserScope != null">
+					AND delete_user_scope=#{deleteUserScope}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.tcbci.gkit.business.domain.product.ProductSeries">
+		INSERT INTO 
+			t_gb_product_series(
+				<include refid="Field" />
+			)VALUES(
+				<include refid="FieldValues" />
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.product.ProductSeries">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="enterpriseId != null">
+						enterprise_id=#{enterpriseId},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="seq != null">
+						seq=#{seq},
+					</if>
+					<if test="isDelete != null">
+						is_delete=#{isDelete},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope=#{createUserScope},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editUserScope != null">
+						edit_user_scope=#{editUserScope},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate},
+					</if>
+					<if test="deleteUser != null">
+						delete_user=#{deleteUser},
+					</if>
+					<if test="deleteUserScope != null">
+						delete_user_scope=#{deleteUserScope},
+					</if>
+					<if test="deleteDate != null">
+						delete_date=#{deleteDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="productseriesResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_product_series(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.enterpriseId},
+		           				#{item.name},
+		           				#{item.seq},
+		           				#{item.isDelete},
+		           				#{item.createUser},
+		           				#{item.createUserScope},
+		           				#{item.createDate},
+		           				#{item.editUser},
+		           				#{item.editUserScope},
+		           				#{item.editDate},
+		           				#{item.deleteUser},
+		           				#{item.deleteUserScope},
+		           				#{item.deleteDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.page.ProductSeriesParams" resultMap="productseriesResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="s.keyword != null">
+					AND name like CONCAT('%', #{s.keyword},'%')
+				</if>
+				<if test="s.enterpriseId != null">
+					AND enterprise_id=#{s.enterpriseId}
+				</if>
+				<if test="s.isDelete != null">
+					AND is_delete=#{s.isDelete}
+				</if>
+		</where>
+	</select>
+</mapper>

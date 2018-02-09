@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.notice.HistoryMapper">
+	<resultMap id="historyResultMap" type="com.tcbci.gkit.business.domain.notice.History">
+			<result column="id" property="id"/>
+			<result column="target_id" property="targetId"/>
+			<result column="target_type" property="targetType"/>
+			<result column="target_title" property="targetTitle"/>
+			<result column="relative_path" property="relativePath"/>
+			<result column="user" property="user"/>
+			<result column="user_scope" property="userScope"/>
+			<result column="last_view_date" property="lastViewDate"/>
+			<result column="create_date" property="createDate"/>
+			<result column="is_delete" property="isDelete"/>
+			<result column="delete_date" property="deleteDate"/>
+			<result column="user_ip" property="userIp"/>
+			<result column="facility_type" property="facilityType"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				target_id,
+				target_type,
+				target_title,
+				relative_path,
+				user,
+				user_scope,
+				last_view_date,
+				create_date,
+				is_delete,
+				delete_date,
+				user_ip,
+				facility_type
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{targetId},
+				#{targetType},
+				#{targetTitle},
+				#{relativePath},
+				#{user},
+				#{userScope},
+				#{lastViewDate},
+				#{createDate},
+				#{isDelete},
+				#{deleteDate},
+				#{userIp},
+				#{facilityType}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_history
+	</sql>
+	
+	<select id="findById" resultMap="historyResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.notice.History">
+		INSERT INTO 
+			t_gb_history(
+				<include refid="Field" />
+			)VALUES(
+				<include refid="FieldValues" />
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.notice.History">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="targetId != null">
+						target_id=#{targetId},
+					</if>
+					<if test="targetType != null">
+						target_type=#{targetType},
+					</if>
+					<if test="targetTitle != null">
+						target_title=#{targetTitle},
+					</if>
+					<if test="relativePath != null">
+						relative_path=#{relativePath},
+					</if>
+					<if test="user != null">
+						user=#{user},
+					</if>
+					<if test="userScope != null">
+						user_scope=#{userScope},
+					</if>
+					<if test="lastViewDate != null">
+						last_view_date=#{lastViewDate},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="isDelete != null">
+						is_delete=#{isDelete},
+					</if>
+					<if test="deleteDate != null">
+						delete_date=#{deleteDate}
+					</if>
+					<if test="userIp != null">
+						user_ip=#{userIp}
+					</if>
+					<if test="facilityType != null">
+						facility_type=#{facilityType}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="historyResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="historyResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_history(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.targetId},
+		           				#{item.targetType},
+		           				#{item.targetTitle},
+		           				#{item.relativePath},
+		           				#{item.user},
+		           				#{item.userScope},
+		           				#{item.lastViewDate},
+		           				#{item.createDate},
+		           				#{item.isDelete},
+		           				#{item.deleteDate},
+		           				#{item.userIp},
+		           				#{item.facilityType}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="search" parameterType="com.tcbci.gkit.business.domain.notice.History" resultMap="historyResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="targetId != null">
+					AND target_id=#{targetId}
+				</if>
+				<if test="targetType != null">
+					AND target_type=#{targetType}
+				</if>
+				<if test="targetTitle != null">
+					AND target_title=#{targetTitle}
+				</if>
+				<if test="relativePath != null">
+					AND relative_path=#{relativePath}
+				</if>
+				<if test="user != null">
+					AND user=#{user}
+				</if>
+				<if test="userScope != null">
+					AND user_scope=#{userScope}
+				</if>
+				<if test="lastViewDate != null">
+					AND last_view_date=#{lastViewDate}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+		</where>
+	</select>
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.notice.History" resultMap="historyResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="targetId != null">
+					AND target_id=#{targetId}
+				</if>
+				<if test="targetType != null">
+					AND target_type=#{targetType}
+				</if>
+				<if test="targetTitle != null">
+					AND target_title=#{targetTitle}
+				</if>
+				<if test="relativePath != null">
+					AND relative_path=#{relativePath}
+				</if>
+				<if test="user != null">
+					AND user=#{user}
+				</if>
+				<if test="userScope != null">
+					AND user_scope=#{userScope}
+				</if>
+				<if test="lastViewDate != null">
+					AND last_view_date=#{lastViewDate}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+		</where>
+	</select>
+	<delete id="deleteByHistory"  parameterType="com.tcbci.gkit.business.domain.notice.History" >
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			<if test="h.user != null">
+					user=#{h.user}
+			</if>
+	</delete>
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.page.HistoryParams" resultMap="historyResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="h.keyword != null">
+					AND target_title like CONCAT('%', #{h.keyword},'%')		
+				</if>
+				<if test="h.user != null">
+					AND user=#{h.user}			
+				</if>
+				<if test="h.userScope != null">
+					AND user_scope=#{h.userScope}			
+				</if>
+				<if test="h.isDelete != null">
+					AND is_delete=#{h.isDelete}			
+				</if>
+		</where>
+	</select>
+	<select id="getOpenCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM 
+			<include refid="TableName" />
+		WHERE
+			user_scope = 0
+			AND user=#{user}
+			AND last_view_date &gt;= #{start}
+			AND last_view_date &lt; DATE_ADD(#{end},INTERVAL 1 DAY)
+			AND target_id != #{targetId}
+			AND target_type = #{targetType}
+	</select>
+</mapper>

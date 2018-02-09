@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.enterprise.EnterpriseShopAdsMapper">
+	<resultMap id="enterpriseshopadsResultMap" type="com.tcbci.gkit.business.domain.enterprise.EnterpriseShopAds">
+			<result column="id" property="id"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="path" property="path"/>
+			<result column="title" property="title"/>
+			<result column="status" property="status"/>
+			<result column="is_display" property="isDisplay"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_date" property="auditDate"/>
+			<result column="is_delete" property="isDelete"/>
+			<result column="delete_user" property="deleteUser"/>
+			<result column="delete_date" property="deleteDate"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="delete_user_scope" property="deleteUserScope"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				enterprise_id,
+				path,
+				title,
+				status,
+				is_display,
+				create_user,
+				create_date,
+				audit_user,
+				audit_date,
+				is_delete,
+				delete_user,
+				delete_date,
+				create_user_scope,
+				delete_user_scope
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{enterpriseId},
+				#{path},
+				#{title},
+				#{status},
+				#{isDisplay},
+				#{createUser},
+				#{createDate},
+				#{auditUser},
+				#{auditDate},
+				#{isDelete},
+				#{deleteUser},
+				#{deleteDate},
+				#{createUserScope},
+				#{deleteUserScope}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_enterprise_shop_ads
+	</sql>
+	
+	<select id="findById" resultMap="enterpriseshopadsResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseShopAds" resultMap="enterpriseshopadsResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="path != null">
+					AND path=#{path}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="isDisplay != null">
+					AND is_display=#{isDisplay}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="deleteUserScope != null">
+					AND delete_user_scope=#{deleteUserScope}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseShopAds" resultMap="enterpriseshopadsResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="path != null">
+					AND path=#{path}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="isDisplay != null">
+					AND is_display=#{isDisplay}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="deleteUserScope != null">
+					AND delete_user_scope=#{deleteUserScope}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseShopAds">
+		INSERT INTO 
+			t_gb_enterprise_shop_ads(
+				enterprise_id,
+				path,
+				title,
+				status,
+				is_display,
+				create_user,
+				create_date,
+				audit_user,
+				audit_date,
+				is_delete,
+				delete_user,
+				delete_date,
+				create_user_scope,
+				delete_user_scope
+			)VALUES(
+				#{enterpriseId},
+				#{path},
+				#{title},
+				#{status},
+				#{isDisplay},
+				#{createUser},
+				#{createDate},
+				#{auditUser},
+				#{auditDate},
+				#{isDelete},
+				#{deleteUser},
+				#{deleteDate},
+				#{createUserScope},
+				#{deleteUserScope}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseShopAds">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="enterpriseId != null">
+						enterprise_id=#{enterpriseId},
+					</if>
+					<if test="path != null">
+						path=#{path},
+					</if>
+					<if test="title != null">
+						title=#{title},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="isDisplay != null">
+						is_display=#{isDisplay},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate},
+					</if>
+					<if test="isDelete != null">
+						is_delete=#{isDelete},
+					</if>
+					<if test="deleteUser != null">
+						delete_user=#{deleteUser},
+					</if>
+					<if test="deleteDate != null">
+						delete_date=#{deleteDate},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope=#{createUserScope},
+					</if>
+					<if test="deleteUserScope != null">
+						delete_user_scope=#{deleteUserScope}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="enterpriseshopadsResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_enterprise_shop_ads(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.enterpriseId},
+		           				#{item.path},
+		           				#{item.title},
+		           				#{item.status},
+		           				#{item.isDisplay},
+		           				#{item.createUser},
+		           				#{item.createDate},
+		           				#{item.auditUser},
+		           				#{item.auditDate},
+		           				#{item.isDelete},
+		           				#{item.deleteUser},
+		           				#{item.deleteDate},
+		           				#{item.createUserScope},
+		           				#{item.deleteUserScope}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.page.EnterpriseShopAdsParams" resultMap="enterpriseshopadsResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="e.status != null">
+					AND status=#{e.status}
+				</if>
+				<if test="e.isDelete != null">
+					AND is_delete=#{e.isDelete}
+				</if>
+				<if test="e.isDisplay != null">
+					AND is_display=#{e.isDisplay}
+				</if>
+				<if test="e.enterpriseId != null">
+					AND enterprise_id=#{e.enterpriseId}
+				</if>
+		</where>
+	</select>
+</mapper>

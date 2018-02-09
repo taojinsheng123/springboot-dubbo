@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.standard.StandardLevelMapper">
+	<resultMap id="StandardLevelMap" type="com.tcbci.gkit.business.domain.standard.StandardLevel">
+			<result column="StandardLevelID" property="standardLevelID"/>
+			<result column="Name" property="name"/>
+			<result column="Parent_id" property="parentId"/>
+			<result column="IsDel" property="isDel"/>
+			<result column="CreaterID" property="createrID"/>
+			<result column="CreateTime" property="createTime"/>
+			<result column="ModifierID" property="modifierID"/>
+			<result column="ModifyTime" property="modifyTime"/>
+	</resultMap>
+	
+	<sql id="TableName">
+		StandardLevel
+	</sql>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.standard.StandardLevel" resultMap="StandardLevelMap">
+		SELECT TOP 1000 *
+		FROM <include refid="TableName"></include>
+		<where>
+			<if test="standardLevelID != null">
+				AND StandardLevelID = #{standardLevelID}
+			</if>
+			<if test="name != null">
+				AND Name = #{name}
+			</if>
+			<if test="parentId != null">
+				AND Parent_id = #{parentId}
+			</if>
+			<if test="isDel != null">
+				AND IsDel = #{isDel}
+			</if>
+			<if test="createrID != null">
+				AND CreaterID = #{createrID}
+			</if>
+			<if test="createTime != null">
+				AND CreateTime = #{createTime}
+			</if>
+			<if test="modifierID != null">
+				AND ModifierID = #{modifierID}
+			</if>
+			<if test="modifyTime != null">
+				AND ModifyTime = #{modifyTime}
+			</if>
+		</where>
+	</select>
+</mapper>

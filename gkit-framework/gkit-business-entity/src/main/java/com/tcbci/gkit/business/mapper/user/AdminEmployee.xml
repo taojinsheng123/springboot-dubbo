@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tcbci.gkit.business.entity.user.AdminEmployeeMapper">
+	<select id="findById" parameterType="Integer" resultType="com.tcbci.gkit.business.domain.user.AdminEmployee">
+			SELECT 	
+							a.id as emplId,
+							a.password as emplPassword,
+							a.name  as emplLoginName,
+							a.true_name as emplRealName,
+							a.department_id as deptId,
+							a.company_id as companyId,
+							a.role_id as roleId,
+							a.mobile,
+							a.staus,
+							a.join_date as joinDate,
+							a.leave_date as leaveDate,
+							a.front_user_id,
+							a.front_user_name,
+							a.email,
+							a.qq,
+							a.landline as tel,
+							a.fax,
+							a.role_level as roleLevel,
+							a.seat_line as seatLine
+							
+			FROM
+							t_system_user a
+			WHERE 
+						a.id = #{id}
+	</select>
+	
+	
+	<insert id="createUser" parameterType="com.tcbci.gkit.business.domain.user.AdminEmployee">
+			INSERT INTO
+						t_system_user
+						(
+								name,
+								password,
+								true_name,
+								department_id,
+								company_id,
+								role_id,
+								role_level,
+								front_user_id,
+								front_user_name,
+								mobile,
+								email,
+								landline,
+								fax,
+								qq,
+								seat_line,
+								staus,
+								join_date,
+								leave_date,
+								creator,
+								create_date
+						)
+				VALUES
+						(
+							#{emplLoginName},
+							#{emplPassword},
+							#{emplRealName},
+							#{deptId},
+							#{companyId},
+							#{roleId},
+							#{roleLevel},
+							#{frontUserId},
+							#{frontUserName},
+							#{mobile},
+							#{email},
+							#{tel},
+							#{fax},
+							#{qq},
+							#{seatLine},
+							#{staus},
+							#{joinDate},
+							#{leaveDate},
+							#{creator},
+							#{createDate}
+						)
+			
+	</insert>
+	
+	<update id="updateUser" parameterType="com.tcbci.gkit.business.domain.user.AdminEmployee">
+			UPDATE
+							t_system_user
+				<set>
+					<if test="emplLoginName != null">
+						name=#{emplLoginName},
+					</if>
+							name = #{emplLoginName},
+					<if test="emplPassword != null">
+						password=#{emplPassword},
+					</if>
+					<if test="emplRealName != null">true_name = #{emplRealName},</if>
+					<if test="deptId != null">department_id = #{deptId},</if>
+					<if test="companyId != null">company_id = #{companyId},</if>
+					<if test="roleId != null">role_id = #{roleId},</if>
+					<if test="roleLevel != null">role_level = #{roleLevel},</if>
+					<if test="frontUserId != null">front_user_id = #{frontUserId},</if>
+					<if test="frontUserName != null">frontUserName = #{frontUserName},</if>
+					<if test="mobile != null">mobile = #{mobile},</if>
+					<if test="email != null">email = #{email},</if>
+					<if test="tel != null">mobile = #{tel},</if>
+					<if test="fax != null">fax = #{fax},</if>
+					<if test="qq != null">qq = #{qq},</if>
+					<if test="seatLine != null">seat_line = #{seatLine},</if>
+					<if test="staus != null">staus = #{staus},</if>
+					<if test="joinDate != null">join_date = #{joinDate},</if>
+					<if test="leaveDate != null">leave_date = #{leaveDate},</if>
+					<if test="editor != null">editor = #{editor},</if>
+					<if test="editDate != null">edit_date = #{editDate},</if>
+				</set>
+					WHERE
+						id = #{emplId}
+						
+	</update>
+	
+	
+	
+	<delete id="deleteByIds" parameterType="String">
+			DELETE FROM 
+						t_system_user
+			WHERE
+						id IN
+			<foreach close=")" collection="array" index="index" item="item" open="(" separator=",">
+                 	#{array[${index}]}
+			</foreach>
+				
+	</delete>
+	
+	<select id="fingByName" parameterType="String" resultType="com.tcbci.gkit.business.domain.user.AdminEmployee">
+		select 
+					id as emplId
+		from
+					t_system_user
+		where
+					name = #{emplLoginName}
+		LIMIT 0,1
+	</select>
+</mapper>

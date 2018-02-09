@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tcbci.gkit.business.entity.market.MaterialMarketMapper">
+	<resultMap id="materialMarketResultMap"
+		type="com.tcbci.gkit.business.domain.market.MaterialMarket">
+		<result column="id" property="id" />
+		<result column="market_id" property="marketId" />
+		<result column="full_name" property="fullName" />
+		<result column="short_name" property="shortName" />
+		<result column="logo" property="logo" />
+		<result column="market_focus_image" property="marketFocusImage" />
+		<result column="province_code" property="provinceCode" />
+		<result column="province_name" property="provinceName" />
+		<result column="city_code" property="cityCode" />
+		<result column="city_name" property="cityName" />
+		<result column="area_code" property="areaCode" />
+		<result column="area_name" property="areaName" />
+		<result column="address" property="address" />
+		<result column="found_year" property="foundYear" />
+		<result column="introduction" property="introduction" />
+		<result column="introduction_text" property="introductionText" />
+		<result column="create_user" property="createUser" />
+		<result column="audit_user" property="auditUser" />
+		<result column="edit_user" property="editUser" />
+		<result column="delete_user" property="deleteUser" />
+		<result column="create_user_name" property="createUserName" />
+		<result column="audit_user_name" property="auditUserName" />
+		<result column="edit_user_name" property="editUserName" />
+		<result column="delete_user_name" property="deleteUserName" />
+		<result column="create_user_true_name" property="createUserTrueName" />
+		<result column="audit_user_true_name" property="auditUserTrueName" />
+		<result column="edit_user_true_name" property="editUserTrueName" />
+		<result column="delete_user_true_name" property="deleteUserTrueName" />
+		<result column="create_date" property="createDate" />
+		<result column="audit_date" property="auditDate" />
+		<result column="edit_date" property="editDate" />
+		<result column="delete_date" property="deleteDate" />
+		<result column="status" property="status" />
+		<result column="create_user_scope" property="createUserScope" />
+		<result column="submit_user_scope" property="submitUserScope" />
+		<result column="edit_user_scope" property="editUserScope" />
+		<result column="delete_user_scope" property="deleteUserScope" />
+		<result column="base_weight" property="baseWeight" />
+		<result column="hotline" property="hotline" />
+		<result column="contact" property="contact" />
+		<result column="contact_phone_number" property="contactPhoneNumber" />
+		<result column="seq" property="seq" />
+		<result column="is_delete" property="isDelete" />
+		<result column="website" property="website" />
+		<result column="latitude" property="latitude" />
+		<result column="longitude" property="longitude" />
+		<result column="email" property="email" />
+	</resultMap>
+
+	<sql id="Field">
+		id,
+		market_id,
+		full_name,
+		short_name,
+		logo,
+		market_focus_image,
+		province_code,
+		province_name,
+		city_code,
+		city_name,
+		area_code,
+		area_name,
+		address,
+		found_year,
+		introduction,
+		introduction_text,
+		create_user,
+		audit_user,
+		edit_user,
+		delete_user,
+		create_user_name,
+		audit_user_name,
+		edit_user_name,
+		delete_user_name,
+		create_user_true_name,
+		audit_user_true_name,
+		edit_user_true_name,
+		delete_user_true_name,
+		status,
+		create_date,
+		audit_date,
+		edit_date,
+		delete_date,
+		create_user_scope,
+		submit_user_scope,
+		delete_user_scope,
+		edit_user_scope,
+		base_weight,
+		hotline,
+		contact,
+		contact_phone_number,
+		seq,
+		is_delete,
+		website,
+		latitude,
+		longitude,
+		email
+
+	</sql>
+
+	<sql id="FieldValues">
+		#{id},
+		#{marketId},
+		#{fullName},
+		#{shortName},
+		#{logo},
+		#{marketFocusImage},
+		#{provinceCode},
+		#{provinceName},
+		#{cityCode},
+		#{cityName},
+		#{areaCode},
+		#{areaName},
+		#{address},
+		#{foundYear},
+		#{introduction},
+		#{introductionText},
+		#{createUser},
+		#{auditUser},
+		#{editUser},
+		#{deleteUser},
+		#{createUserName},
+		#{auditUserName},
+		#{editUserName},
+		#{deleteUserName},
+		#{createUserTrueName},
+		#{auditUserTrueName},
+		#{editUserTrueName},
+		#{deleteUserTrueName},
+		#{status},
+		#{createDate},
+		#{auditDate},
+		#{editDate},
+		#{deleteDate},
+		#{createUserScope},
+		#{submitUserScope},
+		#{deleteUserScope},
+		#{editUserScope},
+		#{baseWeight},
+		#{hotline},
+		#{contact},
+		#{contactPhoneNumber},
+		#{seq},
+		#{isDelete},
+		#{website},
+		#{latitude},
+		#{longitude},
+		#{email}
+	</sql>
+
+	<sql id="TableName">
+		t_gb_material_market
+	</sql>
+
+	<select id="findById" resultMap="materialMarketResultMap"
+		parameterType="Integer">
+		SELECT
+		<include refid="Field" />
+		FROM
+		<include refid="TableName" />
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="findByMarketId" resultMap="materialMarketResultMap">
+		SELECT
+		<include refid="Field" />
+		FROM
+		<include refid="TableName" />
+		WHERE
+		market_id=#{marketId}
+	</select>
+	
+	
+
+	<insert id="insert"
+		parameterType="com.tcbci.gkit.business.domain.market.MaterialMarket">
+		INSERT INTO
+		t_gb_material_market(
+		market_id,
+		full_name,
+		short_name,
+		logo,
+		market_focus_image,
+		province_code,
+		province_name,
+		city_code,
+		city_name,
+		area_code,
+		area_name,
+		address,
+		found_year,
+		introduction,
+		introduction_text,
+		create_user,
+		audit_user,
+		edit_user,
+		delete_user,
+		create_user_name,
+		audit_user_name,
+		edit_user_name,
+		delete_user_name,
+		create_user_true_name,
+		audit_user_true_name,
+		edit_user_true_name,
+		delete_user_true_name,
+		status,
+		create_date,
+		audit_date,
+		edit_date,
+		delete_date,
+		create_user_scope,
+		submit_user_scope,
+		delete_user_scope,
+		edit_user_scope,
+		base_weight,
+		hotline,
+		contact,
+		contact_phone_number,
+		seq,
+		is_delete,
+		website,
+		latitude,
+		longitude,
+		email
+		)VALUES(
+		#{marketId},
+		#{fullName},
+		#{shortName},
+		#{logo},
+		#{marketFocusImage},
+		#{provinceCode},
+		#{provinceName},
+		#{cityCode},
+		#{cityName},
+		#{areaCode},
+		#{areaName},
+		#{address},
+		#{foundYear},
+		#{introduction},
+		#{introductionText},
+		#{createUser},
+		#{auditUser},
+		#{editUser},
+		#{deleteUser},
+		#{createUserName},
+		#{auditUserName},
+		#{editUserName},
+		#{deleteUserName},
+		#{createUserTrueName},
+		#{auditUserTrueName},
+		#{editUserTrueName},
+		#{deleteUserTrueName},
+		#{status},
+		#{createDate},
+		#{auditDate},
+		#{editDate},
+		#{deleteDate},
+		#{createUserScope},
+		#{submitUserScope},
+		#{deleteUserScope},
+		#{editUserScope},
+		#{baseWeight},
+		#{hotline},
+		#{contact},
+		#{contactPhoneNumber},
+		#{seq},
+		#{isDelete},
+		#{website},
+		#{latitude},
+		#{longitude},
+		#{email}
+
+		)
+	</insert>
+
+	<select id="queryByPage" parameterType="com.tcbci.gkit.business.page.MaterialMarketParams"
+		resultMap="materialMarketResultMap">
+		SELECT
+		m.id,
+		m.market_id,
+		m.full_name,
+		m.short_name,
+		m.logo,
+		m.market_focus_image,
+		m.province_code,
+		m.province_name,
+		m.city_code,
+		m.city_name,
+		m.area_code,
+		m.area_name,
+		m.address,
+		m.found_year,
+		m.introduction,
+		m.introduction_text,
+		m.create_user,
+		m.audit_user,
+		m.edit_user,
+		m.delete_user,
+		m.create_user_name,
+		m.audit_user_name,
+		m.edit_user_name,
+		m.delete_user_name,
+		m.create_user_true_name,
+		m.audit_user_true_name,
+		m.edit_user_true_name,
+		m.delete_user_true_name,
+		m.status,
+		m.create_date,
+		m.audit_date,
+		m.edit_date,
+		m.delete_date,
+		m.create_user_scope,
+		m.submit_user_scope,
+		m.delete_user_scope,
+		m.edit_user_scope,
+		m.base_weight,
+		m.hotline,
+		m.contact,
+		m.contact_phone_number,
+		m.seq,
+		m.is_delete,
+		m.website,
+		m.latitude,
+		m.longitude,
+		m.email
+		FROM
+		<include refid="TableName" />
+		m
+		LEFT JOIN
+		BuildnetDB.t_system_user u
+		ON
+		m.edit_user = u.id
+		LEFT JOIN
+		BuildnetDB.t_system_user ua
+		ON
+		m.create_user = ua.id
+		<where>
+		1=1
+			<if test="m.keywords != null">
+				<foreach collection="m.keywords" index="index" open="and ( "
+					separator=" AND " close=")">
+					(
+					m.full_name like
+					CONCAT('%',#{m.keywords[${index}]},'%')
+					OR m.market_id like
+					CONCAT('%',#{m.keywords[${index}]},'%')
+					)
+				</foreach>
+			</if>
+			<if test="m.materialMarketIds != null">
+				<foreach collection="m.materialMarketIds" index="index"
+					open="and m.market_id in ( " separator=" , " close=")">
+					#{m.materialMarketIds[${index}]}
+				</foreach>
+			</if>
+		</where>
+		AND m.is_delete=0
+	</select>
+
+	<update id="update"
+		parameterType="com.tcbci.gkit.business.domain.market.MaterialMarket">
+		UPDATE
+		<include refid="TableName" />
+		<set>
+			<if test="id != null">
+				id=#{id},
+			</if>
+			<if test="marketId != null">
+				market_id= #{marketId},
+			</if>
+			<if test="fullName != null">
+				full_name= #{fullName},
+			</if>
+			<if test="shortName != null">
+				short_name= #{shortName},
+			</if>
+			<if test="logo != null">
+				logo=#{logo},
+			</if>
+			<if test="marketFocusImage != null">
+				market_focus_image= #{marketFocusImage},
+			</if>
+			<if test="provinceCode != null">
+				province_code= #{provinceCode},
+			</if>
+			<if test="provinceName != null">
+				province_name= #{provinceName},
+			</if>
+			<if test="cityCode != null">
+				city_code= #{cityCode},
+			</if>
+			<if test="cityName != null">
+				city_name= #{cityName},
+			</if>
+			<if test="areaCode != null">
+				area_code= #{areaCode},
+			</if>
+			<if test="areaName != null">
+				area_name= #{areaName},
+			</if>
+			<if test="address != null">
+				address= #{address},
+			</if>
+			<if test="foundYear != null">
+				found_year= #{foundYear},
+			</if>
+			<if test="introduction != null">
+				introduction= #{introduction},
+			</if>
+			<if test="introductionText != null">
+				introduction_text= #{introductionText},
+			</if>
+			<if test="createUser != null">
+				create_user= #{createUser},
+			</if>
+			<if test="auditUser != null">
+				audit_user= #{auditUser},
+			</if>
+			<if test="editUser != null">
+				edit_user= #{editUser},
+			</if>
+			<if test="deleteUser != null">
+				delete_user= #{deleteUser},
+			</if>
+			<if test="createUserName != null">
+				create_user_name= #{createUserName},
+			</if>
+			<if test="auditUserName != null">
+				audit_user_name= #{auditUserName},
+			</if>
+			<if test="editUserName != null">
+				edit_user_name= #{editUserName},
+			</if>
+			<if test="deleteUserName != null">
+				delete_user_name= #{deleteUserName},
+			</if>
+			<if test="createUserTrueName != null">
+				create_user_true_name= #{createUserTrueName},
+			</if>
+			<if test="auditUserTrueName != null">
+				audit_user_true_name= #{auditUserTrueName},
+			</if>
+			<if test="editUserTrueName != null">
+				edit_user_true_name= #{editUserTrueName},
+			</if>
+			<if test="deleteUserTrueName != null">
+				delete_user_true_name= #{deleteUserTrueName},
+			</if>
+			<if test="status != null">
+				status= #{status},
+			</if>
+			<if test="createDate != null">
+				create_date= #{createDate},
+			</if>
+			<if test="auditDate != null">
+				audit_date= #{auditDate},
+			</if>
+			<if test="editDate != null">
+				edit_date= #{editDate},
+			</if>
+			<if test="deleteDate != null">
+				delete_date= #{deleteDate},
+			</if>
+			<if test="createUserScope != null">
+				create_user_scope= #{createUserScope},
+			</if>
+			<if test="submitUserScope != null">
+				submit_user_scope= #{submitUserScope},
+			</if>
+			<if test="deleteUserScope != null">
+				delete_user_scope= #{deleteUserScope},
+			</if>
+			<if test="editUserScope != null">
+				edit_user_scope= #{editUserScope},
+			</if>
+			<if test="baseWeight != null">
+				base_weight= #{baseWeight},
+			</if>
+			<if test="hotline != null">
+				hotline= #{hotline},
+			</if>
+			<if test="contact != null">
+				contact= #{contact},
+			</if>
+			<if test="contactPhoneNumber != null">
+				contact_phone_number= #{contactPhoneNumber},
+			</if>
+			<if test="seq != null">
+				seq= #{seq},
+			</if>
+			<if test="isDelete != null">
+				is_delete= #{isDelete},
+			</if>
+			<if test="website != null">
+				website =#{website},
+			</if>
+			<if test="latitude != null">
+				latitude =#{latitude},
+			</if>
+			<if test="longitude != null">
+				longitude =#{longitude},
+			</if>
+			<if test="email != null">
+				email =#{email}
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<select id="findByFullName"
+		parameterType="com.tcbci.gkit.business.domain.market.MaterialMarket"
+		resultMap="materialMarketResultMap">
+		SELECT
+		m.id,
+		m.market_id,
+		m.full_name,
+		m.short_name,
+		m.logo,
+		m.market_focus_image,
+		m.province_code,
+		m.province_name,
+		m.city_code,
+		m.city_name,
+		m.area_code,
+		m.area_name,
+		m.address,
+		m.found_year,
+		m.introduction,
+		m.introduction_text,
+		m.create_user,
+		m.audit_user,
+		m.edit_user,
+		m.delete_user,
+		m.create_user_name,
+		m.audit_user_name,
+		m.edit_user_name,
+		m.delete_user_name,
+		m.create_user_true_name,
+		m.audit_user_true_name,
+		m.edit_user_true_name,
+		m.delete_user_true_name,
+		m.status,
+		m.create_date,
+		m.audit_date,
+		m.edit_date,
+		m.delete_date,
+		m.create_user_scope,
+		m.submit_user_scope,
+		m.delete_user_scope,
+		m.edit_user_scope,
+		m.base_weight,
+		m.hotline,
+		m.contact,
+		m.contact_phone_number,
+		m.seq,
+		m.is_delete,
+		m.website,
+		m.email
+
+		FROM
+		<include refid="TableName" />
+		m
+		LEFT JOIN
+		BuildnetDB.t_system_user u
+		ON
+		m.edit_user = u.id
+		AND
+		m.submit_user_scope = 1
+		<where>
+			<if test="fullName != null">
+				AND m.full_name =#{fullName}
+			</if>
+			<if test="marketId != null">
+				AND m.market_id != #{marketId}
+			</if>
+			AND ifnull(m.is_delete,0) = 0
+		</where>
+		limit 0,1
+	</select>
+	
+		<select id="listByMarketId" resultMap="materialMarketResultMap">
+		SELECT 
+			*
+		FROM
+			<include refid="TableName"></include>
+		WHERE market_id=#{marketId} 
+	</select>
+</mapper>

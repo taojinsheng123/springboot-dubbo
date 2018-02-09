@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.search.VCaseMapper">
+	<resultMap id="vcaseResultMap" type="com.tcbci.gkit.business.domain.search.VCase">
+			<result column="id" property="id"/>
+			<result column="case_id" property="caseId"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="enterprise_short_name" property="enterpriseShortName"/>
+			<result column="enterprise_full_name" property="enterpriseFullName"/>
+			<result column="project_name" property="projectName"/>
+			<result column="first_party" property="firstParty"/>
+			<result column="contract_total" property="contractTotal"/>
+			<result column="country_code" property="countryCode"/>
+			<result column="country_name" property="countryName"/>
+			<result column="province_code" property="provinceCode"/>
+			<result column="province_name" property="provinceName"/>
+			<result column="city_code" property="cityCode"/>
+			<result column="city_name" property="cityName"/>
+			<result column="address" property="address"/>
+			<result column="description" property="description"/>
+			<result column="description_text" property="descriptionText"/>
+			<result column="images" property="images"/>
+			<result column="contract_simple" property="contractSimple"/>
+			<result column="create_date" property="createDate"/>
+			<result column="category" property="category"/>
+			<result column="collected" property="collected"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				case_id,
+				enterprise_id,
+				enterprise_short_name,
+				enterprise_full_name,
+				project_name,
+				first_party,
+				contract_total,
+				country_code,
+				country_name,
+				province_code,
+				province_name,
+				city_code,
+				city_name,
+				address,
+				description,
+				description_text,
+				images,
+				contract_simple,
+				category,
+				create_date,
+				seq,
+				base_weight
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{caseId},
+				#{enterpriseId},
+				#{enterpriseShortName},
+				#{enterpriseFullName},
+				#{projectName},
+				#{firstParty},
+				#{contractTotal},
+				#{countryCode},
+				#{countryName},
+				#{provinceCode},
+				#{provinceName},
+				#{cityCode},
+				#{cityName},
+				#{address},
+				#{description},
+				#{descriptionText},
+				#{images},
+				#{contractSimple},
+				#{category},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		v_gb_case
+	</sql>
+	
+	<select id="findById" resultMap="vcaseResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.search.VCase" resultMap="vcaseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="caseId != null">
+					AND case_id=#{caseId}
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="enterpriseShortName != null">
+					AND enterprise_short_name=#{enterpriseShortName}
+				</if>
+				<if test="enterpriseFullName != null">
+					AND enterprise_full_name=#{enterpriseFullName}
+				</if>
+				<if test="projectName != null">
+					AND project_name=#{projectName}
+				</if>
+				<if test="firstParty != null">
+					AND first_party=#{firstParty}
+				</if>
+				<if test="contractTotal != null">
+					AND contract_total=#{contractTotal}
+				</if>
+				<if test="countryCode != null">
+					AND country_code=#{countryCode}
+				</if>
+				<if test="countryName != null">
+					AND country_name=#{countryName}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code=#{provinceCode}
+				</if>
+				<if test="provinceName != null">
+					AND province_name=#{provinceName}
+				</if>
+				<if test="cityCode != null">
+					AND city_code=#{cityCode}
+				</if>
+				<if test="cityName != null">
+					AND city_name=#{cityName}
+				</if>
+				<if test="address != null">
+					AND address=#{address}
+				</if>
+				<if test="description != null">
+					AND description=#{description}
+				</if>
+				<if test="descriptionText != null">
+					AND description_text=#{descriptionText}
+				</if>
+				<if test="images != null">
+					AND images=#{images}
+				</if>
+				<if test="contractSimple != null">
+					AND contract_simple=#{contractSimple}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.search.VCase" resultMap="vcaseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="caseId != null">
+					AND case_id=#{caseId}
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="enterpriseShortName != null">
+					AND enterprise_short_name=#{enterpriseShortName}
+				</if>
+				<if test="enterpriseFullName != null">
+					AND enterprise_full_name=#{enterpriseFullName}
+				</if>
+				<if test="projectName != null">
+					AND project_name=#{projectName}
+				</if>
+				<if test="firstParty != null">
+					AND first_party=#{firstParty}
+				</if>
+				<if test="contractTotal != null">
+					AND contract_total=#{contractTotal}
+				</if>
+				<if test="countryCode != null">
+					AND country_code=#{countryCode}
+				</if>
+				<if test="countryName != null">
+					AND country_name=#{countryName}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code=#{provinceCode}
+				</if>
+				<if test="provinceName != null">
+					AND province_name=#{provinceName}
+				</if>
+				<if test="cityCode != null">
+					AND city_code=#{cityCode}
+				</if>
+				<if test="cityName != null">
+					AND city_name=#{cityName}
+				</if>
+				<if test="address != null">
+					AND address=#{address}
+				</if>
+				<if test="description != null">
+					AND description=#{description}
+				</if>
+				<if test="descriptionText != null">
+					AND description_text=#{descriptionText}
+				</if>
+				<if test="images != null">
+					AND images=#{images}
+				</if>
+				<if test="contractSimple != null">
+					AND contract_simple=#{contractSimple}
+				</if>
+		</where>
+	</select>
+	
+	
+	<select id="listByIds" resultMap="vcaseResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			v_gb_case(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.caseId},
+		           				#{item.enterpriseId},
+		           				#{item.enterpriseShortName},
+		           				#{item.enterpriseFullName},
+		           				#{item.projectName},
+		           				#{item.firstParty},
+		           				#{item.contractTotal},
+		           				#{item.countryCode},
+		           				#{item.countryName},
+		           				#{item.provinceCode},
+		           				#{item.provinceName},
+		           				#{item.cityCode},
+		           				#{item.cityName},
+		           				#{item.address},
+		           				#{item.description},
+		           				#{item.descriptionText},
+		           				#{item.images},
+		           				#{item.contractSimple}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="searchCase" parameterType="com.tcbci.gkit.business.domain.page.CaseSearchParams" resultMap="vcaseResultMap">
+		SELECT
+			id,
+			case_id,
+			enterprise_id,
+			enterprise_short_name,
+			enterprise_full_name,
+			project_name,
+			first_party,
+			contract_total,
+			country_code,
+			country_name,
+			province_code,
+			province_name,
+			city_code,
+			city_name,
+			address,
+			description,
+			description_text,
+			images,
+			contract_simple,
+			create_date,
+			edit_date,
+			CASE WHEN (
+			    SELECT
+				    COUNT(t1.id)
+			    FROM
+				    t_gb_collect t1
+				<where>
+				    t1.target_type = 't_gb_case'
+	                AND t1.target_id = t.case_id
+					<if test="c.userId != null">
+						AND t1.user=#{c.userId}			
+					</if>
+					<if test="c.userId == null">
+						AND t1.user IS NULL		
+					</if>
+				</where>
+	        ) &lt;=0 THEN false
+            ELSE true END AS collected,
+            seq,
+            base_weight
+		FROM
+			<include refid="TableName" /> t
+        <where>
+        		<if test="c.keywords != null">
+					<trim prefix="AND (" suffix=")" prefixOverrides="AND |OR" >  
+						(
+				    	<foreach item="item" index="index" collection="c.keywords"
+						      open="(" separator="OR" close=")">
+						        t.project_name like CONCAT('%',#{c.keywords[${index}]},'%')
+						</foreach>   
+				        <foreach item="item" index="index" collection="c.keywords"
+						      open="OR (" separator="OR" close=")">
+						        t.case_id like CONCAT('%',#{c.keywords[${index}]},'%')
+						</foreach> 
+						) OR (
+				        <foreach item="item" index="index" collection="c.keywords"
+						      open="(" separator="OR" close=")">
+						        t.first_party like CONCAT('%',#{c.keywords[${index}]},'%')
+						</foreach>
+						OR t.case_id in (
+						    SELECT 
+						        t3.case_id 
+						    FROM 
+						        t_gb_case_project_category t3
+						    <where>
+						    	t3.flag = 1
+								<foreach item="item" index="index" collection="c.keywords"
+						      		open=" AND(" separator="OR" close=")">
+						        	t3.category_name like CONCAT('%',#{c.keywords[${index}]},'%')
+								</foreach>
+								
+							</where>
+						)
+						)	
+					</trim> 	
+				</if>
+				<trim prefix="AND (" suffix=")" prefixOverrides="AND |OR" >  
+				    <if test="c.placeProvinces != null">  
+				        <foreach item="item" index="index" collection="c.placeProvinces"
+						      open="t.province_code in (" separator="," close=")">
+						        #{c.placeProvinces[${index}]}
+						</foreach>   
+				    </if>  
+				    <if test="c.placeCities != null">  
+				        <foreach item="item" index="index" collection="c.placeCities"
+						      open="OR t.city_code in (" separator="," close=")">
+						        #{c.placeCities[${index}]}
+						</foreach> 
+				    </if>  
+				</trim> 
+				<if test="c.categories != null">
+				    AND t.case_id in (
+				    SELECT 
+				        t3.case_id 
+				    FROM 
+				        t_gb_case_project_category t3
+				   <where>
+					    <foreach item="item" index="index" collection="c.categories"
+				      		 separator="OR">
+			            	  t3.category_path like CONCAT(#{c.categories[${index}]},'%')
+						</foreach>
+					</where>
+					)		
+				</if>
+		</where>
+	</select>
+</mapper>

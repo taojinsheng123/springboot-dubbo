@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.basedata.ProjectCategoryMapper">
+	<resultMap id="projectcategoryResultMap" type="com.tcbci.gkit.business.domain.basedata.ProjectCategory">
+			<result column="id" property="id"/>
+			<result column="code" property="code"/>
+			<result column="name" property="name"/>
+			<result column="name_en" property="nameEn"/>
+			<result column="parent_id" property="parentId"/>
+			<result column="path" property="path"/>
+			<result column="enable" property="enable"/>
+			<result column="seq" property="seq"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_date" property="editDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				code,
+				name,
+				name_en,
+				parent_id,
+				path,
+				enable,
+				seq,
+				create_user,
+				create_date,
+				edit_user,
+				edit_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{code},
+				#{name},
+				#{nameEn},
+				#{parentId},
+				#{path},
+				#{enable},
+				#{seq},
+				#{createUser},
+				#{createDate},
+				#{editUser},
+				#{editDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_project_category
+	</sql>
+	
+	<select id="findById" resultMap="projectcategoryResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.basedata.ProjectCategory" resultMap="projectcategoryResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="code != null">
+					AND code=#{code}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="nameEn != null">
+					AND name_en=#{nameEn}
+				</if>
+				<if test="parentId != null">
+					AND parent_id=#{parentId}
+				</if>
+				<if test="path != null">
+					AND path=#{path}
+				</if>
+				<if test="enable != null">
+					AND enable=#{enable}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.basedata.ProjectCategory" resultMap="projectcategoryResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="code != null">
+					AND code=#{code}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="nameEn != null">
+					AND name_en=#{nameEn}
+				</if>
+				<if test="parentId != null">
+					AND parent_id=#{parentId}
+				</if>
+				<if test="path != null">
+					AND path=#{path}
+				</if>
+				<if test="enable != null">
+					AND enable=#{enable}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.basedata.ProjectCategory">
+		INSERT INTO 
+			t_gb_project_category(
+				<include refid="Field" />
+			)VALUES(
+				<include refid="FieldValues" />
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.basedata.ProjectCategory">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="code != null">
+						code=#{code},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="nameEn != null">
+						name_en=#{nameEn},
+					</if>
+					<if test="parentId != null">
+						parent_id=#{parentId},
+					</if>
+					<if test="path != null">
+						path=#{path},
+					</if>
+					<if test="enable != null">
+						enable=#{enable},
+					</if>
+					<if test="seq != null">
+						seq=#{seq},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="projectcategoryResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_project_category(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.code},
+		           				#{item.name},
+		           				#{item.nameEn},
+		           				#{item.parentId},
+		           				#{item.path},
+		           				#{item.enable},
+		           				#{item.seq},
+		           				#{item.createUser},
+		           				#{item.createDate},
+		           				#{item.editUser},
+		           				#{item.editDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.basedata.ProjectCategory" resultMap="projectcategoryResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="code != null">
+					AND code=#{code}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="nameEn != null">
+					AND name_en=#{nameEn}
+				</if>
+				<if test="parentId != null">
+					AND parent_id=#{parentId}
+				</if>
+				<if test="path != null">
+					AND path=#{path}
+				</if>
+				<if test="enable != null">
+					AND enable=#{enable}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryProjectCategory" resultType="com.tcbci.gkit.business.domain.basedata.ProjectCategory" parameterType="com.tcbci.gkit.business.domain.page.ProjectCategoryParams">
+		SELECT
+				s.id,
+				s.code,
+				s.name,
+				s.name_en AS nameEn,
+				s.parent_id AS parentId,
+				s.path,
+				s.enable,
+				s.seq,
+				p.name as parentName,
+				p.code as parentCode,
+				p.name_en as parentNameEn,
+				p.seq as parentSeq,
+				s.create_user AS createUser,
+				s.create_date AS createDate,
+				s.edit_user AS editUser,
+				s.edit_date AS editDate
+		FROM
+			<include refid="TableName" /> AS s
+		LEFT JOIN
+			<include refid="TableName" /> AS p ON p.id = s.parent_id
+		<where>
+				<if test="c.keyword != null">
+					s.name like CONCAT('%', #{c.keyword},'%')		
+				</if>
+				<if test="c.parentId != null">
+					AND s.parent_id=#{c.parentId}
+				</if>
+				<if test="c.enable != null">
+					AND s.enable=#{c.enable}
+				</if>
+		</where>
+	</select>
+</mapper>

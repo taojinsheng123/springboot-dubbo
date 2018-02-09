@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.user.ViewApplyMapper">
+	<resultMap id="viewapplyResultMap" type="com.tcbci.gkit.business.domain.user.ViewApply">
+			<result column="id" property="id"/>
+			<result column="user_id" property="userId"/>
+			<result column="user_name" property="userName"/>
+			<result column="user_true_name" property="userTrueName"/>
+			<result column="user_mobile" property="userMobile"/>
+			<result column="enterprise_name" property="enterpriseName"/>
+			<result column="user_email" property="userEmail"/>
+			<result column="status" property="status"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="audit_remark" property="auditRemark"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_user_name" property="auditUserName"/>
+			<result column="audit_user_true_name" property="auditUserTrueName"/>
+			<result column="audit_date" property="auditDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+	            id,
+				user_id,
+				user_name,
+				user_true_name,
+				user_mobile,
+				enterprise_name,
+				user_email,
+				status,
+				create_user,
+				create_date,
+				audit_remark,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date
+	</sql>
+	
+	<sql id="FieldValues">
+	            #{id},
+				#{userId},
+				#{userName},
+				#{userTrueName},
+				#{userMobile},
+				#{enterpriseName},
+				#{userEmail},
+				#{status},
+				#{createUser},
+				#{createDate},
+				#{auditRemark},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_view_apply
+	</sql>
+	
+	<select id="findById" resultMap="viewapplyResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.user.ViewApply" resultMap="viewapplyResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="userId != null">
+					AND user_id=#{userId}
+				</if>
+				<if test="userName != null">
+					AND user_name=#{userName}
+				</if>
+				<if test="userTrueName != null">
+					AND user_true_name=#{userTrueName}
+				</if>
+				<if test="userMobile != null">
+					AND user_mobile=#{userMobile}
+				</if>
+				<if test="enterpriseName != null">
+					AND enterprise_name=#{enterpriseName}
+				</if>
+				<if test="userEmail != null">
+					AND user_email=#{userEmail}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="auditRemark != null">
+					AND audit_remark=#{auditRemark}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.user.ViewApply" resultMap="viewapplyResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="userId != null">
+					AND user_id=#{userId}
+				</if>
+				<if test="userName != null">
+					AND user_name=#{userName}
+				</if>
+				<if test="userTrueName != null">
+					AND user_true_name=#{userTrueName}
+				</if>
+				<if test="userMobile != null">
+					AND user_mobile=#{userMobile}
+				</if>
+				<if test="enterpriseName != null">
+					AND enterprise_name=#{enterpriseName}
+				</if>
+				<if test="userEmail != null">
+					AND user_email=#{userEmail}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="auditRemark != null">
+					AND audit_remark=#{auditRemark}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.user.ViewApply">
+		INSERT INTO 
+			t_gb_view_apply(
+				user_id,
+				user_name,
+				user_true_name,
+				user_mobile,
+				enterprise_name,
+				user_email,
+				status,
+				create_user,
+				create_date,
+				audit_remark,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date
+			)VALUES(
+				#{userId},
+				#{userName},
+				#{userTrueName},
+				#{userMobile},
+				#{enterpriseName},
+				#{userEmail},
+				#{status},
+				#{createUser},
+				#{createDate},
+				#{auditRemark},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.user.ViewApply">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="userId != null">
+						user_id=#{userId},
+					</if>
+					<if test="userName != null">
+						user_name=#{userName},
+					</if>
+					<if test="userTrueName != null">
+						user_true_name=#{userTrueName},
+					</if>
+					<if test="userMobile != null">
+						user_mobile=#{userMobile},
+					</if>
+					<if test="enterpriseName != null">
+						enterprise_name=#{enterpriseName},
+					</if>
+					<if test="userEmail != null">
+						user_email=#{userEmail},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="auditRemark != null">
+						audit_remark=#{auditRemark},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditUserName != null">
+						audit_user_name=#{auditUserName},
+					</if>
+					<if test="auditUserTrueName != null">
+						audit_user_true_name=#{auditUserTrueName},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="viewapplyResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_view_apply(
+				user_id,
+				user_name,
+				user_true_name,
+				user_mobile,
+				enterprise_name,
+				user_email,
+				status,
+				create_user,
+				create_date,
+				audit_remark,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.userId},
+		           				#{item.userName},
+		           				#{item.userTrueName},
+		           				#{item.userMobile},
+		           				#{item.enterpriseName},
+		           				#{item.userEmail},
+		           				#{item.status},
+		           				#{item.createUser},
+		           				#{item.createDate},
+		           				#{item.auditRemark},
+		           				#{item.auditUser},
+		           				#{item.auditUserName},
+		           				#{item.auditUserTrueName},
+		           				#{item.auditDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.user.ViewApply" resultMap="viewapplyResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="userId != null">
+					AND user_id=#{userId}
+				</if>
+				<if test="userName != null">
+					AND user_name=#{userName}
+				</if>
+				<if test="userTrueName != null">
+					AND user_true_name=#{userTrueName}
+				</if>
+				<if test="userMobile != null">
+					AND user_mobile=#{userMobile}
+				</if>
+				<if test="enterpriseName != null">
+					AND enterprise_name=#{enterpriseName}
+				</if>
+				<if test="userEmail != null">
+					AND user_email=#{userEmail}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="auditRemark != null">
+					AND audit_remark=#{auditRemark}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+		</where>
+	</select>
+	
+	<select id="get" resultMap="viewapplyResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			user_id=#{user_id}
+		LIMIT 0,1
+	</select>
+</mapper>

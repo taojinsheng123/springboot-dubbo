@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.search.VEnterpriseMapper">
+	<resultMap id="venterpriseResultMap" type="com.tcbci.gkit.business.domain.search.VEnterprise">
+			<result column="user_name" property="userName"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="full_name" property="fullName"/>
+			<result column="short_name" property="shortName"/>
+			<result column="logo" property="logo"/>
+			<result column="corporation" property="corporation"/>
+			<result column="business_nature" property="businessNature"/>
+			<result column="business_nature_name" property="businessNatureName"/>
+			<result column="enterprise_nature" property="enterpriseNature"/>
+			<result column="enterprise_nature_name" property="enterpriseNatureName"/>
+			<result column="registered_capital" property="registeredCapital"/>
+			<result column="registered_capital_unit" property="registeredCapitalUnit"/>
+			<result column="found_year" property="foundYear"/>
+			<result column="major_business" property="majorBusiness"/>
+			<result column="business_license" property="businessLicense"/>
+			<result column="supplier_category" property="supplierCategory"/>
+			<result column="supplier_category_name" property="supplierCategoryName"/>
+			<result column="introduction" property="introduction"/>
+			<result column="introduction_text" property="introductionText"/>
+			<result column="phone_prefix" property="phonePrefix"/>
+			<result column="phone_code" property="phoneCode"/>
+			<result column="phone_number" property="phoneNumber"/>
+			<result column="phone_ext" property="phoneExt"/>
+			<result column="fax_prefix" property="faxPrefix"/>
+			<result column="fax_code" property="faxCode"/>
+			<result column="fax_number" property="faxNumber"/>
+			<result column="fax_ext" property="faxExt"/>
+			<result column="wexin_mp" property="wexinMp"/>
+			<result column="website" property="website"/>
+			<result column="email" property="email"/>
+			<result column="country_code" property="countryCode"/>
+			<result column="country_name" property="countryName"/>
+			<result column="province_code" property="provinceCode"/>
+			<result column="province_name" property="provinceName"/>
+			<result column="city_code" property="cityCode"/>
+			<result column="city_name" property="cityName"/>
+			<result column="area_code" property="areaCode"/>
+			<result column="area_name" property="areaName"/>
+			<result column="address" property="address"/>
+			<result column="product_count" property="productCount"/>
+			<result column="case_count" property="caseCount"/>
+			<result column="collected" property="collected"/>
+			<result column="seq" property="seq"/>
+			<result column="qq" property="qq"/>
+			<result column="hotline" property="hotline"/>
+	</resultMap>
+	
+	<sql id="Field">
+				user_name,
+				enterprise_id,
+				full_name,
+				short_name,
+				logo,
+				corporation,
+				business_nature,
+				business_nature_name,
+				enterprise_nature,
+				enterprise_nature_name,
+				registered_capital,
+				registered_capital_unit,
+				found_year,
+				major_business,
+				business_license,
+				supplier_category,
+				supplier_category_name,
+				introduction,
+				introduction_text,
+				phone_prefix,
+				phone_code,
+				phone_number,
+				phone_ext,
+				fax_prefix,
+				fax_code,
+				fax_number,
+				fax_ext,
+				wexin_mp,
+				website,
+				email,
+				country_code,
+				country_name,
+				province_code,
+				province_name,
+				city_code,
+				city_name,
+				area_code,
+				area_name,
+				address,
+				product_count,
+				case_count,
+				seq,
+				qq,
+				hotline,
+				base_weight,
+				audit_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{userName},
+				#{enterpriseId},
+				#{fullName},
+				#{shortName},
+				#{logo},
+				#{corporation},
+				#{businessNature},
+				#{businessNatureName},
+				#{enterpriseNature},
+				#{enterpriseNatureName},
+				#{registeredCapital},
+				#{foundYear},
+				#{majorBusiness},
+				#{businessLicense},
+				#{supplierCategory},
+				#{supplierCategoryName},
+				#{introduction},
+				#{introductionText},
+				#{phonePrefix},
+				#{phoneCode},
+				#{phoneNumber},
+				#{phoneExt},
+				#{faxPrefix},
+				#{faxCode},
+				#{faxNumber},
+				#{faxExt},
+				#{wexinMp},
+				#{website},
+				#{email},
+				#{countryCode},
+				#{countryName},
+				#{provinceCode},
+				#{provinceName},
+				#{cityCode},
+				#{cityName},
+				#{areaCode},
+				#{areaName},
+				#{address},
+				#{productCount},
+				#{caseCount},
+				#{seq},
+				#{qq},
+				#{hotline}
+	</sql>
+	
+	<sql id="TableName">
+		v_gb_enterprise
+	</sql>
+	
+	<select id="findById" resultMap="venterpriseResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.search.VEnterprise" resultMap="venterpriseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="userName != null">
+					user_name=#{userName}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="fullName != null">
+					AND full_name=#{fullName}
+				</if>
+				<if test="shortName != null">
+					AND short_name=#{shortName}
+				</if>
+				<if test="logo != null">
+					AND logo=#{logo}
+				</if>
+				<if test="corporation != null">
+					AND corporation=#{corporation}
+				</if>
+				<if test="businessNature != null">
+					AND business_nature=#{businessNature}
+				</if>
+				<if test="businessNatureName != null">
+					AND business_nature_name=#{businessNatureName}
+				</if>
+				<if test="enterpriseNature != null">
+					AND enterprise_nature=#{enterpriseNature}
+				</if>
+				<if test="enterpriseNatureName != null">
+					AND enterprise_nature_name=#{enterpriseNatureName}
+				</if>
+				<if test="registeredCapital != null">
+					AND registered_capital=#{registeredCapital}
+				</if>
+				<if test="foundYear != null">
+					AND found_year=#{foundYear}
+				</if>
+				<if test="majorBusiness != null">
+					AND major_business=#{majorBusiness}
+				</if>
+				<if test="businessLicense != null">
+					AND business_license=#{businessLicense}
+				</if>
+				<if test="supplierCategory != null">
+					AND supplier_category=#{supplierCategory}
+				</if>
+				<if test="supplierCategoryName != null">
+					AND supplier_category_name=#{supplierCategoryName}
+				</if>
+				<if test="introduction != null">
+					AND introduction=#{introduction}
+				</if>
+				<if test="introductionText != null">
+					AND introduction_text=#{introductionText}
+				</if>
+				<if test="phonePrefix != null">
+					AND phone_prefix=#{phonePrefix}
+				</if>
+				<if test="phoneCode != null">
+					AND phone_code=#{phoneCode}
+				</if>
+				<if test="phoneNumber != null">
+					AND phone_number=#{phoneNumber}
+				</if>
+				<if test="phoneExt != null">
+					AND phone_ext=#{phoneExt}
+				</if>
+				<if test="faxPrefix != null">
+					AND fax_prefix=#{faxPrefix}
+				</if>
+				<if test="faxCode != null">
+					AND fax_code=#{faxCode}
+				</if>
+				<if test="faxNumber != null">
+					AND fax_number=#{faxNumber}
+				</if>
+				<if test="faxExt != null">
+					AND fax_ext=#{faxExt}
+				</if>
+				<if test="wexinMp != null">
+					AND wexin_mp=#{wexinMp}
+				</if>
+				<if test="website != null">
+					AND website=#{website}
+				</if>
+				<if test="email != null">
+					AND email=#{email}
+				</if>
+				<if test="countryCode != null">
+					AND country_code=#{countryCode}
+				</if>
+				<if test="countryName != null">
+					AND country_name=#{countryName}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code=#{provinceCode}
+				</if>
+				<if test="provinceName != null">
+					AND province_name=#{provinceName}
+				</if>
+				<if test="cityCode != null">
+					AND city_code=#{cityCode}
+				</if>
+				<if test="cityName != null">
+					AND city_name=#{cityName}
+				</if>
+				<if test="areaCode != null">
+					AND area_code=#{areaCode}
+				</if>
+				<if test="areaName != null">
+					AND area_name=#{areaName}
+				</if>
+				<if test="address != null">
+					AND address=#{address}
+				</if>
+				<if test="productCount != null">
+					AND product_count=#{productCount}
+				</if>
+				<if test="caseCount != null">
+					AND case_count=#{caseCount}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="qq != null">
+					AND qq=#{qq}
+				</if>
+				<if test="hotline != null">
+					AND hotline=#{hotline}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.search.VEnterprise" resultMap="venterpriseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="userName != null">
+					user_name=#{userName}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="fullName != null">
+					AND full_name=#{fullName}
+				</if>
+				<if test="shortName != null">
+					AND short_name=#{shortName}
+				</if>
+				<if test="logo != null">
+					AND logo=#{logo}
+				</if>
+				<if test="corporation != null">
+					AND corporation=#{corporation}
+				</if>
+				<if test="businessNature != null">
+					AND business_nature=#{businessNature}
+				</if>
+				<if test="businessNatureName != null">
+					AND business_nature_name=#{businessNatureName}
+				</if>
+				<if test="enterpriseNature != null">
+					AND enterprise_nature=#{enterpriseNature}
+				</if>
+				<if test="enterpriseNatureName != null">
+					AND enterprise_nature_name=#{enterpriseNatureName}
+				</if>
+				<if test="registeredCapital != null">
+					AND registered_capital=#{registeredCapital}
+				</if>
+				<if test="foundYear != null">
+					AND found_year=#{foundYear}
+				</if>
+				<if test="majorBusiness != null">
+					AND major_business=#{majorBusiness}
+				</if>
+				<if test="businessLicense != null">
+					AND business_license=#{businessLicense}
+				</if>
+				<if test="supplierCategory != null">
+					AND supplier_category=#{supplierCategory}
+				</if>
+				<if test="supplierCategoryName != null">
+					AND supplier_category_name=#{supplierCategoryName}
+				</if>
+				<if test="introduction != null">
+					AND introduction=#{introduction}
+				</if>
+				<if test="introductionText != null">
+					AND introduction_text=#{introductionText}
+				</if>
+				<if test="phonePrefix != null">
+					AND phone_prefix=#{phonePrefix}
+				</if>
+				<if test="phoneCode != null">
+					AND phone_code=#{phoneCode}
+				</if>
+				<if test="phoneNumber != null">
+					AND phone_number=#{phoneNumber}
+				</if>
+				<if test="phoneExt != null">
+					AND phone_ext=#{phoneExt}
+				</if>
+				<if test="faxPrefix != null">
+					AND fax_prefix=#{faxPrefix}
+				</if>
+				<if test="faxCode != null">
+					AND fax_code=#{faxCode}
+				</if>
+				<if test="faxNumber != null">
+					AND fax_number=#{faxNumber}
+				</if>
+				<if test="faxExt != null">
+					AND fax_ext=#{faxExt}
+				</if>
+				<if test="wexinMp != null">
+					AND wexin_mp=#{wexinMp}
+				</if>
+				<if test="website != null">
+					AND website=#{website}
+				</if>
+				<if test="email != null">
+					AND email=#{email}
+				</if>
+				<if test="countryCode != null">
+					AND country_code=#{countryCode}
+				</if>
+				<if test="countryName != null">
+					AND country_name=#{countryName}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code=#{provinceCode}
+				</if>
+				<if test="provinceName != null">
+					AND province_name=#{provinceName}
+				</if>
+				<if test="cityCode != null">
+					AND city_code=#{cityCode}
+				</if>
+				<if test="cityName != null">
+					AND city_name=#{cityName}
+				</if>
+				<if test="areaCode != null">
+					AND area_code=#{areaCode}
+				</if>
+				<if test="areaName != null">
+					AND area_name=#{areaName}
+				</if>
+				<if test="address != null">
+					AND address=#{address}
+				</if>
+				<if test="productCount != null">
+					AND product_count=#{productCount}
+				</if>
+				<if test="caseCount != null">
+					AND case_count=#{caseCount}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="qq != null">
+					AND qq=#{qq}
+				</if>
+				<if test="hotline != null">
+					AND hotline=#{hotline}
+				</if>
+		</where>
+	</select>
+	
+	<select id="listByIds" resultMap="venterpriseResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.search.VEnterprise" resultMap="venterpriseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="userName != null">
+					user_name=#{userName}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="fullName != null">
+					AND full_name=#{fullName}
+				</if>
+				<if test="shortName != null">
+					AND short_name=#{shortName}
+				</if>
+				<if test="logo != null">
+					AND logo=#{logo}
+				</if>
+				<if test="corporation != null">
+					AND corporation=#{corporation}
+				</if>
+				<if test="businessNature != null">
+					AND business_nature=#{businessNature}
+				</if>
+				<if test="businessNatureName != null">
+					AND business_nature_name=#{businessNatureName}
+				</if>
+				<if test="enterpriseNature != null">
+					AND enterprise_nature=#{enterpriseNature}
+				</if>
+				<if test="enterpriseNatureName != null">
+					AND enterprise_nature_name=#{enterpriseNatureName}
+				</if>
+				<if test="registeredCapital != null">
+					AND registered_capital=#{registeredCapital}
+				</if>
+				<if test="foundYear != null">
+					AND found_year=#{foundYear}
+				</if>
+				<if test="majorBusiness != null">
+					AND major_business=#{majorBusiness}
+				</if>
+				<if test="businessLicense != null">
+					AND business_license=#{businessLicense}
+				</if>
+				<if test="supplierCategory != null">
+					AND supplier_category=#{supplierCategory}
+				</if>
+				<if test="supplierCategoryName != null">
+					AND supplier_category_name=#{supplierCategoryName}
+				</if>
+				<if test="introduction != null">
+					AND introduction=#{introduction}
+				</if>
+				<if test="introductionText != null">
+					AND introduction_text=#{introductionText}
+				</if>
+				<if test="phonePrefix != null">
+					AND phone_prefix=#{phonePrefix}
+				</if>
+				<if test="phoneCode != null">
+					AND phone_code=#{phoneCode}
+				</if>
+				<if test="phoneNumber != null">
+					AND phone_number=#{phoneNumber}
+				</if>
+				<if test="phoneExt != null">
+					AND phone_ext=#{phoneExt}
+				</if>
+				<if test="faxPrefix != null">
+					AND fax_prefix=#{faxPrefix}
+				</if>
+				<if test="faxCode != null">
+					AND fax_code=#{faxCode}
+				</if>
+				<if test="faxNumber != null">
+					AND fax_number=#{faxNumber}
+				</if>
+				<if test="faxExt != null">
+					AND fax_ext=#{faxExt}
+				</if>
+				<if test="wexinMp != null">
+					AND wexin_mp=#{wexinMp}
+				</if>
+				<if test="website != null">
+					AND website=#{website}
+				</if>
+				<if test="email != null">
+					AND email=#{email}
+				</if>
+				<if test="countryCode != null">
+					AND country_code=#{countryCode}
+				</if>
+				<if test="countryName != null">
+					AND country_name=#{countryName}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code=#{provinceCode}
+				</if>
+				<if test="provinceName != null">
+					AND province_name=#{provinceName}
+				</if>
+				<if test="cityCode != null">
+					AND city_code=#{cityCode}
+				</if>
+				<if test="cityName != null">
+					AND city_name=#{cityName}
+				</if>
+				<if test="areaCode != null">
+					AND area_code=#{areaCode}
+				</if>
+				<if test="areaName != null">
+					AND area_name=#{areaName}
+				</if>
+				<if test="address != null">
+					AND address=#{address}
+				</if>
+				<if test="productCount != null">
+					AND product_count=#{productCount}
+				</if>
+				<if test="caseCount != null">
+					AND case_count=#{caseCount}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="qq != null">
+					AND qq=#{qq}
+				</if>
+				<if test="hotline != null">
+					AND hotline=#{hotline}
+				</if>
+		</where>
+	</select>
+	<select id="searchEnterprise" parameterType="com.tcbci.gkit.business.domain.page.EnterpriseSearchParams" resultMap="venterpriseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" /> t
+		<where>
+			<if test="e.keywords != null">
+		        <foreach item="item" index="index" collection="e.keywords"
+				      open="(" separator="AND" close=")">
+				       (
+				       	t.full_name like CONCAT('%',#{e.keywords[${index}]},'%') OR
+				       	t.enterprise_id like CONCAT('%',#{e.keywords[${index}]},'%') OR
+				       	t.short_name like CONCAT('%',#{e.keywords[${index}]},'%') OR
+				       	exists(
+				       		select 1 from v_gb_product 
+				       		where enterprise_id = t.enterprise_id
+				       		and (
+				       				name like CONCAT('%',#{e.keywords[${index}]},'%') OR
+				       				brand_name like CONCAT('%',#{e.keywords[${index}]},'%')
+				       			)
+				       		
+				       	)
+				       )
+				</foreach>
+			</if>
+			<if test="e.categories != null">
+			    AND t.enterprise_id in (
+			    SELECT 
+			        enterprise_id 
+			    FROM 
+			        t_gb_product
+			    <where>
+			        <foreach item="item" index="index" collection="e.categories"
+					      open="  (" separator=" OR " close=")">
+					        category_path  LIKE CONCAT(#{e.categories[${index}]},'%')
+					</foreach>  
+					AND flag = 1 AND IFNULL(is_delete,0)=0 AND IFNULL(is_shelve,0)=1 
+				</where>
+				)		
+			</if>
+			<if test="e.placeProvinces != null or e.placeCities != null">
+			    AND
+			    <trim prefix="(" prefixOverrides="AND |OR" suffix=")">  
+				    <if test="e.placeProvinces != null">  
+				        <foreach item="item" index="index" collection="e.placeProvinces"
+						      open="t.province_code in (" separator="," close=")">
+						        #{e.placeProvinces[${index}]}
+						</foreach>   
+				    </if>  
+				    <if test="e.placeCities != null">  
+				        <foreach item="item" index="index" collection="e.placeCities"
+						      open="OR t.city_code in (" separator="," close=")">
+						        #{e.placeCities[${index}]}
+						</foreach> 
+				    </if>  
+				</trim>
+			</if>
+			<if test="e.marketId != null">
+			    AND t.enterprise_id in (
+			    SELECT 
+			        enterprise_id 
+			    FROM 
+			        t_gb_market_enterprise me
+			    <where>
+			    	me.market_id = #{e.marketId}
+				</where>
+				)		
+			</if>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.basedata.SystemProvinceMapper">
+	<resultMap id="systemprovinceResultMap" type="com.tcbci.gkit.business.domain.basedata.SystemProvince">
+			<result column="id" property="id"/>
+			<result column="country_id" property="countryId"/>
+			<result column="area_id" property="areaId"/>
+			<result column="area_name" property="areaName"/>
+			<result column="name" property="name"/>
+			<result column="name_en" property="nameEn"/>
+			<result column="code" property="code"/>
+			<result column="parent_code" property="parentCode"/>
+			<result column="area_code" property="areaCode"/>
+			<result column="post_code" property="postCode"/>
+			<result column="post_id" property="postId"/>
+			<result column="level" property="level"/>
+			<result column="civil_standard" property="civilStandard"/>
+			<result column="enable" property="enable"/>
+			<result column="creator" property="creator"/>
+			<result column="create_date" property="createDate"/>
+			<result column="editor" property="editor"/>
+			<result column="edit_date" property="editDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				country_id,
+				area_id,
+				name,
+				name_en,
+				code,
+				parent_code,
+				area_code,
+				post_code,
+				post_id,
+				level,
+				civil_standard,
+				enable,
+				creator,
+				create_date,
+				editor,
+				edit_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{countryId},
+				#{areaId},
+				#{name},
+				#{nameEn},
+				#{code},
+				#{parentCode},
+				#{areaCode},
+				#{postCode},
+				#{postId},
+				#{level},
+				#{civilStandard},
+				#{enable},
+				#{creator},
+				#{createDate},
+				#{editor},
+				#{editDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_system_country_province
+	</sql>
+	
+	<select id="findById" resultMap="systemprovinceResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.basedata.SystemProvince" resultMap="systemprovinceResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="countryId != null">
+					AND country_id=#{countryId}
+				</if>
+				<if test="areaId != null">
+					AND area_id=#{areaId}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="nameEn != null">
+					AND name_en=#{nameEn}
+				</if>
+				<if test="code != null">
+					AND code=#{code}
+				</if>
+				<if test="parentCode != null">
+					AND parent_code=#{parentCode}
+				</if>
+				<if test="areaCode != null">
+					AND area_code=#{areaCode}
+				</if>
+				<if test="postCode != null">
+					AND post_code=#{postCode}
+				</if>
+				<if test="postId != null">
+					AND post_id=#{postId}
+				</if>
+				<if test="level != null">
+					AND level=#{level}
+				</if>
+				<if test="civilStandard != null">
+					AND civil_standard=#{civilStandard}
+				</if>
+				<if test="enable != null">
+					AND enable=#{enable}
+				</if>
+				<if test="creator != null">
+					AND creator=#{creator}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editor != null">
+					AND editor=#{editor}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.basedata.SystemProvince" resultMap="systemprovinceResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="countryId != null">
+					AND country_id=#{countryId}
+				</if>
+				<if test="areaId != null">
+					AND area_id=#{areaId}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="nameEn != null">
+					AND name_en=#{nameEn}
+				</if>
+				<if test="code != null">
+					AND code=#{code}
+				</if>
+				<if test="parentCode != null">
+					AND parent_code=#{parentCode}
+				</if>
+				<if test="areaCode != null">
+					AND area_code=#{areaCode}
+				</if>
+				<if test="postCode != null">
+					AND post_code=#{postCode}
+				</if>
+				<if test="postId != null">
+					AND post_id=#{postId}
+				</if>
+				<if test="level != null">
+					AND level=#{level}
+				</if>
+				<if test="civilStandard != null">
+					AND civil_standard=#{civilStandard}
+				</if>
+				<if test="enable != null">
+					AND enable=#{enable}
+				</if>
+				<if test="creator != null">
+					AND creator=#{creator}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editor != null">
+					AND editor=#{editor}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.basedata.SystemProvince">
+		INSERT INTO 
+			t_gb_system_country_province(
+				<include refid="Field" />
+			)VALUES(
+				<include refid="FieldValues" />
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.basedata.SystemProvince">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="countryId != null">
+						country_id=#{countryId},
+					</if>
+					<if test="areaId != null">
+						area_id=#{areaId},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="nameEn != null">
+						name_en=#{nameEn},
+					</if>
+					<if test="code != null">
+						code=#{code},
+					</if>
+					<if test="parentCode != null">
+						parent_code=#{parentCode},
+					</if>
+					<if test="areaCode != null">
+						area_code=#{areaCode},
+					</if>
+					<if test="postCode != null">
+						post_code=#{postCode},
+					</if>
+					<if test="postId != null">
+						post_id=#{postId},
+					</if>
+					<if test="level != null">
+						level=#{level},
+					</if>
+					<if test="civilStandard != null">
+						civil_standard=#{civilStandard},
+					</if>
+					<if test="enable != null">
+						enable=#{enable},
+					</if>
+					<if test="creator != null">
+						creator=#{creator},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="editor != null">
+						editor=#{editor},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="systemprovinceResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_system_country_province(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.countryId},
+		           				#{item.areaId},
+		           				#{item.name},
+		           				#{item.nameEn},
+		           				#{item.code},
+		           				#{item.parentCode},
+		           				#{item.areaCode},
+		           				#{item.postCode},
+		           				#{item.postId},
+		           				#{item.level},
+		           				#{item.civilStandard},
+		           				#{item.enable},
+		           				#{item.creator},
+		           				#{item.createDate},
+		           				#{item.editor},
+		           				#{item.editDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.basedata.SystemProvince" resultMap="systemprovinceResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="countryId != null">
+					AND country_id=#{countryId}
+				</if>
+				<if test="areaId != null">
+					AND area_id=#{areaId}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="nameEn != null">
+					AND name_en=#{nameEn}
+				</if>
+				<if test="code != null">
+					AND code=#{code}
+				</if>
+				<if test="parentCode != null">
+					AND parent_code=#{parentCode}
+				</if>
+				<if test="areaCode != null">
+					AND area_code=#{areaCode}
+				</if>
+				<if test="postCode != null">
+					AND post_code=#{postCode}
+				</if>
+				<if test="postId != null">
+					AND post_id=#{postId}
+				</if>
+				<if test="level != null">
+					AND level=#{level}
+				</if>
+				<if test="civilStandard != null">
+					AND civil_standard=#{civilStandard}
+				</if>
+				<if test="enable != null">
+					AND enable=#{enable}
+				</if>
+				<if test="creator != null">
+					AND creator=#{creator}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editor != null">
+					AND editor=#{editor}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryProvince" resultMap="systemprovinceResultMap" parameterType="com.tcbci.gkit.business.domain.page.QueryProvinceParams">
+		SELECT
+				a.id,
+				a.country_id,
+				a.area_id,
+				b.name AS area_name,
+				a.name,
+				a.name_en,
+				a.code,
+				a.parent_code,
+				a.area_code,
+				a.post_code,
+				a.post_id,
+				a.level,
+				a.civil_standard,
+				a.enable,
+				a.creator,
+				a.create_date,
+				a.editor,
+				a.edit_date
+		FROM
+			<include refid="TableName" /> AS a
+		JOIN
+			t_gb_system_country_area b ON b.id = a.area_id
+		<where>
+				<if test="c.countryId != null">
+					a.country_id=#{c.countryId}
+				</if>
+				<if test="c.areaId != null">
+					AND a.area_id=#{c.areaId}
+				</if>
+				<if test="c.parentCode != null">
+					AND a.parent_code=#{c.parentCode}
+				</if>
+				<if test="c.countryCode != null">
+					AND EXISTS(SELECT 1 FROM t_gb_system_country c WHERE c.id=a.country_id AND code=#{c.countryCode})
+				</if>
+				AND ifnull(a.enable,1)=1
+		</where>
+		ORDER BY a.seq desc
+	</select>
+</mapper>

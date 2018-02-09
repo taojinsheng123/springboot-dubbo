@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.decorate.DesignerMapper">
+	<resultMap id="designerResultMap" type="com.tcbci.gkit.business.domain.decorate.Designer">
+			<result column="id" property="id"/>
+			<result column="designer_id" property="designerId"/>
+			<result column="decorate_company_id" property="decorateCompanyId"/>
+			<result column="position_name" property="positionName"/>
+			<result column="designer_name" property="designerName"/>
+			<result column="photo" property="photo"/>
+			<result column="title" property="title"/>
+			<result column="working_years" property="workingYears"/>
+			<result column="email" property="email"/>
+			<result column="qq" property="qq"/>
+			<result column="weinxin" property="weinxin"/>
+			<result column="profile" property="profile"/>
+			<result column="profile_text" property="profileText"/>
+			<result column="phone_number" property="phoneNumber"/>
+			<result column="moblie_nubmer" property="moblieNubmer"/>
+			<result column="is_delete" property="isDelete"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				designer_id,
+				decorate_company_id,
+				position_name,
+				designer_name,
+				photo,
+				title,
+				working_years,
+				email,
+				qq,
+				weinxin,
+				profile,
+				profile_text,
+				phone_number,
+				moblie_nubmer,
+				is_delete
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{designerId},
+				#{decorateCompanyId},
+				#{positionName},
+				#{designerName},
+				#{photo},
+				#{title},
+				#{workingYears},
+				#{email},
+				#{qq},
+				#{weinxin},
+				#{profile},
+				#{profileText},
+				#{phoneNumber},
+				#{moblieNubmer},
+				#{isDelete}
+	</sql>
+	
+	<sql id="TableName">
+		t_designer
+	</sql>
+	
+	<select id="findById" resultMap="designerResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.decorate.Designer">
+		INSERT INTO 
+			t_designer(
+				<include refid="Field" />
+			)VALUES(
+				<include refid="FieldValues" />
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.decorate.Designer">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="designerId != null">
+						designer_id=#{designerId},
+					</if>
+					<if test="decorateCompanyId != null">
+						decorate_company_id=#{decorateCompanyId},
+					</if>
+					<if test="positionName != null">
+						position_name=#{positionName},
+					</if>
+					<if test="designerName != null">
+						designer_name=#{designerName},
+					</if>
+					<if test="photo != null">
+						photo=#{photo},
+					</if>
+					<if test="title != null">
+						title=#{title},
+					</if>
+					<if test="workingYears != null">
+						working_years=#{workingYears},
+					</if>
+					<if test="email != null">
+						email=#{email},
+					</if>
+					<if test="qq != null">
+						qq=#{qq},
+					</if>
+					<if test="weinxin != null">
+						weinxin=#{weinxin},
+					</if>
+					<if test="profile != null">
+						profile=#{profile},
+					</if>
+					<if test="profileText != null">
+						profile_text=#{profileText},
+					</if>
+					<if test="phoneNumber != null">
+						phone_number=#{phoneNumber},
+					</if>
+					<if test="moblieNubmer != null">
+						moblie_nubmer=#{moblieNubmer},
+					</if>
+					<if test="isDelete != null">
+						is_delete=#{isDelete}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="designerResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="designerResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_designer(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.designerId},
+		           				#{item.decorateCompanyId},
+		           				#{item.positionName},
+		           				#{item.designerName},
+		           				#{item.photo},
+		           				#{item.title},
+		           				#{item.workingYears},
+		           				#{item.email},
+		           				#{item.qq},
+		           				#{item.weinxin},
+		           				#{item.profile},
+		           				#{item.profileText},
+		           				#{item.phoneNumber},
+		           				#{item.moblieNubmer},
+		           				#{item.isDelete}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="search" parameterType="com.tcbci.gkit.business.domain.decorate.Designer" resultMap="designerResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="designerId != null">
+					AND designer_id=#{designerId}
+				</if>
+				<if test="decorateCompanyId != null">
+					AND decorate_company_id=#{decorateCompanyId}
+				</if>
+				<if test="positionName != null">
+					AND position_name=#{positionName}
+				</if>
+				<if test="designerName != null">
+					AND designer_name=#{designerName}
+				</if>
+				<if test="photo != null">
+					AND photo=#{photo}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="workingYears != null">
+					AND working_years=#{workingYears}
+				</if>
+				<if test="email != null">
+					AND email=#{email}
+				</if>
+				<if test="qq != null">
+					AND qq=#{qq}
+				</if>
+				<if test="weinxin != null">
+					AND weinxin=#{weinxin}
+				</if>
+				<if test="profile != null">
+					AND profile=#{profile}
+				</if>
+				<if test="profileText != null">
+					AND profile_text=#{profileText}
+				</if>
+				<if test="phoneNumber != null">
+					AND phone_number=#{phoneNumber}
+				</if>
+				<if test="moblieNubmer != null">
+					AND moblie_nubmer=#{moblieNubmer}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+		</where>
+	</select>
+</mapper>

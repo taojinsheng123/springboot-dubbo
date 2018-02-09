@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.basedata.SampleMapper">
+	<resultMap id="sampleResultMap" type="com.tcbci.gkit.business.domain.basedata.Sample">
+			<result column="id" property="id"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="name" property="name"/>
+			<result column="pic_uri" property="picUri"/>
+			<result column="uri" property="uri"/>
+			<result column="is_pic_created" property="isPicCreated"/>
+			<result column="pic_created_date" property="picCreatedDate"/>
+			<result column="status" property="status"/>
+			<result column="create_date" property="createDate"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_user_name" property="auditUserName"/>
+			<result column="audit_user_true_name" property="auditUserTrueName"/>
+			<result column="audit_date" property="auditDate"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				enterprise_id,
+				name,
+				pic_uri,
+				uri,
+				is_pic_created,
+				pic_created_date,
+				status,
+				create_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				create_user,
+				create_user_scope,
+				edit_user,
+				edit_date,
+				edit_user_scope
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{enterpriseId},
+				#{name},
+				#{picUri},
+				#{uri},
+				#{isPicCreated},
+				#{picCreatedDate},
+				#{status},
+				#{createDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{createUser},
+				#{createUserScope},
+				#{editUser},
+				#{editDate},
+				#{editUserScope}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_sample
+	</sql>
+	
+	<select id="findById" resultMap="sampleResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="add"  useGeneratedKeys="true" keyProperty="id"  parameterType="com.tcbci.gkit.business.domain.basedata.Sample">
+		INSERT INTO 
+			t_gb_sample(
+				enterprise_id,
+				name,
+				pic_uri,
+				uri,
+				is_pic_created,
+				pic_created_date,
+				status,
+				create_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				create_user,
+				create_user_scope,
+				edit_user,
+				edit_date,
+				edit_user_scope
+			)VALUES(
+				#{enterpriseId},
+				#{name},
+				#{picUri},
+				#{uri},
+				#{isPicCreated},
+				#{picCreatedDate},
+				#{status},
+				#{createDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{createUser},
+				#{createUserScope},
+				#{editUser},
+				#{editDate},
+				#{editUserScope}
+			)
+	</insert>
+	
+	<update id="edit" parameterType="com.tcbci.gkit.business.domain.basedata.Sample">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="enterpriseId != null">
+						enterprise_id=#{enterpriseId},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="picUri != null">
+						pic_uri=#{picUri},
+					</if>
+					<if test="uri != null">
+						uri=#{uri},
+					</if>
+					<if test="isPicCreated != null">
+						is_pic_created=#{isPicCreated},
+					</if>
+					<if test="picCreatedDate != null">
+						pic_created_date=#{picCreatedDate},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditUserName != null">
+						audit_user_name=#{auditUserName},
+					</if>
+					<if test="auditUserTrueName != null">
+						audit_user_true_name=#{auditUserTrueName},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope=#{createUserScope},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate},
+					</if>
+					<if test="editUserScope != null">
+						edit_user_scope =#{editUserScope}
+					</if>
+		</set>
+		WHERE id=#{sampleId}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="sampleResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="sampleResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_sample(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.enterpriseId},
+		           				#{item.name},
+		           				#{item.picUri},
+		           				#{item.uri},
+		           				#{item.isPicCreated},
+		           				#{item.picCreatedDate},
+		           				#{item.status},
+		           				#{item.createDate},
+		           				#{item.auditUser},
+		           				#{item.auditUserName},
+		           				#{item.auditUserTrueName},
+		           				#{item.auditDate},
+		           				#{item.createUser},
+		           				#{item.createUserScope},
+		           				#{item.editUser},
+		           				#{item.editDate},
+		           				#{item.editUserScope}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="search" parameterType="com.tcbci.gkit.business.domain.basedata.Sample" resultMap="sampleResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="picUri != null">
+					AND pic_uri=#{picUri}
+				</if>
+				<if test="uri != null">
+					AND uri=#{uri}
+				</if>
+				<if test="isPicCreated != null">
+					AND is_pic_created=#{isPicCreated}
+				</if>
+				<if test="picCreatedDate != null">
+					AND pic_created_date=#{picCreatedDate}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope =#{editUserScope}
+				</if>
+		</where>
+	</select>
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.page.SampleParams" resultMap="sampleResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="s.keyword != null">
+					<foreach collection="s.keyword" item="item" index="index">
+						AND
+							name like CONCAT('%',#{s.keyword[${index}]},'%')
+					</foreach>
+				</if>
+				<if test="s.enterpriseId != null">
+				    AND
+							enterprise_id IN (
+					<foreach collection="s.enterpriseId" item="item" index="index" separator=",">
+						#{s.enterpriseId[${index}]}
+					</foreach>		
+					        )
+				</if>
+				<if test="s.productId != null">
+					AND id IN (
+						SELECT
+							p.sample_id
+						FROM
+							t_gb_product_sample p
+						WHERE
+							p.product_id = #{s.productId}
+					)
+				</if>
+				<if test="s.status != null">
+					AND status=#{s.status}
+				</if>
+		</where>
+	</select>
+</mapper>

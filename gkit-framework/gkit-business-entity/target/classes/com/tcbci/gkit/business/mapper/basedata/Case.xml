@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.basedata.CaseMapper">
+	<resultMap id="caseResultMap" type="com.tcbci.gkit.business.domain.basedata.Case">
+			<result column="id" property="id"/>
+			<result column="case_id" property="caseId"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="project_name" property="projectName"/>
+			<result column="first_party" property="firstParty"/>
+			<result column="contract_total" property="contractTotal"/>
+			<result column="scale" property="scale"/>
+			<result column="country_code" property="countryCode"/>
+			<result column="country_name" property="countryName"/>
+			<result column="province_code" property="provinceCode"/>
+			<result column="province_name" property="provinceName"/>
+			<result column="city_code" property="cityCode"/>
+			<result column="city_name" property="cityName"/>
+			<result column="address" property="address"/>
+			<result column="description" property="description"/>
+			<result column="description_text" property="descriptionText"/>
+			<result column="images" property="images"/>
+			<result column="contract_simple" property="contractSimple"/>
+			<result column="flag" property="flag"/>
+			<result column="is_hidden" property="isHidden"/>
+			<result column="status" property="status"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="submit_user" property="submitUser"/>
+			<result column="submit_date" property="submitDate"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_user_name" property="auditUserName"/>
+			<result column="audit_user_true_name" property="auditUserTrueName"/>
+			<result column="audit_date" property="auditDate"/>
+			<result column="is_delete" property="isDelete"/>
+			<result column="delete_user" property="deleteUser"/>
+			<result column="delete_date" property="deleteDate"/>
+			<result column="base_weight" property="baseWeight"/>
+			<result column="seq" property="seq"/>
+			<result column="click_count" property="clickCount"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+			<result column="submit_user_scope" property="submitUserScope"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				case_id,
+				enterprise_id,
+				project_name,
+				first_party,
+				contract_total,
+				scale,
+				country_code,
+				country_name,
+				province_code,
+				province_name,
+				city_code,
+				city_name,
+				address,
+				description,
+				description_text,
+				images,
+				contract_simple,
+				flag,
+				is_hidden,
+				status,
+				create_user,
+				create_date,
+				edit_user,
+				edit_date,
+				submit_user,
+				submit_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				is_delete,
+				delete_user,
+				delete_date,
+				base_weight,
+				seq,
+				click_count,
+				create_user_scope,
+				edit_user_scope,
+				submit_user_scope
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{caseId},
+				#{enterpriseId},
+				#{projectName},
+				#{firstParty},
+				#{contractTotal},
+				#{scale},
+				#{countryCode},
+				#{countryName},
+				#{provinceCode},
+				#{provinceName},
+				#{cityCode},
+				#{cityName},
+				#{address},
+				#{description},
+				#{descriptionText},
+				#{images},
+				#{contractSimple},
+				#{flag},
+				#{isHidden},
+				#{status},
+				#{createUser},
+				#{createDate},
+				#{editUser},
+				#{editDate},
+				#{submitUser},
+				#{submitDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{isDelete},
+				#{deleteUser},
+				#{deleteDate},
+				#{baseWeight},
+				#{seq},
+				#{clickCount},
+				#{createUserScope},
+				#{editUserScope},
+				#{submitUserScope}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_case
+	</sql>
+	
+	<select id="findById" resultMap="caseResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.basedata.Case">
+		INSERT INTO 
+			t_gb_case(
+				case_id,
+				enterprise_id,
+				project_name,
+				first_party,
+				contract_total,
+				scale,
+				country_code,
+				country_name,
+				province_code,
+				province_name,
+				city_code,
+				city_name,
+				address,
+				description,
+				description_text,
+				images,
+				contract_simple,
+				flag,
+				is_hidden,
+				status,
+				create_user,
+				create_date,
+				edit_user,
+				edit_date,
+				submit_user,
+				submit_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				is_delete,
+				delete_user,
+				delete_date,
+				base_weight,
+				seq,
+				click_count,
+				create_user_scope,
+				edit_user_scope,
+				submit_user_scope
+			)VALUES(
+				#{caseId},
+				#{enterpriseId},
+				#{projectName},
+				#{firstParty},
+				#{contractTotal},
+				#{scale},
+				#{countryCode},
+				#{countryName},
+				#{provinceCode},
+				#{provinceName},
+				#{cityCode},
+				#{cityName},
+				#{address},
+				#{description},
+				#{descriptionText},
+				#{images},
+				#{contractSimple},
+				#{flag},
+				#{isHidden},
+				#{status},
+				#{createUser},
+				#{createDate},
+				#{editUser},
+				#{editDate},
+				#{submitUser},
+				#{submitDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{isDelete},
+				#{deleteUser},
+				#{deleteDate},
+				#{baseWeight},
+				#{seq},
+				#{clickCount},
+				#{createUserScope},
+				#{editUserScope},
+				#{submitUserScope}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.basedata.Case">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="caseId != null">
+						case_id=#{caseId},
+					</if>
+					<if test="enterpriseId != null">
+						enterprise_id=#{enterpriseId},
+					</if>
+					<if test="projectName != null">
+						project_name=#{projectName},
+					</if>
+					<if test="firstParty != null">
+						first_party=#{firstParty},
+					</if>
+					<if test="contractTotal != null">
+						contract_total=#{contractTotal},
+					</if>
+					<if test="scale != null">
+						scale=#{scale},
+					</if>
+					<if test="countryCode != null">
+						country_code=#{countryCode},
+					</if>
+					<if test="countryName != null">
+						country_name=#{countryName},
+					</if>
+					<if test="provinceCode != null">
+						province_code=#{provinceCode},
+					</if>
+					<if test="provinceName != null">
+						province_name=#{provinceName},
+					</if>
+					<if test="cityCode != null">
+						city_code=#{cityCode},
+					</if>
+					<if test="cityName != null">
+						city_name=#{cityName},
+					</if>
+					<if test="address != null">
+						address=#{address},
+					</if>
+					<if test="description != null">
+						description=#{description},
+					</if>
+					<if test="descriptionText != null">
+						description_text=#{descriptionText},
+					</if>
+					<if test="images != null">
+						images=#{images},
+					</if>
+					<if test="contractSimple != null">
+						contract_simple=#{contractSimple},
+					</if>
+					<if test="flag != null">
+						flag=#{flag},
+					</if>
+					<if test="isHidden != null">
+						is_hidden=#{isHidden},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate},
+					</if>
+					<if test="submitUser != null">
+						submit_user=#{submitUser},
+					</if>
+					<if test="submitDate != null">
+						submit_date=#{submitDate},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditUserName != null">
+						audit_user_name=#{auditUserName},
+					</if>
+					<if test="auditUserTrueName != null">
+						audit_user_true_name=#{auditUserTrueName},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate},
+					</if>
+					<if test="isDelete != null">
+						is_delete=#{isDelete},
+					</if>
+					<if test="deleteUser != null">
+						delete_user=#{deleteUser},
+					</if>
+					<if test="deleteDate != null">
+						delete_date=#{deleteDate},
+					</if>
+					<if test="baseWeight != null">
+						base_weight=#{baseWeight},
+					</if>
+					<if test="seq != null">
+						seq=#{seq},
+					</if>
+					<if test="clickCount != null">
+						click_count=#{clickCount},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope=#{createUserScope},
+					</if>
+					<if test="editUserScope != null">
+						edit_user_scope=#{editUserScope},
+					</if>
+					<if test="submitUserScope != null">
+						submit_user_scope=#{submitUserScope}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="caseResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="caseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_case(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.caseId},
+		           				#{item.enterpriseId},
+		           				#{item.projectName},
+		           				#{item.firstParty},
+		           				#{item.contractTotal},
+		           				#{item.scale},
+		           				#{item.countryCode},
+		           				#{item.countryName},
+		           				#{item.provinceCode},
+		           				#{item.provinceName},
+		           				#{item.cityCode},
+		           				#{item.cityName},
+		           				#{item.address},
+		           				#{item.description},
+		           				#{item.descriptionText},
+		           				#{item.images},
+		           				#{item.contractSimple},
+		           				#{item.flag},
+		           				#{item.isHidden},
+		           				#{item.status},
+		           				#{item.createUser},
+		           				#{item.createDate},
+		           				#{item.editUser},
+		           				#{item.editDate},
+		           				#{item.submitUser},
+		           				#{item.submitDate},
+		           				#{item.auditUser},
+		           				#{item.auditUserName},
+		           				#{item.auditUserTrueName},
+		           				#{item.auditDate},
+		           				#{item.isDelete},
+		           				#{item.deleteUser},
+		           				#{item.deleteDate},
+		           				#{item.baseWeight},
+		           				#{item.seq},
+		           				#{item.clickCount},
+		           				#{item.createUserScope},
+		           				#{item.editUserScope},
+		           				#{item.submitUserScope}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.basedata.Case" resultMap="caseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="caseId != null">
+					AND case_id=#{caseId}
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="projectName != null">
+					AND project_name=#{projectName}
+				</if>
+				<if test="firstParty != null">
+					AND first_party=#{firstParty}
+				</if>
+				<if test="contractTotal != null">
+					AND contract_total=#{contractTotal}
+				</if>
+				<if test="scale != null">
+					AND scale=#{scale}
+				</if>
+				<if test="countryCode != null">
+					AND country_code=#{countryCode}
+				</if>
+				<if test="countryName != null">
+					AND country_name=#{countryName}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code=#{provinceCode}
+				</if>
+				<if test="provinceName != null">
+					AND province_name=#{provinceName}
+				</if>
+				<if test="cityCode != null">
+					AND city_code=#{cityCode}
+				</if>
+				<if test="cityName != null">
+					AND city_name=#{cityName}
+				</if>
+				<if test="address != null">
+					AND address=#{address}
+				</if>
+				<if test="description != null">
+					AND description=#{description}
+				</if>
+				<if test="descriptionText != null">
+					AND description_text=#{descriptionText}
+				</if>
+				<if test="images != null">
+					AND images=#{images}
+				</if>
+				<if test="contractSimple != null">
+					AND contract_simple=#{contractSimple}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="isHidden != null">
+					AND is_hidden=#{isHidden}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="submitUser != null">
+					AND submit_user=#{submitUser}
+				</if>
+				<if test="submitDate != null">
+					AND submit_date=#{submitDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="baseWeight != null">
+					AND base_weight=#{baseWeight}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="clickCount != null">
+					AND click_count=#{clickCount}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope=#{editUserScope}
+				</if>
+				<if test="submitUserScope != null">
+					AND submit_user_scope=#{submitUserScope}
+				</if>
+		</where>
+	</select>
+	
+	<delete id="deleteByCaseId" parameterType="String">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			case_id=#{caseId}
+	</delete>
+	
+	<select id="get" resultMap="caseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			case_id=#{caseId}
+		AND
+			flag=#{flag}
+		AND 
+			ifnull(is_delete,0)=0
+	</select>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.page.CaseParams" resultMap="caseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				ifnull(is_delete,0)=0
+				<if test="c.keyword != null">
+					AND project_name like CONCAT('%', #{c.keyword},'%')		
+				</if>
+				<if test="c.productId != null">
+					AND case_id IN (
+						SELECT
+							p.case_id
+						FROM
+							t_gb_product_case p
+						WHERE
+							p.product_id = #{c.productId}
+						<if test="c.flag != null">
+							AND flag = #{c.flag}
+						</if>
+					)
+				</if>
+				<if test="c.flag != null">
+					AND flag=#{c.flag}
+				</if>
+				<if test="c.status != null">
+					AND status=#{c.status}
+				</if>
+				<if test="c.isHidden != null">
+					AND is_hidden=#{c.isHidden}
+				</if>
+				<if test="c.enterpriseId != null">
+					AND enterprise_id=#{c.enterpriseId}
+				</if>
+		</where>
+	</select>
+	
+	<resultMap id="productResultMap" type="com.tcbci.gkit.business.domain.product.Product">
+			<result column="id" property="id"/>
+			<result column="product_id" property="productId"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="enterprise_full_name" property="enterpriseFullName"/>
+			<result column="enterprise_short_name" property="enterpriseShortName"/>
+			<result column="name" property="name"/>
+			<result column="category_code" property="categoryCode"/>
+			<result column="category_path" property="categoryPath"/>
+			<result column="category_name" property="categoryName"/>
+			<result column="category_ext_name" property="categoryExtName"/>
+			<result column="brand_id" property="brandId"/>
+			<result column="brand_name" property="brandName"/>
+			<result column="model" property="model"/>
+			<result column="is_price_section" property="isPriceSection"/>
+			<result column="price_unit" property="priceUnit"/>
+			<result column="min_price" property="minPrice"/>
+			<result column="max_price" property="maxPrice"/>
+			<result column="is_purchase_negotiable" property="isPurchaseNegotiable"/>
+			<result column="min_purchase_price" property="minPurchasePrice"/>
+			<result column="max_purchase_price" property="maxPurchasePrice"/>
+			<result column="basic_parameter" property="basicParameter"/>
+			<result column="basic_parameter_text" property="basicParameterText"/>
+			<result column="technical_index" property="technicalIndex"/>
+			<result column="technical_index_text" property="technicalIndexText"/>
+			<result column="description" property="description"/>
+			<result column="description_text" property="descriptionText"/>
+			<result column="drawing_type" property="drawingType"/>
+			<result column="flag" property="flag"/>
+			<result column="is_shelve" property="isShelve"/>
+			<result column="click_count" property="clickCount"/>
+			<result column="status" property="status"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="submit_user" property="submitUser"/>
+			<result column="submit_date" property="submitDate"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_user_name" property="auditUserName"/>
+			<result column="audit_user_true_name" property="auditUserTrueName"/>
+			<result column="audit_date" property="auditDate"/>
+			<result column="is_delete" property="isDelete"/>
+			<result column="delete_user" property="deleteUser"/>
+			<result column="delete_date" property="deleteDate"/>
+			<result column="seq" property="seq"/>
+			<result column="base_weight" property="baseWeight"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+			<result column="submit_user_scope" property="submitUserScope"/>
+			<result column="series_id" property="seriesId"/>
+			<result column="series_name" property="seriesName"/>
+			<result column="preview_image" property="previewImage"/>
+			<result column="place_country_code" property="placeCountryCode"/>
+			<result column="place_country_name" property="placeCountryName"/>
+			<result column="place_province_code" property="placeProvinceCode"/>
+			<result column="place_province_name" property="placeProvinceName"/>
+			<result column="place_city_code" property="placeCityCode"/>
+			<result column="place_city_name" property="placeCityName"/>
+	</resultMap>
+	
+	<select id="possibleUsedProduct" resultMap="productResultMap">
+		SELECT DISTINCT c.* 
+		FROM 
+			 t_gb_case a
+		JOIN 
+			 t_gb_product_case b ON b.case_id = a.case_id AND b.flag = #{flag}
+		JOIN 
+			 t_gb_product c ON c.product_id = b.product_id AND c.flag = #{flag} AND c.is_shelve = 1 AND IFNULL(c.is_delete,0)=0
+		JOIN 
+			 t_gb_enterprise d ON d.enterprise_id = c.enterprise_id AND d.flag = #{flag} AND IFNULL(d.is_delete,0)=0
+		WHERE a.project_name in(
+			select project_name FROM t_gb_case WHERE case_id = #{caseId} and flag = #{flag}
+			) 
+			AND a.flag = #{flag} 
+			AND a.case_id != #{caseId}
+			AND b.product_id NOT in(
+				SELECT product_id FROM t_gb_product_case WHERE case_id = #{caseId} AND flag = #{flag}
+			)
+	</select>
+	
+	<select id="queryByCaseIds" resultMap="caseResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			case_id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+         AND flag=1 
+	</select>
+</mapper>

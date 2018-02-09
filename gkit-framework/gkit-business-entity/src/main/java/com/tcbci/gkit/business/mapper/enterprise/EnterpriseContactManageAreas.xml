@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.enterprise.EnterpriseContactManageAreasMapper">
+	<resultMap id="enterprisecontactmanageareasResultMap" type="com.tcbci.gkit.business.domain.enterprise.EnterpriseContactManageAreas">
+			<result column="id" property="id"/>
+			<result column="contact_id" property="contactId"/>
+			<result column="province_codes" property="provinceCodes"/>
+			<result column="province_names" property="provinceNames"/>
+			<result column="create_date" property="createDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				contact_id,
+				province_codes,
+				province_names,
+				create_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{contactId},
+				#{provinceCodes},
+				#{provinceNames},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_enterprise_contact_manage_areas
+	</sql>
+	
+	<select id="findById" resultMap="enterprisecontactmanageareasResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseContactManageAreas" resultMap="enterprisecontactmanageareasResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="contactId != null">
+					AND contact_id=#{contactId}
+				</if>
+				<if test="provinceCodes != null">
+					AND province_codes=#{provinceCodes}
+				</if>
+				<if test="provinceNames != null">
+					AND province_names=#{provinceNames}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseContactManageAreas" resultMap="enterprisecontactmanageareasResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="contactId != null">
+					AND contact_id=#{contactId}
+				</if>
+				<if test="provinceCodes != null">
+					AND province_codes=#{provinceCodes}
+				</if>
+				<if test="provinceNames != null">
+					AND province_names=#{provinceNames}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseContactManageAreas">
+		INSERT INTO 
+			t_gb_enterprise_contact_manage_areas(
+				contact_id,
+				province_codes,
+				province_names,
+				create_date
+			)VALUES(
+				#{contactId},
+				#{provinceCodes},
+				#{provinceNames},
+				#{createDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseContactManageAreas">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="contactId != null">
+						contact_id=#{contactId},
+					</if>
+					<if test="provinceCodes != null">
+						province_codes=#{provinceCodes},
+					</if>
+					<if test="provinceNames != null">
+						province_names=#{provinceNames},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="enterprisecontactmanageareasResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_enterprise_contact_manage_areas(
+				contact_id,
+				province_codes,
+				province_names,
+				create_date
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.contactId},
+		           				#{item.provinceCodes},
+		           				#{item.provinceNames},
+		           				#{item.createDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseContactManageAreas" resultMap="enterprisecontactmanageareasResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="contactId != null">
+					AND contact_id=#{contactId}
+				</if>
+				<if test="provinceCodes != null">
+					AND province_codes=#{provinceCodes}
+				</if>
+				<if test="provinceNames != null">
+					AND province_names=#{provinceNames}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<select id="listByContactId" resultMap="enterprisecontactmanageareasResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			contact_id=#{contactId}
+	</select>
+	<select id="deleteByContactId">
+		DELETE
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			contact_id=#{contactId}
+	</select>
+</mapper>

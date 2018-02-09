@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.basedata.IndexBannerMapper">
+	<resultMap id="indexbannerResultMap" type="com.tcbci.gkit.business.domain.basedata.IndexBanner">
+			<result column="id" property="id"/>
+			<result column="pic_uri" property="picUri"/>
+			<result column="link" property="link"/>
+			<result column="title" property="title"/>
+			<result column="type" property="type"/>
+			<result column="description" property="description"/>
+			<result column="enable" property="enable"/>
+			<result column="create_date" property="createDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				pic_uri,
+				link,
+				title,
+				type,
+				description,
+				enable,
+				create_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{picUri},
+				#{link},
+				#{title},
+				#{type},
+				#{description},
+				#{enable},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_index_banner
+	</sql>
+	
+	<select id="findById" resultMap="indexbannerResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.basedata.IndexBanner" resultMap="indexbannerResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="picUri != null">
+					AND pic_uri=#{picUri}
+				</if>
+				<if test="link != null">
+					AND link=#{link}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="type != null">
+					AND type=#{type}
+				</if>
+				<if test="description != null">
+					AND description=#{description}
+				</if>
+				<if test="enable != null">
+					AND enable=#{enable}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.basedata.IndexBanner" resultMap="indexbannerResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="picUri != null">
+					AND pic_uri=#{picUri}
+				</if>
+				<if test="link != null">
+					AND link=#{link}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="type != null">
+					AND type=#{type}
+				</if>
+				<if test="description != null">
+					AND description=#{description}
+				</if>
+				<if test="enable != null">
+					AND enable=#{enable}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.basedata.IndexBanner">
+		INSERT INTO 
+			t_gb_index_banner(
+				pic_uri,
+				link,
+				title,
+				type,
+				description,
+				enable,
+				create_date
+			)VALUES(
+				#{picUri},
+				#{link},
+				#{title},
+				#{type},
+				#{description},
+				#{enable},
+				#{createDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.basedata.IndexBanner">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="picUri != null">
+						pic_uri=#{picUri},
+					</if>
+					<if test="link != null">
+						link=#{link},
+					</if>
+					<if test="title != null">
+						title=#{title},
+					</if>
+					<if test="type != null">
+						type=#{type},
+					</if>
+					<if test="description != null">
+						description=#{description},
+					</if>
+					<if test="enable != null">
+						enable=#{enable},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="indexbannerResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_index_banner(
+				pic_uri,
+				link,
+				title,
+				type,
+				description,
+				enable,
+				create_date
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.picUri},
+		           				#{item.link},
+		           				#{item.title},
+		           				#{item.type},
+		           				#{item.description},
+		           				#{item.enable},
+		           				#{item.createDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.basedata.IndexBanner" resultMap="indexbannerResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="picUri != null">
+					AND pic_uri=#{picUri}
+				</if>
+				<if test="link != null">
+					AND link=#{link}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="type != null">
+					AND type=#{type}
+				</if>
+				<if test="description != null">
+					AND description=#{description}
+				</if>
+				<if test="enable != null">
+					AND enable=#{enable}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+</mapper>

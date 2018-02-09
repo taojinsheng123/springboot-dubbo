@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.product.ProductCertificationMapper">
+	<resultMap id="productcertificationResultMap" type="com.tcbci.gkit.business.domain.product.ProductCertification">
+			<result column="id" property="id"/>
+			<result column="product_id" property="productId"/>
+			<result column="flag" property="flag"/>
+			<result column="certification_id" property="certificationId"/>
+			<result column="path" property="path"/>
+			<result column="images" property="images"/>
+			<result column="certification_name" property="certificationName"/>
+			<result column="create_date" property="createDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				product_id,
+				flag,
+				certification_id,
+				path,
+				images,
+				certification_name,
+				create_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{productId},
+				#{flag},
+				#{certificationId},
+				#{path},
+				#{images},
+				#{certificationName},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_product_certification
+	</sql>
+	
+	<select id="findById" resultMap="productcertificationResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.product.ProductCertification" resultMap="productcertificationResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="productId != null">
+					AND product_id=#{productId}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="certificationId != null">
+					AND certification_id=#{certificationId}
+				</if>
+				<if test="path != null">
+					AND path=#{path}
+				</if>
+				<if test="images != null">
+					AND images=#{images}
+				</if>
+				<if test="certificationName != null">
+					AND certification_name=#{certificationName}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.product.ProductCertification" resultMap="productcertificationResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="productId != null">
+					AND product_id=#{productId}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="certificationId != null">
+					AND certification_id=#{certificationId}
+				</if>
+				<if test="path != null">
+					AND path=#{path}
+				</if>
+				<if test="images != null">
+					AND images=#{images}
+				</if>
+				<if test="certificationName != null">
+					AND certification_name=#{certificationName}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.product.ProductCertification">
+		INSERT INTO 
+			t_gb_product_certification(
+				product_id,
+				flag,
+				certification_id,
+				path,
+				images,
+				certification_name,
+				create_date
+			)VALUES(
+				#{productId},
+				#{flag},
+				#{certificationId},
+				#{path},
+				#{images},
+				#{certificationName},
+				#{createDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.product.ProductCertification">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="productId != null">
+						product_id=#{productId},
+					</if>
+					<if test="flag != null">
+						flag=#{flag},
+					</if>
+					<if test="certificationId != null">
+						certification_id=#{certificationId},
+					</if>
+					<if test="path != null">
+						path=#{path},
+					</if>
+					<if test="images != null">
+						images=#{images},
+					</if>
+					<if test="certificationName != null">
+						certification_name=#{certificationName},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate}
+					</if>
+		</set>
+		WHERE 
+			id=#{id}
+		AND
+			flag=0
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="productcertificationResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_product_certification(
+				product_id,
+				flag,
+				certification_id,
+				path,
+				images,
+				certification_name,
+				create_date
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{list[${index}].productId},
+		           				#{list[${index}].flag},
+		           				#{list[${index}].certificationId},
+		           				#{list[${index}].path},
+		           				#{list[${index}].images},
+		           				#{list[${index}].certificationName},
+		           				#{list[${index}].createDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.product.ProductCertification" resultMap="productcertificationResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="productId != null">
+					AND product_id=#{productId}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="certificationId != null">
+					AND certification_id=#{certificationId}
+				</if>
+				<if test="path != null">
+					AND path=#{path}
+				</if>
+				<if test="images != null">
+					AND images=#{images}
+				</if>
+				<if test="certificationName != null">
+					AND certification_name=#{certificationName}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<delete id="deleteByProductId">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			product_id=#{productId}
+		AND
+			flag=#{flag}
+	</delete>
+</mapper>

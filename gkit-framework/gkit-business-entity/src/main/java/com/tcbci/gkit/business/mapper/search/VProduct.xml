@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.search.VProductMapper">
+	<resultMap id="vproductResultMap" type="com.tcbci.gkit.business.domain.search.VProduct">
+			<result column="product_id" property="productId"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="enterprise_short_name" property="enterpriseShortName"/>
+			<result column="enterprise_full_name" property="enterpriseFullName"/>
+			<result column="name" property="name"/>
+			<result column="brand_id" property="brandId"/>
+			<result column="brand_name" property="brandName"/>
+			<result column="model" property="model"/>
+			<result column="is_price_section" property="isPriceSection"/>
+			<result column="price_unit" property="priceUnit"/>
+			<result column="min_price" property="minPrice"/>
+			<result column="max_price" property="maxPrice"/>
+			<result column="is_purchase_negotiable" property="isPurchaseNegotiable"/>
+			<result column="min_purchase_price" property="minPurchasePrice"/>
+			<result column="max_purchase_price" property="maxPurchasePrice"/>
+			<result column="place_country_code" property="placeCountryCode"/>
+			<result column="place_country_name" property="placeCountryName"/>
+			<result column="place_province_code" property="placeProvinceCode"/>
+			<result column="place_province_name" property="placeProvinceName"/>
+			<result column="place_city_code" property="placeCityCode"/>
+			<result column="place_city_name" property="placeCityName"/>
+			<result column="preview_image" property="previewImage"/>
+	</resultMap>
+	
+	<sql id="Field">
+				product_id,
+				enterprise_id,
+				enterprise_short_name,
+				enterprise_full_name,
+				name,
+				brand_id,
+				brand_name,
+				model,
+				is_price_section,
+				price_unit,
+				min_price,
+				max_price,
+				is_purchase_negotiable,
+				min_purchase_price,
+				max_purchase_price,
+				place_country_code,
+				place_country_name,
+				place_province_code,
+				place_province_name,
+				place_city_code,
+				place_city_name,
+				preview_image
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_product
+	</sql>
+	
+	<select id="findById" resultMap="vproductResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.search.VProduct" resultMap="vproductResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="productId != null">
+					product_id=#{productId}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="enterpriseShortName != null">
+					AND enterprise_short_name=#{enterpriseShortName}
+				</if>
+				<if test="enterpriseFullName != null">
+					AND enterprise_full_name=#{enterpriseFullName}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="categoryCode != null">
+					AND category_code=#{categoryCode}
+				</if>
+				<if test="categoryPath != null">
+					AND category_path=#{categoryPath}
+				</if>
+				<if test="brandId != null">
+					AND brand_id=#{brandId}
+				</if>
+				<if test="brandName != null">
+					AND brand_name=#{brandName}
+				</if>
+				<if test="model != null">
+					AND model=#{model}
+				</if>
+				<if test="isPriceSection != null">
+					AND is_price_section=#{isPriceSection}
+				</if>
+				<if test="priceUnit != null">
+					AND price_unit=#{priceUnit}
+				</if>
+				<if test="minPrice != null">
+					AND min_price=#{minPrice}
+				</if>
+				<if test="maxPrice != null">
+					AND max_price=#{maxPrice}
+				</if>
+				<if test="isPurchaseNegotiable != null">
+					AND is_purchase_negotiable=#{isPurchaseNegotiable}
+				</if>
+				<if test="minPurchasePrice != null">
+					AND min_purchase_price=#{minPurchasePrice}
+				</if>
+				<if test="maxPurchasePrice != null">
+					AND max_purchase_price=#{maxPurchasePrice}
+				</if>
+				<if test="basicParameter != null">
+					AND basic_parameter=#{basicParameter}
+				</if>
+				<if test="basicParameterText != null">
+					AND basic_parameter_text=#{basicParameterText}
+				</if>
+				<if test="technicalIndex != null">
+					AND technical_index=#{technicalIndex}
+				</if>
+				<if test="technicalIndexText != null">
+					AND technical_index_text=#{technicalIndexText}
+				</if>
+				<if test="description != null">
+					AND description=#{description}
+				</if>
+				<if test="descriptionText != null">
+					AND description_text=#{descriptionText}
+				</if>
+				<if test="drawingType != null">
+					AND drawing_type=#{drawingType}
+				</if>
+				<if test="clickCount != null">
+					AND click_count=#{clickCount}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.search.VProduct" resultMap="vproductResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="productId != null">
+					product_id=#{productId}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="enterpriseShortName != null">
+					AND enterprise_short_name=#{enterpriseShortName}
+				</if>
+				<if test="enterpriseFullName != null">
+					AND enterprise_full_name=#{enterpriseFullName}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="categoryCode != null">
+					AND category_code=#{categoryCode}
+				</if>
+				<if test="categoryPath != null">
+					AND category_path=#{categoryPath}
+				</if>
+				<if test="brandId != null">
+					AND brand_id=#{brandId}
+				</if>
+				<if test="brandName != null">
+					AND brand_name=#{brandName}
+				</if>
+				<if test="model != null">
+					AND model=#{model}
+				</if>
+				<if test="isPriceSection != null">
+					AND is_price_section=#{isPriceSection}
+				</if>
+				<if test="priceUnit != null">
+					AND price_unit=#{priceUnit}
+				</if>
+				<if test="minPrice != null">
+					AND min_price=#{minPrice}
+				</if>
+				<if test="maxPrice != null">
+					AND max_price=#{maxPrice}
+				</if>
+				<if test="isPurchaseNegotiable != null">
+					AND is_purchase_negotiable=#{isPurchaseNegotiable}
+				</if>
+				<if test="minPurchasePrice != null">
+					AND min_purchase_price=#{minPurchasePrice}
+				</if>
+				<if test="maxPurchasePrice != null">
+					AND max_purchase_price=#{maxPurchasePrice}
+				</if>
+				<if test="basicParameter != null">
+					AND basic_parameter=#{basicParameter}
+				</if>
+				<if test="basicParameterText != null">
+					AND basic_parameter_text=#{basicParameterText}
+				</if>
+				<if test="technicalIndex != null">
+					AND technical_index=#{technicalIndex}
+				</if>
+				<if test="technicalIndexText != null">
+					AND technical_index_text=#{technicalIndexText}
+				</if>
+				<if test="description != null">
+					AND description=#{description}
+				</if>
+				<if test="descriptionText != null">
+					AND description_text=#{descriptionText}
+				</if>
+				<if test="drawingType != null">
+					AND drawing_type=#{drawingType}
+				</if>
+				<if test="clickCount != null">
+					AND click_count=#{clickCount}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+		</where>
+	</select>
+	<select id="listByIds" resultMap="vproductResultMap">
+		SELECT
+		a.product_id,
+		a.enterprise_id,
+		a.enterprise_short_name,
+		a.enterprise_full_name,
+		a.name,
+		a.brand_id,
+		a.brand_name,
+		a.model,
+		a.is_price_section,
+		a.price_unit,
+		a.min_price,
+		a.max_price,
+		a.is_purchase_negotiable,
+		a.min_purchase_price,
+		a.max_purchase_price,
+		a.preview_image,
+		e.city_code as placeCityCode,
+		e.city_name as placeCityName,
+		e.province_code as placeProvinceCode,
+		e.province_name as placeProvinceName,
+		e.country_code as placeCountryCode,
+		e.country_name as placeCountryName
+		FROM
+		t_gb_product as a
+		left join t_gb_enterprise e
+		on a.enterprise_id =e.enterprise_id
+		WHERE
+			a.id
+		IN
+        <foreach collection="ids" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        and e.flag = 1
+        and a.is_shelve = 1
+        ORDER BY ${sort}
+	</select>
+	
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.search.VProduct" resultMap="vproductResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="productId != null">
+					product_id=#{productId}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="enterpriseShortName != null">
+					AND enterprise_short_name=#{enterpriseShortName}
+				</if>
+				<if test="enterpriseFullName != null">
+					AND enterprise_full_name=#{enterpriseFullName}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="categoryCode != null">
+					AND category_code=#{categoryCode}
+				</if>
+				<if test="categoryPath != null">
+					AND category_path=#{categoryPath}
+				</if>
+				<if test="brandId != null">
+					AND brand_id=#{brandId}
+				</if>
+				<if test="brandName != null">
+					AND brand_name=#{brandName}
+				</if>
+				<if test="model != null">
+					AND model=#{model}
+				</if>
+				<if test="isPriceSection != null">
+					AND is_price_section=#{isPriceSection}
+				</if>
+				<if test="priceUnit != null">
+					AND price_unit=#{priceUnit}
+				</if>
+				<if test="minPrice != null">
+					AND min_price=#{minPrice}
+				</if>
+				<if test="maxPrice != null">
+					AND max_price=#{maxPrice}
+				</if>
+				<if test="isPurchaseNegotiable != null">
+					AND is_purchase_negotiable=#{isPurchaseNegotiable}
+				</if>
+				<if test="minPurchasePrice != null">
+					AND min_purchase_price=#{minPurchasePrice}
+				</if>
+				<if test="maxPurchasePrice != null">
+					AND max_purchase_price=#{maxPurchasePrice}
+				</if>
+				<if test="basicParameter != null">
+					AND basic_parameter=#{basicParameter}
+				</if>
+				<if test="basicParameterText != null">
+					AND basic_parameter_text=#{basicParameterText}
+				</if>
+				<if test="technicalIndex != null">
+					AND technical_index=#{technicalIndex}
+				</if>
+				<if test="technicalIndexText != null">
+					AND technical_index_text=#{technicalIndexText}
+				</if>
+				<if test="description != null">
+					AND description=#{description}
+				</if>
+				<if test="descriptionText != null">
+					AND description_text=#{descriptionText}
+				</if>
+				<if test="drawingType != null">
+					AND drawing_type=#{drawingType}
+				</if>
+				<if test="clickCount != null">
+					AND click_count=#{clickCount}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+		</where>
+	</select>
+	<select id="searchProduct" parameterType="com.tcbci.gkit.business.domain.page.ProductSearchParams" resultMap="vproductResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" /> t2
+		<where>
+				<if test="p.keywords != null">
+					<trim prefix="AND (" suffix=")" prefixOverrides="AND |OR" >  
+				        <foreach item="item" index="index" collection="p.keywords"
+						      open="(" separator="AND" close=")">
+						        t2.name like CONCAT('%',#{p.keywords[${index}]},'%')
+						</foreach>   
+				        <foreach item="item" index="index" collection="p.keywords"
+						      open="OR (" separator="AND" close=")">
+						        t2.product_id like CONCAT('%',#{p.keywords[${index}]},'%')
+						</foreach> 
+				        <foreach item="item" index="index" collection="p.keywords"
+						      open="OR (" separator="AND" close=")">
+						        t2.brand_name like CONCAT('%',#{p.keywords[${index}]},'%')
+						</foreach> 
+				        <foreach item="item" index="index" collection="p.keywords"
+						      open="OR (" separator="AND" close=")">
+						        t2.model like CONCAT('%',#{p.keywords[${index}]},'%')
+						</foreach> 
+				        <foreach item="item" index="index" collection="p.keywords"
+						      open="OR (" separator="AND" close=")">
+						        t2.category_name like CONCAT('%',#{p.keywords[${index}]},'%')
+						</foreach> 
+				        <foreach item="item" index="index" collection="p.keywords"
+						      open="OR (" separator="AND" close=")">
+						        t2.category_ext_name like CONCAT('%',#{p.keywords[${index}]},'%')
+						</foreach> 
+					</trim> 
+				</if>
+				<if test="p.brandIds != null">
+				    <foreach item="item" index="index" collection="p.brandIds"
+					      open="AND t2.brand_id in (" separator="," close=")">
+					        #{p.brandIds[${index}]}
+					</foreach> 
+				</if>
+				<if test="p.categories != null">
+					  <foreach item="item" index="index" collection="p.categories"
+					      open="AND (" separator=" OR " close=")">
+					      	t2.category_path LIKE CONCAT(#{p.categories[${index}]},'%')
+					  </foreach>
+				</if>
+				<if test="p.placeProvinces != null or p.placeCities != null">
+				    AND t2.product_id in (
+				    SELECT 
+				        t3.product_id 
+				    FROM 
+				        t_gb_product_place t3
+				    <trim prefix="WHERE" prefixOverrides="AND |OR" >  
+					    <if test="p.placeProvinces != null">  
+					        <foreach item="item" index="index" collection="p.placeProvinces"
+							      open="t3.province_code in (" separator="," close=",'-1')">
+							        #{p.placeProvinces[${index}]}
+							</foreach>   
+					    </if>  
+					    <if test="p.placeCities != null">  
+					        <foreach item="item" index="index" collection="p.placeCities"
+							      open="OR t3.city_code in (" separator="," close=")">
+							        #{p.placeCities[${index}]}
+							</foreach> 
+					    </if>  
+					</trim>
+					)	
+				</if>
+				<if test="p.priceStart != null">
+					AND t2.min_price >= #{p.priceStart}
+				</if>
+				<if test="p.priceEnd != null">
+					AND t2.min_price &lt;= #{p.priceEnd}
+				</if>
+				<if test="p.enterpriseIds != null">
+				    <foreach item="item" index="index" collection="p.enterpriseIds"
+					      open="AND t2.enterprise_id in (" separator="," close=")">
+					        #{p.enterpriseIds[${index}]}
+					</foreach> 
+				</if>
+		</where>
+	</select>
+	<select id="selectIds" parameterType="com.tcbci.gkit.business.domain.page.ProductSearchParams" resultType="INT">
+		SELECT a.id 
+		FROM t_gb_product a
+		JOIN t_gb_enterprise b on 
+			 b.enterprise_id = a.enterprise_id
+		AND a.flag = 1 
+		AND a.is_delete = 0 
+		AND a.is_shelve = 1 
+		AND b.flag = 1
+		AND b.is_delete = 0
+		<where>
+			<if test="p.placeProvinces != null">  
+			     <foreach item="item" index="index" collection="p.placeProvinces"
+					      open="AND b.province_code in (" separator="," close=",'-1')">
+					        #{p.placeProvinces[${index}]}
+					</foreach>   
+			 </if>  
+			 <if test="p.placeCities != null">  
+			     <foreach item="item" index="index" collection="p.placeCities"
+					      open="AND b.city_code in (" separator="," close=")">
+					        #{p.placeCities[${index}]}
+					</foreach> 
+			 </if>  
+			<if test="p.keywords != null">
+				<trim prefix="AND" prefixOverrides="AND |OR" >
+			        <foreach item="item" index="index" collection="p.keywords"
+					      open="(" separator=" ) AND ( " close=")">
+					        a.name like CONCAT('%',#{p.keywords[${index}]},'%')
+					        or a.product_id like CONCAT('%',#{p.keywords[${index}]},'%')
+					        or a.brand_name like CONCAT('%',#{p.keywords[${index}]},'%')
+					        or a.model like CONCAT('%',#{p.keywords[${index}]},'%')
+					        or a.category_name like CONCAT('%',#{p.keywords[${index}]},'%')
+					        or a.category_ext_name like CONCAT('%',#{p.keywords[${index}]},'%')
+					        or b.full_name like CONCAT('%',#{p.keywords[${index}]},'%')
+					        or b.short_name like CONCAT('%',#{p.keywords[${index}]},'%')
+					        or a.series_name like CONCAT('%',#{p.keywords[${index}]},'%')
+					</foreach>
+				</trim>
+			</if>
+			<if test="p.brandIds != null">
+			    <foreach item="item" index="index" collection="p.brandIds"
+				      open="AND a.brand_id in (" separator="," close=")">
+				        #{p.brandIds[${index}]}
+				</foreach> 
+			</if>
+			<if test="p.categories != null">
+				  <foreach item="item" index="index" collection="p.categories"
+				      open="AND (" separator=" OR " close=")">
+				      	a.category_path LIKE CONCAT(#{p.categories[${index}]},'%')
+				  </foreach>
+			</if>
+		<!-- 	<if test="p.placeProvinces != null || p.placeCities != null">
+			    AND a.product_id in (
+			    SELECT 
+			        t3.product_id 
+			    FROM 
+			        t_gb_product_place t3
+			    WHERE t3.flag = 1
+		     		AND (
+		     			<trim prefix="" prefixOverrides="AND |OR" >
+						    <if test="p.placeProvinces != null">  
+						        <foreach item="item" index="index" collection="p.placeProvinces"
+								      open="AND t3.province_code in (" separator="," close=",'-1')">
+								        #{p.placeProvinces[${index}]}
+								</foreach>   
+						    </if>  
+						    <if test="p.placeCities != null">  
+						        <foreach item="item" index="index" collection="p.placeCities"
+								      open="OR t3.city_code in (" separator="," close=")">
+								        #{p.placeCities[${index}]}
+								</foreach> 
+						    </if>  
+						</trim>	
+		     		)
+				)	
+			</if> -->
+			<if test="p.priceStart != null">
+				AND a.min_price >= #{p.priceStart}
+			</if>
+			<if test="p.priceEnd != null">
+				AND a.min_price &lt;= #{p.priceEnd}
+			</if>
+			<if test="p.enterpriseIds != null">
+				    <foreach item="item" index="index" collection="p.enterpriseIds"
+					      open="AND a.enterprise_id in (" separator="," close=")">
+					        #{p.enterpriseIds[${index}]}
+					</foreach> 
+				</if>
+		</where>
+		ORDER BY ${sort}
+		LIMIT #{start},#{rows}
+	</select>
+	<select id="selectIds_count" parameterType="com.tcbci.gkit.business.domain.page.ProductSearchParams" resultType="INT">
+		SELECT COUNT(*) 
+		FROM t_gb_product a
+		JOIN t_gb_enterprise b on 
+			 b.enterprise_id = a.enterprise_id
+		AND a.flag = 1 
+		 AND a.is_delete = 0 
+		 AND a.is_shelve = 1  
+		 AND b.flag = 1
+		 AND b.is_delete = 0
+		 <where>
+			<if test="p.placeProvinces != null">  
+			    <foreach item="item" index="index" collection="p.placeProvinces"
+					      open="AND b.province_code in (" separator="," close=",'-1')">
+					        #{p.placeProvinces[${index}]}
+				</foreach>   
+			</if>  
+			<if test="p.placeCities != null">  
+			     <foreach item="item" index="index" collection="p.placeCities"
+					      open="AND b.city_code in (" separator="," close=")">
+					        #{p.placeCities[${index}]}
+					</foreach> 
+			</if> 
+			<if test="p.keywords != null">
+				<trim prefix="AND (" suffix=")" prefixOverrides="AND |OR" >  
+			        <foreach item="item" index="index" collection="p.keywords"
+					      open="(" separator="AND" close=")">
+					        a.name like CONCAT('%',#{p.keywords[${index}]},'%')
+					</foreach>   
+			        <foreach item="item" index="index" collection="p.keywords"
+					      open="OR (" separator="AND" close=")">
+					        a.product_id like CONCAT('%',#{p.keywords[${index}]},'%')
+					</foreach> 
+			        <foreach item="item" index="index" collection="p.keywords"
+					      open="OR (" separator="AND" close=")">
+					        a.brand_name like CONCAT('%',#{p.keywords[${index}]},'%')
+					</foreach> 
+			        <foreach item="item" index="index" collection="p.keywords"
+					      open="OR (" separator="AND" close=")">
+					        a.model like CONCAT('%',#{p.keywords[${index}]},'%')
+					</foreach> 
+			        <foreach item="item" index="index" collection="p.keywords"
+					      open="OR (" separator="AND" close=")">
+					        a.category_name like CONCAT('%',#{p.keywords[${index}]},'%')
+					</foreach> 
+			        <foreach item="item" index="index" collection="p.keywords"
+					      open="OR (" separator="AND" close=")">
+					        a.category_ext_name like CONCAT('%',#{p.keywords[${index}]},'%')
+					</foreach> 
+			        <foreach item="item" index="index" collection="p.keywords"
+					      open="OR (" separator="AND" close=")">
+					        b.full_name like CONCAT('%',#{p.keywords[${index}]},'%')
+					</foreach>  
+			        <foreach item="item" index="index" collection="p.keywords"
+					      open="OR (" separator="AND" close=")">
+					        b.short_name like CONCAT('%',#{p.keywords[${index}]},'%')
+					</foreach>  
+			        <foreach item="item" index="index" collection="p.keywords"
+					      open="OR (" separator="AND" close=")">
+					        a.series_name like CONCAT('%',#{p.keywords[${index}]},'%')
+					</foreach>  
+				</trim> 
+			</if>
+			<if test="p.brandIds != null">
+			    <foreach item="item" index="index" collection="p.brandIds"
+				      open="AND a.brand_id in (" separator="," close=")">
+				        #{p.brandIds[${index}]}
+				</foreach> 
+			</if>
+			<if test="p.categories != null">
+				  <foreach item="item" index="index" collection="p.categories"
+				      open="AND (" separator=" OR " close=")">
+				      	a.category_path LIKE CONCAT(#{p.categories[${index}]},'%')
+				  </foreach>
+			</if>
+<!-- 			<if test="p.placeProvinces != null or p.placeCities != null">
+			    AND a.product_id in (
+			    SELECT 
+			        t3.product_id 
+			    FROM 
+			        t_gb_product_place t3
+			     WHERE t3.flag = 1
+		     		AND (
+		     			<trim prefix="" prefixOverrides="AND |OR" >
+						    <if test="p.placeProvinces != null">  
+						        <foreach item="item" index="index" collection="p.placeProvinces"
+								      open="AND t3.province_code in (" separator="," close=",'-1')">
+								        #{p.placeProvinces[${index}]}
+								</foreach>   
+						    </if>  
+						    <if test="p.placeCities != null">  
+						        <foreach item="item" index="index" collection="p.placeCities"
+								      open="OR t3.city_code in (" separator="," close=")">
+								        #{p.placeCities[${index}]}
+								</foreach> 
+						    </if>  
+						</trim>	
+		     		)
+				)	
+			</if> -->
+			<if test="p.priceStart != null">
+				AND a.min_price >= #{p.priceStart}
+			</if>
+			<if test="p.priceEnd != null">
+				AND a.min_price &lt;= #{p.priceEnd}
+			</if>
+			<if test="p.enterpriseIds != null">
+				    <foreach item="item" index="index" collection="p.enterpriseIds"
+					      open="AND a.enterprise_id in (" separator="," close=")">
+					        #{p.enterpriseIds[${index}]}
+					</foreach> 
+				</if>
+		</where>
+	</select>
+</mapper>

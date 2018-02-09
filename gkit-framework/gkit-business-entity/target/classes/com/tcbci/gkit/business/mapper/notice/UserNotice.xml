@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.notice.UserNoticeMapper">
+	<resultMap id="usernoticeResultMap" type="com.tcbci.gkit.business.domain.notice.UserNotice">
+			<result column="id" property="id"/>
+			<result column="tag" property="tag"/>
+			<result column="tag_name" property="tagName"/>
+			<result column="from_user" property="fromUser"/>
+			<result column="from_user_name" property="fromUserName"/>
+			<result column="title" property="title"/>
+			<result column="content" property="content"/>
+			<result column="to_user" property="toUser"/>
+			<result column="to_user_scope" property="toUserScope"/>
+			<result column="to_user_enterprise" property="toUserEnterprise"/>
+			<result column="to_user_name" property="toUserName"/>
+			<result column="has_read" property="hasRead"/>
+			<result column="read_date" property="readDate"/>
+			<result column="create_date" property="createDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				tag,
+				tag_name,
+				from_user,
+				from_user_name,
+				title,
+				content,
+				to_user,
+				to_user_enterprise,
+				to_user_scope,
+				to_user_name,
+				has_read,
+				read_date,
+				create_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{tag},
+				#{tagName},
+				#{fromUser},
+				#{fromUserName},
+				#{title},
+				#{content},
+				#{toUser},
+				#{toUserEnterprise},
+				#{toUserScope},
+				#{toUserName},
+				#{hasRead},
+				#{readDate},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_user_notice
+	</sql>
+	
+	<select id="findById" resultMap="usernoticeResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.notice.UserNotice" resultMap="usernoticeResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="tag != null">
+					AND tag=#{tag}
+				</if>
+				<if test="tagName != null">
+					AND tag_name=#{tagName}
+				</if>
+				<if test="fromUser != null">
+					AND from_user=#{fromUser}
+				</if>
+				<if test="fromUserName != null">
+					AND from_user_name=#{fromUserName}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="content != null">
+					AND content=#{content}
+				</if>
+				<if test="toUser != null">
+					AND to_user=#{toUser}
+				</if>
+				<if test="toUserEnterprise != null">
+					AND to_user_enterprise=#{toUserEnterprise}
+				</if>
+				<if test="toUserScope!=null">
+					AND to_user_scope=#{toUserScope}
+				</if>
+				<if test="toUserName != null">
+					AND to_user_name=#{toUserName}
+				</if>
+				<if test="hasRead != null">
+					AND has_read=#{hasRead}
+				</if>
+				<if test="readDate != null">
+					AND read_date=#{readDate}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.notice.UserNotice" resultMap="usernoticeResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="tag != null">
+					AND tag=#{tag}
+				</if>
+				<if test="tagName != null">
+					AND tag_name=#{tagName}
+				</if>
+				<if test="fromUser != null">
+					AND from_user=#{fromUser}
+				</if>
+				<if test="fromUserName != null">
+					AND from_user_name=#{fromUserName}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="content != null">
+					AND content=#{content}
+				</if>
+				<if test="toUser != null">
+					AND to_user=#{toUser}
+				</if>
+				<if test="toUserEnterprise != null">
+					AND to_user_enterprise=#{toUserEnterprise}
+				</if>
+				<if test="toUserScope!=null">
+					AND to_user_scope=#{toUserScope}
+				</if>
+				<if test="toUserName != null">
+					AND to_user_name=#{toUserName}
+				</if>
+				<if test="hasRead != null">
+					AND has_read=#{hasRead}
+				</if>
+				<if test="readDate != null">
+					AND read_date=#{readDate}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.notice.UserNotice">
+		INSERT INTO 
+			t_gb_user_notice(
+				tag,
+				tag_name,
+				from_user,
+				from_user_name,
+				title,
+				content,
+				to_user,
+				to_user_enterprise,
+				to_user_scope,
+				to_user_name,
+				has_read,
+				read_date,
+				create_date
+			)VALUES(
+				#{tag},
+				#{tagName},
+				#{fromUser},
+				#{fromUserName},
+				#{title},
+				#{content},
+				#{toUser},
+				#{toUserEnterprise},
+				#{toUserScope},
+				#{toUserName},
+				#{hasRead},
+				#{readDate},
+				#{createDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.notice.UserNotice">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="tag != null">
+						tag=#{tag},
+					</if>
+					<if test="tagName != null">
+						tag_name=#{tagName},
+					</if>
+					<if test="fromUser != null">
+						from_user=#{fromUser},
+					</if>
+					<if test="fromUserName != null">
+						from_user_name=#{fromUserName},
+					</if>
+					<if test="title != null">
+						title=#{title},
+					</if>
+					<if test="content != null">
+						content=#{content},
+					</if>
+					<if test="toUser != null">
+						to_user=#{toUser},
+					</if>
+					<if test="toUserEnterprise != null">
+						to_user_enterprise=#{toUserEnterprise},
+					</if>
+					<if test="toUserScope!=null">
+						to_user_scope=#{toUserScope},
+					</if>
+					<if test="toUserName != null">
+						to_user_name=#{toUserName},
+					</if>
+					<if test="hasRead != null">
+						has_read=#{hasRead},
+					</if>
+					<if test="readDate != null">
+						read_date=#{readDate},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="usernoticeResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_user_notice(
+				tag,
+				tag_name,
+				from_user,
+				from_user_name,
+				title,
+				content,
+				to_user,
+				to_user_enterprise,
+				to_user_scope,
+				to_user_name,
+				has_read,
+				read_date,
+				create_date
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.tag},
+		           				#{item.tagName},
+		           				#{item.fromUser},
+		           				#{item.fromUserName},
+		           				#{item.title},
+		           				#{item.content},
+		           				#{item.toUser},
+		           				#{item.toUserEnterprise},
+		           				#{item.toUserScope},
+		           				#{item.toUserName},
+		           				#{item.hasRead},
+		           				#{item.readDate},
+		           				#{item.createDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="queryByObject" parameterType="com.tcbci.gkit.business.domain.notice.UserNotice" resultMap="usernoticeResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="tag != null">
+					AND tag=#{tag}
+				</if>
+				<if test="tagName != null">
+					AND tag_name=#{tagName}
+				</if>
+				<if test="fromUser != null">
+					AND from_user=#{fromUser}
+				</if>
+				<if test="fromUserName != null">
+					AND from_user_name=#{fromUserName}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="content != null">
+					AND content=#{content}
+				</if>
+				<if test="toUser != null">
+					AND to_user=#{toUser}
+				</if>
+				<if test="toUserEnterprise != null">
+					to_user_enterprise=#{toUserEnterprise},
+				</if>
+				<if test="toUserScope!=null">
+					AND to_user_scope=#{toUserScope}
+				</if>
+				<if test="toUserName != null">
+					AND to_user_name=#{toUserName}
+				</if>
+				<if test="hasRead != null">
+					AND has_read=#{hasRead}
+				</if>
+				<if test="readDate != null">
+					AND read_date=#{readDate}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.page.UserNoticeParams" resultMap="usernoticeResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+		    1=1
+				<if test="u.tag != null">
+					AND tag=#{u.tag}
+				</if>
+				<if test="u.fromUser != null">
+					AND from_user=#{u.fromUser}
+				</if>
+				<if test="u.toUser != null">
+					AND to_user=#{u.toUser}
+				</if>
+				<if test="u.toUserEnterprise != null">
+					AND to_user_enterprise=#{u.toUserEnterprise}
+				</if>
+				<if test="u.toUserScope!=null">
+					AND to_user_scope=#{u.toUserScope}
+				</if>
+				<if test="u.hasRead != null">
+					AND has_read=#{u.hasRead}
+				</if>
+		</where>
+	</select>
+	
+	<delete id="deleteByUser" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			to_user=#{userId}
+	</delete>
+	
+	<select id="listNoReadByUser" resultMap="usernoticeResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			to_user=#{userId}
+		AND
+			has_read=0
+	</select>
+</mapper>

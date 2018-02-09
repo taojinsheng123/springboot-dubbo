@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.basedata.BrandMapper">
+	<resultMap id="brandResultMap" type="com.tcbci.gkit.business.domain.basedata.Brand">
+			<result column="id" property="id"/>
+			<result column="enterprise_name" property="enterpriseName"/>
+			<result column="brand_id" property="brandId"/>
+			<result column="name" property="name"/>
+			<result column="name_pinyin" property="namePinyin"/>
+			<result column="name_first_letter" property="nameFirstLetter"/>
+			<result column="type" property="type"/>
+			<result column="flag" property="flag"/>
+			<result column="remark" property="remark"/>
+			<result column="logo" property="logo"/>
+			<result column="status" property="status"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="create_date" property="createDate"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="submit_user" property="submitUser"/>
+			<result column="submit_date" property="submitDate"/>
+			<result column="submit_user_scope" property="submitUserScope"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_user_name" property="auditUserName"/>
+			<result column="audit_user_true_name" property="auditUserTrueName"/>
+			<result column="audit_date" property="auditDate"/>
+			<result column="is_delete" property="isDelete"/>
+			<result column="delete_user" property="deleteUser"/>
+			<result column="delete_date" property="deleteDate"/>
+			<result column="seq" property="seq"/>
+			<result column="click_count" property="clickCount"/>
+			<result column="level" property="level"/>
+			<result column="level_name" property="levelName"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				enterprise_name,
+				brand_id,
+				name,
+				name_pinyin,
+				name_first_letter,
+				type,
+				flag,
+				remark,
+				logo,
+				status,
+				create_user,
+				create_user_scope,
+				create_date,
+				edit_user,
+				edit_user_scope,
+				edit_date,
+				submit_user,
+				submit_date,
+				submit_user_scope,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				is_delete,
+				delete_user,
+				delete_date,
+				seq,
+				click_count,
+				level,
+				level_name
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{enterpriseName},
+				#{brandId},
+				#{name},
+				#{namePinyin},
+				#{nameFirstLetter},
+				#{type},
+				#{flag},
+				#{remark},
+				#{logo},
+				#{status},
+				#{createUser},
+				#{createUserScope},
+				#{createDate},
+				#{editUser},
+				#{editUserScope},
+				#{editDate},
+				#{submitUser},
+				#{submitDate},
+				#{submitUserScope},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{isDelete},
+				#{deleteUser},
+				#{deleteDate},
+				#{seq},
+				#{clickCount},
+				#{level},
+				#{levelName}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_brand
+	</sql>
+	
+	<select id="findById" resultMap="brandResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.basedata.Brand" resultMap="brandResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseName != null">
+					AND enterprise_name=#{enterpriseName}
+				</if>
+				<if test="brandId != null">
+					AND brand_id=#{brandId}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="namePinyin != null">
+					AND name_pinyin=#{namePinyin}
+				</if>
+				<if test="nameFirstLetter != null">
+					AND name_first_letter=#{nameFirstLetter}
+				</if>
+				<if test="type != null">
+					AND type=#{type}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="remark != null">
+					AND remark=#{remark}
+				</if>
+				<if test="logo != null">
+					AND logo=#{logo}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope=#{editUserScope}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="submitUser != null">
+					AND submit_user=#{submitUser}
+				</if>
+				<if test="submitDate != null">
+					AND submit_date=#{submitDate}
+				</if>
+				<if test="submitUserScope != null">
+					AND submit_user_scope=#{submitUserScope}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="clickCount != null">
+					AND click_count=#{clickCount}
+				</if>
+				<if test="level != null">
+					AND level=#{level}
+				</if>
+				<if test="levelName != null">
+					AND level_name=#{levelName}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.basedata.Brand" resultMap="brandResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseName != null">
+					AND enterprise_name=#{enterpriseName}
+				</if>
+				<if test="brandId != null">
+					AND brand_id=#{brandId}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="namePinyin != null">
+					AND name_pinyin=#{namePinyin}
+				</if>
+				<if test="nameFirstLetter != null">
+					AND name_first_letter=#{nameFirstLetter}
+				</if>
+				<if test="type != null">
+					AND type=#{type}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="remark != null">
+					AND remark=#{remark}
+				</if>
+				<if test="logo != null">
+					AND logo=#{logo}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope=#{editUserScope}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="submitUser != null">
+					AND submit_user=#{submitUser}
+				</if>
+				<if test="submitDate != null">
+					AND submit_date=#{submitDate}
+				</if>
+				<if test="submitUserScope != null">
+					AND submit_user_scope=#{submitUserScope}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="clickCount != null">
+					AND click_count=#{clickCount}
+				</if>
+				<if test="level != null">
+					AND level=#{level}
+				</if>
+				<if test="levelName != null">
+					AND level_name = #{levelName}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"  parameterType="com.tcbci.gkit.business.domain.basedata.Brand">
+		INSERT INTO 
+			t_gb_brand(
+				<include refid="Field" />
+			)VALUES(
+				<include refid="FieldValues" />
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.basedata.Brand">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="enterpriseName != null">
+						enterprise_name=#{enterpriseName},
+					</if>
+					<if test="brandId != null">
+						brand_id=#{brandId},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="namePinyin != null">
+						name_pinyin=#{namePinyin},
+					</if>
+					<if test="nameFirstLetter != null">
+						name_first_letter=#{nameFirstLetter},
+					</if>
+					<if test="type != null">
+						type=#{type},
+					</if>
+					<if test="flag != null">
+						flag=#{flag},
+					</if>
+					<if test="remark != null">
+						remark=#{remark},
+					</if>
+					<if test="logo != null">
+						logo=#{logo},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope=#{createUserScope},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editUserScope != null">
+						edit_user_scope=#{editUserScope},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate},
+					</if>
+					<if test="submitUser != null">
+						submit_user=#{submitUser},
+					</if>
+					<if test="submitDate != null">
+						submit_date=#{submitDate},
+					</if>
+					<if test="submitUserScope != null">
+						submit_user_scope=#{submitUserScope},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditUserName != null">
+						audit_user_name=#{auditUserName},
+					</if>
+					<if test="auditUserTrueName != null">
+						audit_user_true_name=#{auditUserTrueName},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate},
+					</if>
+					<if test="isDelete != null">
+						is_delete=#{isDelete},
+					</if>
+					<if test="deleteUser != null">
+						delete_user=#{deleteUser},
+					</if>
+					<if test="deleteDate != null">
+						delete_date=#{deleteDate},
+					</if>
+					<if test="seq != null">
+						seq=#{seq},
+					</if>
+					<if test="clickCount != null">
+						click_count=#{clickCount},
+					</if>
+					<if test="level != null">
+						level=#{level},
+					</if>
+					<if test="levelName != null">
+						level_name = #{levelName}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="brandResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="brandResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_brand(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.enterpriseName},
+		           				#{item.brandId},
+		           				#{item.name},
+		           				#{item.namePinyin},
+		           				#{item.nameFirstLetter},
+		           				#{item.type},
+		           				#{item.flag},
+		           				#{item.remark},
+		           				#{item.logo},
+		           				#{item.status},
+		           				#{item.createUser},
+		           				#{item.createUserScope},
+		           				#{item.createDate},
+		           				#{item.editUser},
+		           				#{item.editUserScope},
+		           				#{item.editDate},
+		           				#{item.submitUser},
+		           				#{item.submitDate},
+		           				#{item.submitUserScope},
+		           				#{item.auditUser},
+		           				#{item.auditUserName},
+		           				#{item.auditUserTrueName},
+		           				#{item.auditDate},
+		           				#{item.isDelete},
+		           				#{item.deleteUser},
+		           				#{item.deleteDate},
+		           				#{item.seq},
+		           				#{item.clickCount},
+		           				#{item.level},
+		           				#{item.levelName}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.page.BrandParams" resultMap="brandResultMap">
+		SELECT
+				A.id,
+				A.enterprise_name,
+				A.brand_id,
+				A.name,
+				A.name_pinyin,
+				A.name_first_letter,
+				A.type,
+				A.flag,
+				A.remark,
+				A.logo,
+				A.status,
+				A.create_user,
+				A.create_user_scope,
+				A.create_date,
+				A.edit_user,
+				A.edit_user_scope,
+				A.edit_date,
+				A.submit_user,
+				A.submit_date,
+				A.submit_user_scope,
+				A.audit_user,
+				A.audit_user_name,
+				A.audit_user_true_name,
+				A.audit_date,
+				A.is_delete,
+				A.delete_user,
+				A.delete_date,
+				A.seq,
+				A.click_count,
+				A.level,
+				A.level_name
+		FROM
+			<include refid="TableName" /> AS A
+		<where>
+				A.is_delete = 0
+				<if test="c.enterpriseId != null">
+					AND EXISTS (
+						SELECT
+							1
+						FROM
+							t_gb_enterprise_brand B
+						WHERE
+							B.enterprise_id = #{c.enterpriseId}
+						AND B.brand_id = A.brand_id
+					)
+				</if>
+				<if test="c.notEnterpriseId != null">
+					AND NOT EXISTS (
+						SELECT
+							1
+						FROM
+							t_gb_enterprise_brand B
+						WHERE
+							B.enterprise_id = #{c.notEnterpriseId}
+						AND B.brand_id = A.brand_id
+					)
+				</if>
+				<if test="c.keyword != null">
+					AND (A.name LIKE CONCAT('%',#{c.keyword},'%') OR A.name_pinyin LIKE CONCAT('%',#{c.keyword},'%'))
+				</if>
+				<if test="c.flag != null">
+					AND A.flag=#{c.flag}
+				</if>
+				<if test="c.status != null">
+					AND A.status=#{c.status}
+				</if>
+				<if test="c.createUser != null">
+					OR(A.create_user=#{c.createUser} AND IFNULL(A.create_user_scope,0)=0 AND A.flag=0)
+				</if>
+				<if test="c.brandId != null">
+					AND A.brand_id = #{c.brandId}
+				</if>
+				group by A.id
+		</where>
+	</select>
+	
+	<select id="get" resultMap="brandResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			flag=#{flag}
+		AND
+			brand_id=#{brandId}
+	</select>
+	
+	<select id="listByProductCategory" parameterType="com.tcbci.gkit.business.domain.page.ProductSearchParams" resultMap="brandResultMap">
+		SELECT 
+			b.*
+		FROM
+			<include refid="TableName" /> AS b
+		WHERE
+			b.flag = 1
+			AND IFNULL(b.is_delete,0)=0
+			AND EXISTS(
+				SELECT 1 
+				FROM v_gb_product as t2
+		<where>
+				t2.brand_id=b.brand_id
+				<if test="keywords != null">
+					<trim prefix="AND (" suffix=")" prefixOverrides="AND |OR" >  
+				        <foreach item="item" index="index" collection="keywords"
+						      open="(" separator="AND" close=")">
+						        t2.name like CONCAT('%',#{item},'%')
+						</foreach>   
+				        <foreach item="item" index="index" collection="keywords"
+						      open="OR (" separator="AND" close=")">
+						        t2.product_id like CONCAT('%',#{item},'%')
+						</foreach> 
+				        <foreach item="item" index="index" collection="keywords"
+						      open="OR (" separator="AND" close=")">
+						        t2.brand_name like CONCAT('%',#{item},'%')
+						</foreach> 
+				        <foreach item="item" index="index" collection="keywords"
+						      open="OR (" separator="AND" close=")">
+						        t2.model like CONCAT('%',#{item},'%')
+						</foreach> 
+				        <foreach item="item" index="index" collection="keywords"
+						      open="OR (" separator="AND" close=")">
+						        t2.category_name like CONCAT('%',#{item},'%')
+						</foreach> 
+				        <foreach item="item" index="index" collection="keywords"
+						      open="OR (" separator="AND" close=")">
+						        t2.category_ext_name like CONCAT('%',#{item},'%')
+						</foreach> 
+					</trim> 
+				</if>
+				<if test="categories != null">
+					  <foreach item="item" index="index" collection="categories"
+					      open="AND (" separator=" OR " close=")">
+					      	t2.category_path LIKE CONCAT(#{item},'%')
+					  </foreach>
+				</if>
+				<if test="placeProvinces != null or placeCities != null">
+				    AND t2.product_id in (
+				    SELECT 
+				        t3.product_id 
+				    FROM 
+				        t_gb_product_place t3
+				    <trim prefix="WHERE" prefixOverrides="AND |OR" >  
+					    <if test="placeProvinces != null">  
+					        <foreach item="item" index="index" collection="placeProvinces"
+							      open="t3.province_code in (" separator="," close=",'-1')">
+							        #{item}
+							</foreach>   
+					    </if>  
+					    <if test="placeCities != null">  
+					        <foreach item="item" index="index" collection="placeCities"
+							      open="OR t3.city_code in (" separator="," close=")">
+							        #{item}
+							</foreach> 
+					    </if>  
+					</trim>
+					)	
+				</if>
+				<if test="priceStart != null">
+					AND t2.min_price >= #{priceStart}
+				</if>
+				<if test="priceEnd != null">
+					AND t2.min_price &lt;= #{priceEnd}
+				</if>
+		</where>
+		<if test="enterpriseIds != null">
+		AND
+		brand_id IN (
+		SELECT brand_id
+		FROM
+		t_gb_enterprise_brand t4
+		WHERE
+		t4.enterprise_id IN
+		<foreach collection="enterpriseIds" item="id" open="(" close=")" separator=",">
+                #{id}
+         </foreach>
+		)
+		</if>
+		    )
+		ORDER BY IFNULL(b.level,5),b.seq DESC 
+		LIMIT 1000	
+	</select>
+	
+	<select id="getMarketBrands" parameterType="com.tcbci.gkit.business.domain.page.ProductSearchParams" resultMap="brandResultMap">
+	SELECT 
+		b.*
+	FROM
+		<include refid="TableName" /> AS b
+	WHERE
+		b.flag = 1
+		AND IFNULL(b.is_delete,0)=0
+		<if test="marketId != null">
+		AND
+		b.brand_id IN (
+		SELECT 
+		b1.brand_id
+		FROM
+		t_gb_product AS b1
+		join 
+		t_gb_market_enterprise AS b2 
+		on  
+		b1.enterprise_id=b2.enterprise_id 
+		and 
+		b2.market_id = #{marketId}
+			<if test="categories != null">
+					  <foreach item="item" index="index" collection="categories"
+					      open="AND (" separator=" OR " close=")">
+					      	b1.category_path LIKE CONCAT(#{item},'%')
+					  </foreach>
+				</if>
+					<if test="keywords != null">
+					<trim prefix="AND (" suffix=")" prefixOverrides="AND |OR" >  
+				        <foreach item="item" index="index" collection="keywords"
+						      open="(" separator="AND" close=")">
+						        b1.name like CONCAT('%',#{item},'%')
+						</foreach>   
+				        <foreach item="item" index="index" collection="keywords"
+						      open="OR (" separator="AND" close=")">
+						        b1.product_id like CONCAT('%',#{item},'%')
+						</foreach> 
+				        <foreach item="item" index="index" collection="keywords"
+						      open="OR (" separator="AND" close=")">
+						        b1.brand_name like CONCAT('%',#{item},'%')
+						</foreach> 
+				        <foreach item="item" index="index" collection="keywords"
+						      open="OR (" separator="AND" close=")">
+						        b1.model like CONCAT('%',#{item},'%')
+						</foreach> 
+				        <foreach item="item" index="index" collection="keywords"
+						      open="OR (" separator="AND" close=")">
+						        b1.category_name like CONCAT('%',#{item},'%')
+						</foreach> 
+				        <foreach item="item" index="index" collection="keywords"
+						      open="OR (" separator="AND" close=")">
+						        b1.category_ext_name like CONCAT('%',#{item},'%')
+						</foreach> 
+					</trim> 
+				</if>
+		
+		)
+		</if>
+	ORDER BY IFNULL(b.level,5),b.seq DESC 
+	LIMIT 1000	
+	</select>
+	
+		<select id="getPagerBrands" parameterType="com.tcbci.gkit.business.domain.page.ProductSearchParams" resultMap="brandResultMap">
+	SELECT 
+		b.*
+	FROM
+		<include refid="TableName" /> AS b
+	WHERE
+		b.flag = 1
+		AND IFNULL(b.is_delete,0)=0
+		<if test="c.marketId != null">
+		AND
+		b.brand_id IN (
+		SELECT 
+		b1.brand_id
+		FROM
+		t_gb_product AS b1
+		join 
+		t_gb_market_enterprise AS b2 
+		on  
+		b1.enterprise_id=b2.enterprise_id 
+		and 
+		b2.market_id = #{c.marketId}
+			<if test="c.categories != null">
+					  <foreach item="item" index="index" collection="c.categories"
+					      open="AND (" separator=" OR " close=")">
+					      	b1.category_path LIKE CONCAT(#{c.categories[${index}]},'%')
+					  </foreach>
+				</if>
+				<if test="c.keywords != null">
+				<trim prefix="AND (" suffix=")" prefixOverrides="AND |OR" >   
+			        <foreach item="item" index="index" collection="c.keywords"
+					      open="OR (" separator="AND" close=")">
+					        b1.product_id like CONCAT('%',#{c.keywords[${index}]},'%')
+					</foreach> 
+			        <foreach item="item" index="index" collection="c.keywords"
+					      open="OR (" separator="AND" close=")">
+					        b1.brand_name like CONCAT('%',#{c.keywords[${index}]},'%')
+					</foreach> 
+				</trim> 
+			</if>
+		)
+		</if>
+	ORDER BY IFNULL(b.level,5) asc 
+	LIMIT 1000	
+	</select>
+	
+	
+</mapper>

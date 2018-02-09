@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.product.ProductSampleMapper">
+	<resultMap id="productsampleResultMap" type="com.tcbci.gkit.business.domain.product.ProductSample">
+			<result column="id" property="id"/>
+			<result column="product_id" property="productId"/>
+			<result column="flag" property="flag"/>
+			<result column="sample_id" property="sampleId"/>
+			<result column="create_date" property="createDate"/>
+			
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="name" property="name"/>
+			<result column="pic_uri" property="picUri"/>
+			<result column="uri" property="uri"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				product_id,
+				flag,
+				sample_id,
+				create_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{productId},
+				#{flag},
+				#{sampleId},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_product_sample
+	</sql>
+	
+	<select id="findById" resultMap="productsampleResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.product.ProductSample">
+		INSERT INTO 
+			t_gb_product_sample(
+				product_id,
+				flag,
+				sample_id,
+				create_date
+			)VALUES(
+				#{productId},
+				#{flag},
+				#{sampleId},
+				#{createDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.product.ProductSample">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="productId != null">
+						product_id=#{productId},
+					</if>
+					<if test="flag != null">
+						flag=#{flag},
+					</if>
+					<if test="sampleId != null">
+						sample_id=#{sampleId},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate}
+					</if>
+		</set>
+		WHERE 
+			id=#{id}
+		AND
+			flag=0
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="productsampleResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="productsampleResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_product_sample(
+				product_id,
+				flag,
+				sample_id,
+				create_date
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{list[${index}].productId},
+		           				#{list[${index}].flag},
+		           				#{list[${index}].sampleId},
+		           				#{list[${index}].createDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.product.ProductSample" resultMap="productsampleResultMap">
+		SELECT
+			P.*,
+			S.enterprise_id,
+			S.name,
+			S.pic_uri,
+			S.uri
+		FROM
+			<include refid="TableName" /> AS P
+		JOIN t_gb_sample AS S ON P.sample_id = S.id
+		<where>
+				<if test="id != null">
+					P.id=#{id}			
+				</if>
+				<if test="productId != null">
+					AND P.product_id=#{productId}
+				</if>
+				<if test="flag != null">
+					AND P.flag=#{flag}
+				</if>
+				<if test="sampleId != null">
+					AND P.sample_id=#{sampleId}
+				</if>
+				<if test="createDate != null">
+					AND P.create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<delete id="deleteByProductId">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			product_id=#{productId}
+		AND
+			flag=#{flag}
+	</delete>
+</mapper>

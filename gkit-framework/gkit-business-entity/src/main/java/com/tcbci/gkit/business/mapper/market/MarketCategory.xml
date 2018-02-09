@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.market.MarketCategoryMapper">
+	<resultMap id="marketcategoryResultMap" type="com.tcbci.gkit.business.domain.market.MarketCategory">
+			<result column="id" property="id"/>
+			<result column="code" property="code"/>
+			<result column="name" property="name"/>
+			<result column="path" property="path"/>
+			<result column="enable" property="enable"/>
+			<result column="seq" property="seq"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="logo" property="logo"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				code,
+				name,
+				path,
+				enable,
+				seq,
+				create_user,
+				create_date,
+				edit_user,
+				edit_date,
+				logo
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{code},
+				#{name},
+				#{path},
+				#{enable},
+				#{seq},
+				#{createUser},
+				#{createDate},
+				#{editUser},
+				#{editDate},
+				#{logo}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_market_category
+	</sql>
+	
+	<select id="findById" resultMap="marketcategoryResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.market.MarketCategory">
+		INSERT INTO 
+			t_gb_market_category(
+				<include refid="Field" />
+			)VALUES(
+				<include refid="FieldValues" />
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.market.MarketCategory">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="code != null">
+						code=#{code},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="path != null">
+						path=#{path},
+					</if>
+					<if test="enable != null">
+						enable=#{enable},
+					</if>
+					<if test="seq != null">
+						seq=#{seq},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate}
+					</if>
+					<if test="logo != null">
+						logo=#{logo}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="marketcategoryResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="marketcategoryResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_market_category(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.code},
+		           				#{item.name},
+		           				#{item.path},
+		           				#{item.enable},
+		           				#{item.seq},
+		           				#{item.createUser},
+		           				#{item.createDate},
+		           				#{item.editUser},
+		           				#{item.editDate},
+		           				#{item.logo}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="search" parameterType="com.tcbci.gkit.business.domain.market.MarketCategory" resultMap="marketcategoryResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="code != null">
+					AND code=#{code}
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="path != null">
+					AND path=#{path}
+				</if>
+				<if test="enable != null">
+					AND enable=#{enable}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="logo != null">
+					AND logo=#{logo}
+				</if>
+		</where>
+	</select>
+</mapper>

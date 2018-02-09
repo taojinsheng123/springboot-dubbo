@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.notice.CollectMapper">
+	<resultMap id="collectResultMap" type="com.tcbci.gkit.business.domain.notice.Collect">
+			<result column="id" property="id"/>
+			<result column="target_id" property="targetId"/>
+			<result column="target_type" property="targetType"/>
+			<result column="target_title" property="targetTitle"/>
+			<result column="relative_path" property="relativePath"/>
+			<result column="user" property="user"/>
+			<result column="create_date" property="createDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				target_id,
+				target_type,
+				target_title,
+				relative_path,
+				user,
+				create_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{targetId},
+				#{targetType},
+				#{targetTitle},
+				#{relativePath},
+				#{user},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_collect
+	</sql>
+	
+	<select id="findById" resultMap="collectResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="add" parameterType="com.tcbci.gkit.business.domain.notice.Collect">
+		INSERT INTO 
+			t_gb_collect(
+				target_id,
+				target_type,
+				target_title,
+				relative_path,
+				user,
+				create_date
+			)VALUES(
+				#{targetId},
+				#{targetType},
+				#{targetTitle},
+				#{relativePath},
+				#{user},
+				#{createDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.notice.Collect">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="targetId != null">
+						target_id=#{targetId},
+					</if>
+					<if test="targetType != null">
+						target_type=#{targetType},
+					</if>
+					<if test="targetTitle != null">
+						target_title=#{targetTitle},
+					</if>
+					<if test="relativePath != null">
+						relative_path=#{relativePath},
+					</if>
+					<if test="user != null">
+						user=#{user},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="collectResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="collectResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_collect(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.targetId},
+		           				#{item.targetType},
+		           				#{item.targetTitle},
+		           				#{item.relativePath},
+		           				#{item.user},
+		           				#{item.createDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="search" parameterType="com.tcbci.gkit.business.domain.notice.Collect" resultMap="collectResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="targetId != null">
+					AND target_id=#{targetId}
+				</if>
+				<if test="targetType != null">
+					AND target_type=#{targetType}
+				</if>
+				<if test="targetTitle != null">
+					AND target_title=#{targetTitle}
+				</if>
+				<if test="relativePath != null">
+					AND relative_path=#{relativePath}
+				</if>
+				<if test="user != null">
+					AND user=#{user}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.notice.Collect" resultMap="collectResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="targetId != null">
+					AND target_id=#{targetId}
+				</if>
+				<if test="targetType != null">
+					AND target_type=#{targetType}
+				</if>
+				<if test="targetTitle != null">
+					AND target_title=#{targetTitle}
+				</if>
+				<if test="relativePath != null">
+					AND relative_path=#{relativePath}
+				</if>
+				<if test="user != null">
+					AND user=#{user}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	<delete id="deleteByCollect" parameterType="com.tcbci.gkit.business.domain.page.CollectParams" >
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			<if test="c.user != null">
+				user=#{c.user}
+			</if>
+	</delete>
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.page.CollectParams" resultMap="collectResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="c.targetType != null">
+					AND target_type=#{c.targetType}
+				</if>
+				<if test="c.user != null">
+					AND user=#{c.user}
+				</if>
+				<if test="c.targetIds != null">
+					<foreach item="item" index="index" collection="c.targetIds"
+					      open="AND target_id in (" separator="," close=")">
+					        #{c.targetIds[${index}]}
+					</foreach>  
+				</if>
+		</where>
+	</select>
+	<select id="searchByCollect" parameterType="com.tcbci.gkit.business.domain.notice.Collect" resultMap="collectResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="c.targetId != null">
+					AND target_id=#{c.targetId}
+				</if>
+				<if test="c.targetType != null">
+					AND target_type=#{c.targetType}
+				</if>
+				<if test="c.user != null">
+					AND user=#{c.user}
+				</if>
+		</where>
+	</select>
+</mapper>

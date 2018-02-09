@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tcbci.gkit.business.entity.user.UserLoginLogMapper">
+	<sql id="tableName">
+		[GCDXBuildNetDB].[dbo].[INS_User_LoginLog]
+	</sql>
+
+	<resultMap type="com.tcbci.gkit.business.domain.user.UserLoginLog"
+		id="userLoginLogResultMap">
+		<result column="User_LoginLogID" property="UserLoginID" />
+		<result column="UserId" property="UserId" />
+		<result column="UserName" property="UserName" />
+		<result column="UserCompanyId" property="UserCompanyId" />
+		<result column="User_LoginDate" property="UserLoginDate" />
+		<result column="User_LoginOS" property="UserLoginOS" />
+		<result column="User_LoginIE" property="UserLoginIE" />
+		<result column="User_LoginIP" property="UserLoginIP" />
+		<result column="User_CookieUserName" property="UserCookieUserName" />
+		<result column="User_CookieCompany" property="UserCookieCompany" />
+		<result column="User_oldCookie" property="UserOldCookie" />
+		<result column="user_LastCookie" property="userLastCookie" />
+		<result column="user_Try" property="userTry" />
+		<result column="user_TryPass" property="userTryPass" />
+		<result column="user_tryWhy" property="userTryWhy" />
+	</resultMap>
+
+	<select id="findLastUserLoginLogByUserId" resultType="com.tcbci.gkit.business.domain.user.UserLoginLog"
+		resultMap="userLoginLogResultMap">
+		SELECT top 1 * FROM
+		<include refid="tableName" />
+		WHERE UserId=#{userId} order by User_LoginDate desc
+	</select>
+
+	<insert id="insertUserLoginLog" parameterType="com.tcbci.gkit.business.domain.user.UserLoginLog"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+		[GCDXBuildNetDB].[dbo].[INS_User_LoginLog]
+		(
+		UserId,
+		UserName,
+		UserCompanyId,
+		User_LoginDate,
+		User_LoginOS,
+		User_LoginIE,
+		User_LoginIP,
+		User_CookieUserName,
+		User_CookieCompany,
+		User_oldCookie,
+		user_LastCookie,
+		user_Try,
+		user_TryPass,
+		user_tryWhy
+		)
+		VALUES
+		(
+		#{UserId},
+		#{UserName},
+		#{UserCompanyId},
+		#{UserLoginDate},
+		#{UserLoginOS},
+		#{UserLoginIE},
+		#{UserLoginIP},
+		#{UserCookieUserName},
+		#{UserCookieCompany},
+		#{UserOldCookie},
+		#{userLastCookie},
+		#{userTry},
+		#{userTryPass},
+		#{userTryWhy}
+
+		)
+
+	</insert>
+
+
+</mapper>

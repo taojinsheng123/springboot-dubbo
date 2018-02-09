@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.product.ProductDrawingMapper">
+	<resultMap id="productdrawingResultMap" type="com.tcbci.gkit.business.domain.product.ProductDrawing">
+			<result column="id" property="id"/>
+			<result column="product_id" property="productId"/>
+			<result column="flag" property="flag"/>
+			<result column="pic" property="pic"/>
+			<result column="uri" property="uri"/>
+			<result column="format" property="format"/>
+			<result column="is_pic_created" property="isPicCreated"/>
+			<result column="pic_created_date" property="picCreatedDate"/>
+			<result column="name" property="name"/>
+			<result column="create_date" property="createDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				product_id,
+				flag,
+				pic,
+				uri,
+				format,
+				is_pic_created,
+				pic_created_date,
+				name,
+				create_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{productId},
+				#{flag},
+				#{pic},
+				#{uri},
+				#{format},
+				#{isPicCreated},
+				#{picCreatedDate},
+				#{name},
+				#{createDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_product_drawing
+	</sql>
+	
+	<select id="findById" resultMap="productdrawingResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.product.ProductDrawing">
+		INSERT INTO 
+			t_gb_product_drawing(
+				product_id,
+				flag,
+				pic,
+				uri,
+				format,
+				is_pic_created,
+				pic_created_date,
+				name,
+				create_date
+			)VALUES(
+				#{productId},
+				#{flag},
+				#{pic},
+				#{uri},
+				#{format},
+				#{isPicCreated},
+				#{picCreatedDate},
+				#{name},
+				#{createDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.product.ProductDrawing">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="productId != null">
+						product_id=#{productId},
+					</if>
+					<if test="flag != null">
+						flag=#{flag},
+					</if>
+					<if test="pic != null">
+						pic=#{pic},
+					</if>
+					<if test="uri != null">
+						uri=#{uri},
+					</if>
+					<if test="format != null">
+						format=#{format},
+					</if>
+					<if test="isPicCreated != null">
+						is_pic_created=#{isPicCreated},
+					</if>
+					<if test="picCreatedDate != null">
+						pic_created_date=#{picCreatedDate},
+					</if>
+					<if test="name != null">
+						name=#{name},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate}
+					</if>
+		</set>
+		WHERE 
+			id=#{id}
+		AND
+			flag=0
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="productdrawingResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="productdrawingResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_product_drawing(
+				product_id,
+				flag,
+				pic,
+				uri,
+				format,
+				is_pic_created,
+				pic_created_date,
+				name,
+				create_date
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{list[${index}].productId},
+		           				#{list[${index}].flag},
+		           				#{list[${index}].pic},
+		           				#{list[${index}].uri},
+		           				#{list[${index}].format},
+		           				#{list[${index}].isPicCreated},
+		           				#{list[${index}].picCreatedDate},
+		           				#{list[${index}].name},
+		           				#{list[${index}].createDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.product.ProductDrawing" resultMap="productdrawingResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="productId != null">
+					AND product_id=#{productId}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="uri != null">
+					AND uri=#{uri}
+				</if>
+				<if test="format != null">
+						format=#{format},
+				</if>
+				<if test="isPicCreated != null">
+					is_pic_created=#{isPicCreated},
+				</if>
+				<if test="picCreatedDate != null">
+					pic_created_date=#{picCreatedDate},
+				</if>
+				<if test="name != null">
+					AND name=#{name}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+		</where>
+	</select>
+	
+	<delete id="deleteByProductId">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			product_id=#{productId}
+		AND
+			flag=#{flag}
+	</delete>
+</mapper>

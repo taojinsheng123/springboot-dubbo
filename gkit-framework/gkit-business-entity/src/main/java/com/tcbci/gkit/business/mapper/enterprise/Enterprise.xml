@@ -1,0 +1,1109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.enterprise.EnterpriseMapper">
+	<resultMap id="enterpriseResultMap" type="com.tcbci.gkit.business.domain.enterprise.Enterprise">
+			<result column="id" property="id"/>
+			<result column="user_id" property="userId"/>
+			<result column="user_name" property="userName"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="full_name" property="fullName"/>
+			<result column="short_name" property="shortName"/>
+			<result column="logo" property="logo"/>
+			<result column="corporation" property="corporation"/>
+			<result column="business_nature" property="businessNature"/>
+			<result column="business_nature_name" property="businessNatureName"/>
+			<result column="enterprise_nature" property="enterpriseNature"/>
+			<result column="enterprise_nature_name" property="enterpriseNatureName"/>
+			<result column="registered_capital" property="registeredCapital"/>
+			<result column="found_year" property="foundYear"/>
+			<result column="major_business" property="majorBusiness"/>
+			<result column="business_license" property="businessLicense"/>
+			<result column="supplier_category" property="supplierCategory"/>
+			<result column="supplier_category_name" property="supplierCategoryName"/>
+			<result column="introduction" property="introduction"/>
+			<result column="introduction_text" property="introductionText"/>
+			<result column="flag" property="flag"/>
+			<result column="phone_prefix" property="phonePrefix"/>
+			<result column="phone_code" property="phoneCode"/>
+			<result column="phone_number" property="phoneNumber"/>
+			<result column="phone_ext" property="phoneExt"/>
+			<result column="fax_prefix" property="faxPrefix"/>
+			<result column="fax_code" property="faxCode"/>
+			<result column="fax_number" property="faxNumber"/>
+			<result column="fax_ext" property="faxExt"/>
+			<result column="wexin_mp" property="wexinMp"/>
+			<result column="website" property="website"/>
+			<result column="email" property="email"/>
+			<result column="country_code" property="countryCode"/>
+			<result column="country_name" property="countryName"/>
+			<result column="province_code" property="provinceCode"/>
+			<result column="province_name" property="provinceName"/>
+			<result column="city_code" property="cityCode"/>
+			<result column="city_name" property="cityName"/>
+			<result column="area_code" property="areaCode"/>
+			<result column="area_name" property="areaName"/>
+			<result column="address" property="address"/>
+			<result column="employee_count" property="employeeCount"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="status" property="status"/>
+			<result column="submit_user" property="submitUser"/>
+			<result column="submit_date" property="submitDate"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_user_name" property="auditUserName"/>
+			<result column="audit_user_true_name" property="auditUserTrueName"/>
+			<result column="audit_date" property="auditDate"/>
+			<result column="is_delete" property="isDelete"/>
+			<result column="delete_date" property="deleteDate"/>
+			<result column="delete_user" property="deleteUser"/>
+			<result column="timestamp" property="timestamp"/>
+			<result column="click_count" property="clickCount"/>
+			<result column="seq" property="seq"/>
+			<result column="qq" property="qq"/>
+			<result column="hotline" property="hotline"/>
+			<result column="power" property="power"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="submit_user_scope" property="submitUserScope"/>
+			<result column="delete_user_scope" property="deleteUserScope"/>
+			<result column="base_weight" property="baseWeight"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+			<result column="registered_capital_unit" property="registeredCapitalUnit"/>
+			<result column="level" property="level"/>
+			<result column="level_name" property="levelName"/>
+			<result column="cust_refid" property="custRefid"/>
+			<result column="annual_output" property="annualOutput"/>
+			<result column="annual_output_unit" property="annualOutputUnit"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				user_id,
+				user_name,
+				enterprise_id,
+				full_name,
+				short_name,
+				logo,
+				corporation,
+				business_nature,
+				business_nature_name,
+				enterprise_nature,
+				enterprise_nature_name,
+				registered_capital,
+				found_year,
+				major_business,
+				business_license,
+				supplier_category,
+				supplier_category_name,
+				introduction,
+				introduction_text,
+				flag,
+				phone_prefix,
+				phone_code,
+				phone_number,
+				phone_ext,
+				fax_prefix,
+				fax_code,
+				fax_number,
+				fax_ext,
+				wexin_mp,
+				website,
+				email,
+				country_code,
+				country_name,
+				province_code,
+				province_name,
+				city_code,
+				city_name,
+				area_code,
+				area_name,
+				address,
+				employee_count,
+				create_user,
+				create_date,
+				edit_user,
+				edit_date,
+				status,
+				submit_user,
+				submit_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				is_delete,
+				delete_date,
+				delete_user,
+				timestamp,
+				click_count,
+				seq,
+				qq,
+				hotline,
+				create_user_scope,
+				submit_user_scope,
+				delete_user_scope,
+				base_weight,
+				edit_user_scope,
+				registered_capital_unit,
+				level,
+				level_name,
+				cust_refid,
+				annual_output,
+				annual_output_unit
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{userId},
+				#{userName},
+				#{enterpriseId},
+				#{fullName},
+				#{shortName},
+				#{logo},
+				#{corporation},
+				#{businessNature},
+				#{businessNatureName},
+				#{enterpriseNature},
+				#{enterpriseNatureName},
+				#{registeredCapital},
+				#{foundYear},
+				#{majorBusiness},
+				#{businessLicense},
+				#{supplierCategory},
+				#{supplierCategoryName},
+				#{introduction},
+				#{introductionText},
+				#{flag},
+				#{phonePrefix},
+				#{phoneCode},
+				#{phoneNumber},
+				#{phoneExt},
+				#{faxPrefix},
+				#{faxCode},
+				#{faxNumber},
+				#{faxExt},
+				#{wexinMp},
+				#{website},
+				#{email},
+				#{countryCode},
+				#{countryName},
+				#{provinceCode},
+				#{provinceName},
+				#{cityCode},
+				#{cityName},
+				#{areaCode},
+				#{areaName},
+				#{address},
+				#{employeeCount},
+				#{createUser},
+				#{createDate},
+				#{editUser},
+				#{editDate},
+				#{status},
+				#{submitUser},
+				#{submitDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{isDelete},
+				#{deleteDate},
+				#{deleteUser},
+				#{timestamp},
+				#{clickCount},
+				#{seq},
+				#{qq},
+				#{hotline},
+				#{createUserScope},
+				#{submitUserScope},
+				#{deleteUserScope},
+				#{baseWeight},
+				#{editUserScope},
+				#{registeredCapitalUnit},
+				#{level},
+				#{levelName},
+				#{custRefid},
+				#{annualOutput},
+				#{annualOutputUnit}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_enterprise
+	</sql>
+	
+	<select id="findById" resultMap="enterpriseResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.enterprise.Enterprise">
+		INSERT INTO 
+			t_gb_enterprise(
+				user_id,
+				user_name,
+				enterprise_id,
+				full_name,
+				short_name,
+				logo,
+				corporation,
+				business_nature,
+				business_nature_name,
+				enterprise_nature,
+				enterprise_nature_name,
+				registered_capital,
+				found_year,
+				major_business,
+				business_license,
+				supplier_category,
+				supplier_category_name,
+				introduction,
+				introduction_text,
+				flag,
+				phone_prefix,
+				phone_code,
+				phone_number,
+				phone_ext,
+				fax_prefix,
+				fax_code,
+				fax_number,
+				fax_ext,
+				wexin_mp,
+				website,
+				email,
+				country_code,
+				country_name,
+				province_code,
+				province_name,
+				city_code,
+				city_name,
+				area_code,
+				area_name,
+				address,
+				employee_count,
+				create_user,
+				create_date,
+				edit_user,
+				edit_date,
+				status,
+				submit_user,
+				submit_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				is_delete,
+				delete_date,
+				delete_user,
+				timestamp,
+				click_count,
+				seq,
+				qq,
+				hotline,
+				create_user_scope,
+				submit_user_scope,
+				delete_user_scope,
+				base_weight,
+				edit_user_scope,
+				registered_capital_unit,
+				level,
+				level_name,
+				cust_refid,
+				annual_output,
+				annual_output_unit
+			)VALUES(
+				#{userId},
+				#{userName},
+				#{enterpriseId},
+				#{fullName},
+				#{shortName},
+				#{logo},
+				#{corporation},
+				#{businessNature},
+				#{businessNatureName},
+				#{enterpriseNature},
+				#{enterpriseNatureName},
+				#{registeredCapital},
+				#{foundYear},
+				#{majorBusiness},
+				#{businessLicense},
+				#{supplierCategory},
+				#{supplierCategoryName},
+				#{introduction},
+				#{introductionText},
+				#{flag},
+				#{phonePrefix},
+				#{phoneCode},
+				#{phoneNumber},
+				#{phoneExt},
+				#{faxPrefix},
+				#{faxCode},
+				#{faxNumber},
+				#{faxExt},
+				#{wexinMp},
+				#{website},
+				#{email},
+				#{countryCode},
+				#{countryName},
+				#{provinceCode},
+				#{provinceName},
+				#{cityCode},
+				#{cityName},
+				#{areaCode},
+				#{areaName},
+				#{address},
+				#{employeeCount},
+				#{createUser},
+				#{createDate},
+				#{editUser},
+				#{editDate},
+				#{status},
+				#{submitUser},
+				#{submitDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{isDelete},
+				#{deleteDate},
+				#{deleteUser},
+				#{timestamp},
+				#{clickCount},
+				#{seq},
+				#{qq},
+				#{hotline},
+				#{createUserScope},
+				#{submitUserScope},
+				#{deleteUserScope},
+				#{baseWeight},
+				#{editUserScope},
+				#{registeredCapitalUnit},
+				#{level},
+				#{levelName},
+				#{custRefid},
+				#{annualOutput},
+				#{annualOutputUnit}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.enterprise.Enterprise">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="userId != null">
+						user_id=#{userId},
+					</if>
+					<if test="userName != null">
+						user_name=#{userName},
+					</if>
+					<if test="enterpriseId != null">
+						enterprise_id=#{enterpriseId},
+					</if>
+					<if test="fullName != null">
+						full_name=#{fullName},
+					</if>
+					<if test="shortName != null">
+						short_name=#{shortName},
+					</if>
+					<if test="logo != null">
+						logo=#{logo},
+					</if>
+					<if test="corporation != null">
+						corporation=#{corporation},
+					</if>
+					<if test="businessNature != null">
+						business_nature=#{businessNature},
+					</if>
+					<if test="businessNatureName != null">
+						business_nature_name=#{businessNatureName},
+					</if>
+					<if test="enterpriseNature != null">
+						enterprise_nature=#{enterpriseNature},
+					</if>
+					<if test="enterpriseNatureName != null">
+						enterprise_nature_name=#{enterpriseNatureName},
+					</if>
+					<if test="registeredCapital != null">
+						registered_capital=#{registeredCapital},
+					</if>
+					<if test="foundYear != null">
+						found_year=#{foundYear},
+					</if>
+					<if test="majorBusiness != null">
+						major_business=#{majorBusiness},
+					</if>
+					<if test="businessLicense != null">
+						business_license=#{businessLicense},
+					</if>
+					<if test="supplierCategory != null">
+						supplier_category=#{supplierCategory},
+					</if>
+					<if test="supplierCategoryName != null">
+						supplier_category_name=#{supplierCategoryName},
+					</if>
+					<if test="introduction != null">
+						introduction=#{introduction},
+					</if>
+					<if test="introductionText != null">
+						introduction_text=#{introductionText},
+					</if>
+					<if test="flag != null">
+						flag=#{flag},
+					</if>
+					<if test="phonePrefix != null">
+						phone_prefix=#{phonePrefix},
+					</if>
+					<if test="phoneCode != null">
+						phone_code=#{phoneCode},
+					</if>
+					<if test="phoneNumber != null">
+						phone_number=#{phoneNumber},
+					</if>
+					<if test="phoneExt != null">
+						phone_ext=#{phoneExt},
+					</if>
+					<if test="faxPrefix != null">
+						fax_prefix=#{faxPrefix},
+					</if>
+					<if test="faxCode != null">
+						fax_code=#{faxCode},
+					</if>
+					<if test="faxNumber != null">
+						fax_number=#{faxNumber},
+					</if>
+					<if test="faxExt != null">
+						fax_ext=#{faxExt},
+					</if>
+					<if test="wexinMp != null">
+						wexin_mp=#{wexinMp},
+					</if>
+					<if test="website != null">
+						website=#{website},
+					</if>
+					<if test="email != null">
+						email=#{email},
+					</if>
+					<if test="countryCode != null">
+						country_code=#{countryCode},
+					</if>
+					<if test="countryName != null">
+						country_name=#{countryName},
+					</if>
+					<if test="provinceCode != null">
+						province_code=#{provinceCode},
+					</if>
+					<if test="provinceName != null">
+						province_name=#{provinceName},
+					</if>
+					<if test="cityCode != null">
+						city_code=#{cityCode},
+					</if>
+					<if test="cityName != null">
+						city_name=#{cityName},
+					</if>
+					<if test="areaCode != null">
+						area_code=#{areaCode},
+					</if>
+					<if test="areaName != null">
+						area_name=#{areaName},
+					</if>
+					<if test="address != null">
+						address=#{address},
+					</if>
+					<if test="employeeCount != null">
+						employee_count=#{employeeCount},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="submitUser != null">
+						submit_user=#{submitUser},
+					</if>
+					<if test="submitDate != null">
+						submit_date=#{submitDate},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditUserName != null">
+						audit_user_name=#{auditUserName},
+					</if>
+					<if test="auditUserTrueName != null">
+						audit_user_true_name=#{auditUserTrueName},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate},
+					</if>
+					<if test="isDelete != null">
+						is_delete=#{isDelete},
+					</if>
+					<if test="deleteDate != null">
+						delete_date=#{deleteDate},
+					</if>
+					<if test="deleteUser != null">
+						delete_user=#{deleteUser},
+					</if>
+					<if test="timestamp != null">
+						timestamp=#{timestamp},
+					</if>
+					<if test="clickCount != null">
+						click_count=#{clickCount},
+					</if>
+					<if test="seq != null">
+						seq=#{seq},
+					</if>
+					<if test="qq != null">
+						qq=#{qq},
+					</if>
+					<if test="hotline != null">
+						hotline=#{hotline},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope=#{createUserScope},
+					</if>
+					<if test="submitUserScope != null">
+						submit_user_scope=#{submitUserScope},
+					</if>
+					<if test="deleteUserScope != null">
+						delete_user_scope=#{deleteUserScope},
+					</if>
+					<if test="baseWeight != null">
+						base_weight =#{baseWeight},
+					</if>
+					<if test="editUserScope != null">
+						edit_user_scope =#{editUserScope},
+					</if>
+					<if test="registeredCapitalUnit != null">
+						registered_capital_unit =#{registeredCapitalUnit},
+					</if>
+					<if test="level != null">
+						level =#{level},
+					</if>
+					<if test="levelName != null">
+						level_name =#{levelName},
+					</if>
+					<if test="custRefid != null">
+						cust_refid=#{custRefid},
+					</if>
+					<if test="annualOutput != null">
+						annual_output=#{annualOutput},
+					</if>
+					<if test="annualOutputUnit != null">
+						annual_output_unit=#{annualOutputUnit}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="enterpriseResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="enterpriseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_enterprise(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.userId},
+		           				#{item.userName},
+		           				#{item.enterpriseId},
+		           				#{item.fullName},
+		           				#{item.shortName},
+		           				#{item.logo},
+		           				#{item.corporation},
+		           				#{item.businessNature},
+		           				#{item.businessNatureName},
+		           				#{item.enterpriseNature},
+		           				#{item.enterpriseNatureName},
+		           				#{item.registeredCapital},
+		           				#{item.foundYear},
+		           				#{item.majorBusiness},
+		           				#{item.businessLicense},
+		           				#{item.supplierCategory},
+		           				#{item.supplierCategoryName},
+		           				#{item.introduction},
+		           				#{item.introductionText},
+		           				#{item.flag},
+		           				#{item.phonePrefix},
+		           				#{item.phoneCode},
+		           				#{item.phoneNumber},
+		           				#{item.phoneExt},
+		           				#{item.faxPrefix},
+		           				#{item.faxCode},
+		           				#{item.faxNumber},
+		           				#{item.faxExt},
+		           				#{item.wexinMp},
+		           				#{item.website},
+		           				#{item.email},
+		           				#{item.countryCode},
+		           				#{item.countryName},
+		           				#{item.provinceCode},
+		           				#{item.provinceName},
+		           				#{item.cityCode},
+		           				#{item.cityName},
+		           				#{item.areaCode},
+		           				#{item.areaName},
+		           				#{item.address},
+		           				#{item.employeeCount},
+		           				#{item.createUser},
+		           				#{item.createDate},
+		           				#{item.editUser},
+		           				#{item.editDate},
+		           				#{item.status},
+		           				#{item.submitUser},
+		           				#{item.submitDate},
+		           				#{item.auditUser},
+		           				#{item.auditUserName},
+		           				#{item.auditUserTrueName},
+		           				#{item.auditDate},
+		           				#{item.isDelete},
+		           				#{item.deleteDate},
+		           				#{item.deleteUser},
+		           				#{item.timestamp},
+		           				#{item.clickCount},
+		           				#{item.seq},
+		           				#{item.qq},
+		           				#{item.hotline},
+		           				#{item.createUserScope},
+								#{item.submitUserScope},
+								#{item.deleteUserScope},
+								#{item.baseWeight},
+								#{item.editUserScope},
+								#{item.registeredCapitalUnit},
+								#{item.level},
+								#{item.levelName},
+								#{item.custRefid},
+								#{item.annualOutput},
+								#{item.annualOutputUnit}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.Enterprise" resultMap="enterpriseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="userId != null">
+					AND user_id=#{userId}
+				</if>
+				<if test="userName != null">
+					AND user_name=#{userName}
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="fullName != null">
+					AND full_name like CONCAT('%',#{fullName},'%')
+				</if>
+				<if test="shortName != null">
+					AND short_name=#{shortName}
+				</if>
+				<if test="logo != null">
+					AND logo=#{logo}
+				</if>
+				<if test="corporation != null">
+					AND corporation=#{corporation}
+				</if>
+				<if test="businessNature != null">
+					AND business_nature=#{businessNature}
+				</if>
+				<if test="businessNatureName != null">
+					AND business_nature_name=#{businessNatureName}
+				</if>
+				<if test="enterpriseNature != null">
+					AND enterprise_nature=#{enterpriseNature}
+				</if>
+				<if test="enterpriseNatureName != null">
+					AND enterprise_nature_name=#{enterpriseNatureName}
+				</if>
+				<if test="registeredCapital != null">
+					AND registered_capital=#{registeredCapital}
+				</if>
+				<if test="foundYear != null">
+					AND found_year=#{foundYear}
+				</if>
+				<if test="majorBusiness != null">
+					AND major_business=#{majorBusiness}
+				</if>
+				<if test="businessLicense != null">
+					AND business_license=#{businessLicense}
+				</if>
+				<if test="supplierCategory != null">
+					AND supplier_category=#{supplierCategory}
+				</if>
+				<if test="supplierCategoryName != null">
+					AND supplier_category_name=#{supplierCategoryName}
+				</if>
+				<if test="introduction != null">
+					AND introduction=#{introduction}
+				</if>
+				<if test="introductionText != null">
+					AND introduction_text=#{introductionText}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="phonePrefix != null">
+					AND phone_prefix=#{phonePrefix}
+				</if>
+				<if test="phoneCode != null">
+					AND phone_code=#{phoneCode}
+				</if>
+				<if test="phoneNumber != null">
+					AND phone_number=#{phoneNumber}
+				</if>
+				<if test="phoneExt != null">
+					AND phone_ext=#{phoneExt}
+				</if>
+				<if test="faxPrefix != null">
+					AND fax_prefix=#{faxPrefix}
+				</if>
+				<if test="faxCode != null">
+					AND fax_code=#{faxCode}
+				</if>
+				<if test="faxNumber != null">
+					AND fax_number=#{faxNumber}
+				</if>
+				<if test="faxExt != null">
+					AND fax_ext=#{faxExt}
+				</if>
+				<if test="wexinMp != null">
+					AND wexin_mp=#{wexinMp}
+				</if>
+				<if test="website != null">
+					AND website=#{website}
+				</if>
+				<if test="email != null">
+					AND email=#{email}
+				</if>
+				<if test="countryCode != null">
+					AND country_code=#{countryCode}
+				</if>
+				<if test="countryName != null">
+					AND country_name=#{countryName}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code=#{provinceCode}
+				</if>
+				<if test="provinceName != null">
+					AND province_name=#{provinceName}
+				</if>
+				<if test="cityCode != null">
+					AND city_code=#{cityCode}
+				</if>
+				<if test="cityName != null">
+					AND city_name=#{cityName}
+				</if>
+				<if test="areaCode != null">
+					AND area_code=#{areaCode}
+				</if>
+				<if test="areaName != null">
+					AND area_name=#{areaName}
+				</if>
+				<if test="employeeCount != null">
+					AND employee_count=#{employeeCount}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="submitUser != null">
+					AND submit_user=#{submitUser}
+				</if>
+				<if test="submitDate != null">
+					AND submit_date=#{submitDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="timestamp != null">
+					AND timestamp=#{timestamp}
+				</if>
+				<if test="clickCount != null">
+					AND click_count=#{clickCount}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="qq != null">
+					AND qq=#{qq}
+				</if>
+				<if test="hotline != null">
+					AND hotline=#{hotline}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="submitUserScope != null">
+					AND submit_user_scope=#{submitUserScope}
+				</if>
+				<if test="deleteUserScope != null">
+					AND delete_user_scope=#{deleteUserScope}
+				</if>
+				<if test="baseWeight != null">
+					AND base_weight =#{baseWeight}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope =#{editUserScope}
+				</if>
+				<if test="registeredCapitalUnit != null">
+					AND registered_capital_unit =#{registeredCapitalUnit}
+				</if>
+				<if test="level != null">
+					AND level =#{level}
+				</if>
+				<if test="levelName != null">
+					AND level_name =#{levelName}
+				</if>
+				<if test="custRefid != null">
+					AND cust_refid=#{custRefid}
+				</if>
+				<if test="annualOutput != null">
+					AND annual_output=#{annualOutput}
+				</if>
+				<if test="annualOutputUnit != null">
+					AND annual_output_unit=#{annualOutputUnit}
+				</if>
+		</where>
+	</select>
+	
+	<select id="get" resultMap="enterpriseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			flag=#{flag}
+		AND
+			enterprise_id=#{enterpriseId}
+		AND 
+			ifnull(is_delete,0)=0
+	</select>
+	
+	<select id="getByUserId" resultMap="enterpriseResultMap">
+		SELECT
+			e.id,
+			e.user_id,
+			e.user_name,
+			e.enterprise_id,
+			e.full_name,
+			e.short_name,
+			e.logo,
+			e.corporation,
+			e.business_nature,
+			e.business_nature_name,
+			e.enterprise_nature,
+			e.enterprise_nature_name,
+			e.registered_capital,
+			e.found_year,
+			e.major_business,
+			e.business_license,
+			e.supplier_category,
+			e.supplier_category_name,
+			e.introduction,
+			e.introduction_text,
+			e.flag,
+			e.phone_prefix,
+			e.phone_code,
+			e.phone_number,
+			e.phone_ext,
+			e.fax_prefix,
+			e.fax_code,
+			e.fax_number,
+			e.fax_ext,
+			e.wexin_mp,
+			e.website,
+			e.email,
+			e.country_code,
+			e.country_name,
+			e.province_code,
+			e.province_name,
+			e.city_code,
+			e.city_name,
+			e.area_code,
+			e.area_name,
+			e.address,
+			e.employee_count,
+			e.create_user,
+			e.create_date,
+			e.edit_user,
+			e.edit_date,
+			e.status,
+			e.submit_user,
+			e.submit_date,
+			e.audit_user,
+			e.audit_user_name,
+			e.audit_user_true_name,
+			e.audit_date,
+			e.is_delete,
+			e.delete_date,
+			e.delete_user,
+			e.timestamp,
+			e.click_count,
+			e.seq,
+			e.qq,
+			e.hotline,
+			u.power,
+			e.create_user_scope,
+			e.submit_user_scope,
+			e.delete_user_scope,
+			e.base_weight, 
+			e.edit_user_scope,
+			e.registered_capital_unit,
+			e.level,
+			e.level_name,
+			e.cust_refid,
+			e.annual_output,
+			e.annual_output_unit
+		FROM
+			<include refid="TableName" /> e
+		JOIN
+			t_gb_enterprise_user u ON u.enterprise_id=e.enterprise_id
+		WHERE
+			e.flag=#{flag}
+		AND
+			u.user_id=#{userId}
+		AND 
+			ifnull(e.is_delete,0)=0
+	</select>
+	
+	<select id="queryByPage" parameterType="com.tcbci.gkit.business.domain.enterprise.Enterprise" resultMap="enterpriseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="e.fullName != null">
+					AND full_name like CONCAT('%',#{e.fullName},'%')
+				</if>
+					AND is_delete=0
+					AND flag=1
+		</where>
+	</select>
+	
+	<select id="queryByEnterpriseIds" resultMap="enterpriseResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			enterprise_id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+         AND flag=1
+	</select>
+	
+	<select id="queryByMarketId" resultMap="enterpriseResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include> t
+		WHERE
+			t.enterprise_id
+		in (
+			    SELECT 
+			        enterprise_id 
+			    FROM 
+			        t_gb_market_enterprise me
+			    <where>
+			    	me.market_id = #{marketId}
+				</where>
+				)
+		AND 	t.flag=1	
+	</select>
+</mapper>

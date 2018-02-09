@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.decorate.DecorateCaseMapper">
+	<resultMap id="decoratecaseResultMap" type="com.tcbci.gkit.business.domain.decorate.DecorateCase">
+			<result column="id" property="id"/>
+			<result column="case_id" property="caseId"/>
+			<result column="decorate_company_id" property="decorateCompanyId"/>
+			<result column="designers_id" property="designersId"/>
+			<result column="project_name" property="projectName"/>
+			<result column="style" property="style"/>
+			<result column="type" property="type"/>
+			<result column="tags" property="tags"/>
+			<result column="area" property="area"/>
+			<result column="cost" property="cost"/>
+			<result column="country_code" property="countryCode"/>
+			<result column="country_name" property="countryName"/>
+			<result column="province_code" property="provinceCode"/>
+			<result column="province_name" property="provinceName"/>
+			<result column="city_code" property="cityCode"/>
+			<result column="city_name" property="cityName"/>
+			<result column="area_code" property="areaCode"/>
+			<result column="area_name" property="areaName"/>
+			<result column="address" property="address"/>
+			<result column="description" property="description"/>
+			<result column="description_text" property="descriptionText"/>
+			<result column="flag" property="flag"/>
+			<result column="is_hidden" property="isHidden"/>
+			<result column="status" property="status"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_date" property="editDate"/>
+			<result column="submit_user" property="submitUser"/>
+			<result column="submit_date" property="submitDate"/>
+			<result column="audit_user" property="auditUser"/>
+			<result column="audit_user_name" property="auditUserName"/>
+			<result column="audit_user_true_name" property="auditUserTrueName"/>
+			<result column="audit_date" property="auditDate"/>
+			<result column="is_delete" property="isDelete"/>
+			<result column="delete_user" property="deleteUser"/>
+			<result column="delete_date" property="deleteDate"/>
+			<result column="seq" property="seq"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+			<result column="submit_user_scope" property="submitUserScope"/>
+			<result column="delete_user_scope" property="deleteUserScope"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				case_id,
+				decorate_company_id,
+				designers_id,
+				project_name,
+				style,
+				type,
+				tags,
+				area,
+				cost,
+				country_code,
+				country_name,
+				province_code,
+				province_name,
+				city_code,
+				city_name,
+				area_code,
+				area_name,
+				address,
+				description,
+				description_text,
+				flag,
+				is_hidden,
+				status,
+				create_user,
+				create_date,
+				edit_user,
+				edit_date,
+				submit_user,
+				submit_date,
+				audit_user,
+				audit_user_name,
+				audit_user_true_name,
+				audit_date,
+				is_delete,
+				delete_user,
+				delete_date,
+				seq,
+				create_user_scope,
+				edit_user_scope,
+				submit_user_scope,
+				delete_user_scope
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{caseId},
+				#{decorateCompanyId},
+				#{designersId},
+				#{projectName},
+				#{style},
+				#{type},
+				#{tags},
+				#{area},
+				#{cost},
+				#{countryCode},
+				#{countryName},
+				#{provinceCode},
+				#{provinceName},
+				#{cityCode},
+				#{cityName},
+				#{areaCode},
+				#{areaName},
+				#{address},
+				#{description},
+				#{descriptionText},
+				#{flag},
+				#{isHidden},
+				#{status},
+				#{createUser},
+				#{createDate},
+				#{editUser},
+				#{editDate},
+				#{submitUser},
+				#{submitDate},
+				#{auditUser},
+				#{auditUserName},
+				#{auditUserTrueName},
+				#{auditDate},
+				#{isDelete},
+				#{deleteUser},
+				#{deleteDate},
+				#{seq},
+				#{createUserScope},
+				#{editUserScope},
+				#{submitUserScope},
+				#{deleteUserScope}
+	</sql>
+	
+	<sql id="TableName">
+		t_decorate_case
+	</sql>
+	
+	<select id="findById" resultMap="decoratecaseResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.tcbci.gkit.business.domain.decorate.DecorateCase">
+		INSERT INTO 
+			t_decorate_case(
+				<include refid="Field" />
+			)VALUES(
+				<include refid="FieldValues" />
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.decorate.DecorateCase">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="caseId != null">
+						case_id=#{caseId},
+					</if>
+					<if test="decorateCompanyId != null">
+						decorate_company_id=#{decorateCompanyId},
+					</if>
+					<if test="designersId != null">
+						designers_id=#{designersId},
+					</if>
+					<if test="projectName != null">
+						project_name=#{projectName},
+					</if>
+					<if test="style != null">
+						style=#{style},
+					</if>
+					<if test="type != null">
+						type=#{type},
+					</if>
+					<if test="tags != null">
+						tags=#{tags},
+					</if>
+					<if test="area != null">
+						area=#{area},
+					</if>
+					<if test="cost != null">
+						cost=#{cost},
+					</if>
+					<if test="countryCode != null">
+						country_code=#{countryCode},
+					</if>
+					<if test="countryName != null">
+						country_name=#{countryName},
+					</if>
+					<if test="provinceCode != null">
+						province_code=#{provinceCode},
+					</if>
+					<if test="provinceName != null">
+						province_name=#{provinceName},
+					</if>
+					<if test="cityCode != null">
+						city_code=#{cityCode},
+					</if>
+					<if test="cityName != null">
+						city_name=#{cityName},
+					</if>
+					<if test="areaCode != null">
+						area_code=#{areaCode},
+					</if>
+					<if test="areaName != null">
+						area_name=#{areaName},
+					</if>
+					<if test="address != null">
+						address=#{address},
+					</if>
+					<if test="description != null">
+						description=#{description},
+					</if>
+					<if test="descriptionText != null">
+						description_text=#{descriptionText},
+					</if>
+					<if test="flag != null">
+						flag=#{flag},
+					</if>
+					<if test="isHidden != null">
+						is_hidden=#{isHidden},
+					</if>
+					<if test="status != null">
+						status=#{status},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate},
+					</if>
+					<if test="submitUser != null">
+						submit_user=#{submitUser},
+					</if>
+					<if test="submitDate != null">
+						submit_date=#{submitDate},
+					</if>
+					<if test="auditUser != null">
+						audit_user=#{auditUser},
+					</if>
+					<if test="auditUserName != null">
+						audit_user_name=#{auditUserName},
+					</if>
+					<if test="auditUserTrueName != null">
+						audit_user_true_name=#{auditUserTrueName},
+					</if>
+					<if test="auditDate != null">
+						audit_date=#{auditDate},
+					</if>
+					<if test="isDelete != null">
+						is_delete=#{isDelete},
+					</if>
+					<if test="deleteUser != null">
+						delete_user=#{deleteUser},
+					</if>
+					<if test="deleteDate != null">
+						delete_date=#{deleteDate},
+					</if>
+					<if test="seq != null">
+						seq=#{seq},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope=#{createUserScope},
+					</if>
+					<if test="editUserScope != null">
+						edit_user_scope=#{editUserScope},
+					</if>
+					<if test="submitUserScope != null">
+						submit_user_scope=#{submitUserScope},
+					</if>
+					<if test="deleteUserScope != null">
+						delete_user_scope=#{deleteUserScope}
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="queryByIds" resultMap="decoratecaseResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<select id="queryAll" resultMap="decoratecaseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_decorate_case(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.caseId},
+		           				#{item.decorateCompanyId},
+		           				#{item.designersId},
+		           				#{item.projectName},
+		           				#{item.style},
+		           				#{item.type},
+		           				#{item.tags},
+		           				#{item.area},
+		           				#{item.cost},
+		           				#{item.countryCode},
+		           				#{item.countryName},
+		           				#{item.provinceCode},
+		           				#{item.provinceName},
+		           				#{item.cityCode},
+		           				#{item.cityName},
+		           				#{item.areaCode},
+		           				#{item.areaName},
+		           				#{item.address},
+		           				#{item.description},
+		           				#{item.descriptionText},
+		           				#{item.flag},
+		           				#{item.isHidden},
+		           				#{item.status},
+		           				#{item.createUser},
+		           				#{item.createDate},
+		           				#{item.editUser},
+		           				#{item.editDate},
+		           				#{item.submitUser},
+		           				#{item.submitDate},
+		           				#{item.auditUser},
+		           				#{item.auditUserName},
+		           				#{item.auditUserTrueName},
+		           				#{item.auditDate},
+		           				#{item.isDelete},
+		           				#{item.deleteUser},
+		           				#{item.deleteDate},
+		           				#{item.seq},
+		           				#{item.createUserScope},
+		           				#{item.editUserScope},
+		           				#{item.submitUserScope},
+		           				#{item.deleteUserScope}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="search" parameterType="com.tcbci.gkit.business.domain.decorate.DecorateCase" resultMap="decoratecaseResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="caseId != null">
+					AND case_id=#{caseId}
+				</if>
+				<if test="decorateCompanyId != null">
+					AND decorate_company_id=#{decorateCompanyId}
+				</if>
+				<if test="designersId != null">
+					AND designers_id=#{designersId}
+				</if>
+				<if test="projectName != null">
+					AND project_name=#{projectName}
+				</if>
+				<if test="style != null">
+					AND style=#{style}
+				</if>
+				<if test="type != null">
+					AND type=#{type}
+				</if>
+				<if test="tags != null">
+					AND tags=#{tags}
+				</if>
+				<if test="area != null">
+					AND area=#{area}
+				</if>
+				<if test="cost != null">
+					AND cost=#{cost}
+				</if>
+				<if test="countryCode != null">
+					AND country_code=#{countryCode}
+				</if>
+				<if test="countryName != null">
+					AND country_name=#{countryName}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code=#{provinceCode}
+				</if>
+				<if test="provinceName != null">
+					AND province_name=#{provinceName}
+				</if>
+				<if test="cityCode != null">
+					AND city_code=#{cityCode}
+				</if>
+				<if test="cityName != null">
+					AND city_name=#{cityName}
+				</if>
+				<if test="areaCode != null">
+					AND area_code=#{areaCode}
+				</if>
+				<if test="areaName != null">
+					AND area_name=#{areaName}
+				</if>
+				<if test="address != null">
+					AND address=#{address}
+				</if>
+				<if test="description != null">
+					AND description=#{description}
+				</if>
+				<if test="descriptionText != null">
+					AND description_text=#{descriptionText}
+				</if>
+				<if test="flag != null">
+					AND flag=#{flag}
+				</if>
+				<if test="isHidden != null">
+					AND is_hidden=#{isHidden}
+				</if>
+				<if test="status != null">
+					AND status=#{status}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+				<if test="submitUser != null">
+					AND submit_user=#{submitUser}
+				</if>
+				<if test="submitDate != null">
+					AND submit_date=#{submitDate}
+				</if>
+				<if test="auditUser != null">
+					AND audit_user=#{auditUser}
+				</if>
+				<if test="auditUserName != null">
+					AND audit_user_name=#{auditUserName}
+				</if>
+				<if test="auditUserTrueName != null">
+					AND audit_user_true_name=#{auditUserTrueName}
+				</if>
+				<if test="auditDate != null">
+					AND audit_date=#{auditDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="seq != null">
+					AND seq=#{seq}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope=#{editUserScope}
+				</if>
+				<if test="submitUserScope != null">
+					AND submit_user_scope=#{submitUserScope}
+				</if>
+				<if test="deleteUserScope != null">
+					AND delete_user_scope=#{deleteUserScope}
+				</if>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.tcbci.gkit.business.entity.enterprise.EnterpriseNewsMapper">
+	<resultMap id="enterprisenewsResultMap" type="com.tcbci.gkit.business.domain.enterprise.EnterpriseNews">
+			<result column="id" property="id"/>
+			<result column="enterprise_id" property="enterpriseId"/>
+			<result column="title" property="title"/>
+			<result column="images" property="images"/>
+			<result column="summary" property="summary"/>
+			<result column="content" property="content"/>
+			<result column="content_text" property="contentText"/>
+			<result column="is_top" property="isTop"/>
+			<result column="top_date" property="topDate"/>
+			<result column="click_count" property="clickCount"/>
+			<result column="create_user" property="createUser"/>
+			<result column="create_date" property="createDate"/>
+			<result column="is_delete" property="isDelete"/>
+			<result column="delete_user" property="deleteUser"/>
+			<result column="delete_date" property="deleteDate"/>
+			<result column="create_user_scope" property="createUserScope"/>
+			<result column="delete_user_scope" property="deleteUserScope"/>
+			<result column="edit_user" property="editUser"/>
+			<result column="edit_user_scope" property="editUserScope"/>
+			<result column="edit_date" property="editDate"/>
+	</resultMap>
+	
+	<sql id="Field">
+				id,
+				enterprise_id,
+				title,
+				images,
+				summary,
+				content,
+				content_text,
+				is_top,
+				top_date,
+				click_count,
+				create_user,
+				create_date,
+				is_delete,
+				delete_user,
+				delete_date,
+				create_user_scope,
+				delete_user_scope,
+				edit_user,
+				edit_user_scope,
+				edit_date
+	</sql>
+	
+	<sql id="FieldValues">
+				#{id},
+				#{enterpriseId},
+				#{title},
+				#{images},
+				#{summary},
+				#{content},
+				#{contentText},
+				#{isTop},
+				#{topDate},
+				#{clickCount},
+				#{createUser},
+				#{createDate},
+				#{isDelete},
+				#{deleteUser},
+				#{deleteDate},
+				#{createUserScope},
+				#{deleteUserScope},
+				#{editUser},
+				#{editUserScope},
+				#{editDate}
+	</sql>
+	
+	<sql id="TableName">
+		t_gb_enterprise_news
+	</sql>
+	
+	<select id="findById" resultMap="enterprisenewsResultMap" parameterType="Integer">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+		LIMIT 0,1
+	</select>
+	
+	<select id="findByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseNews" resultMap="enterprisenewsResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="images != null">
+					AND images=#{images}
+				</if>
+				<if test="summary != null">
+					AND summary=#{summary}
+				</if>
+				<if test="content != null">
+					AND content=#{content}
+				</if>
+				<if test="contentText != null">
+					AND content_text=#{contentText}
+				</if>
+				<if test="isTop != null">
+					AND is_top=#{isTop}
+				</if>
+				<if test="topDate != null">
+					AND top_date=#{topDate}
+				</if>
+				<if test="clickCount != null">
+					AND click_count=#{clickCount}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="deleteUserScope != null">
+					AND delete_user_scope=#{deleteUserScope}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope=#{editUserScope}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+		</where>
+		LIMIT 0,1
+	</select>
+	
+	<select id="listByObject" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseNews" resultMap="enterprisenewsResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="id != null">
+					id=#{id}			
+				</if>
+				<if test="enterpriseId != null">
+					AND enterprise_id=#{enterpriseId}
+				</if>
+				<if test="title != null">
+					AND title=#{title}
+				</if>
+				<if test="images != null">
+					AND images=#{images}
+				</if>
+				<if test="summary != null">
+					AND summary=#{summary}
+				</if>
+				<if test="content != null">
+					AND content=#{content}
+				</if>
+				<if test="contentText != null">
+					AND content_text=#{contentText}
+				</if>
+				<if test="isTop != null">
+					AND is_top=#{isTop}
+				</if>
+				<if test="topDate != null">
+					AND top_date=#{topDate}
+				</if>
+				<if test="clickCount != null">
+					AND click_count=#{clickCount}
+				</if>
+				<if test="createUser != null">
+					AND create_user=#{createUser}
+				</if>
+				<if test="createDate != null">
+					AND create_date=#{createDate}
+				</if>
+				<if test="isDelete != null">
+					AND is_delete=#{isDelete}
+				</if>
+				<if test="deleteUser != null">
+					AND delete_user=#{deleteUser}
+				</if>
+				<if test="deleteDate != null">
+					AND delete_date=#{deleteDate}
+				</if>
+				<if test="createUserScope != null">
+					AND create_user_scope=#{createUserScope}
+				</if>
+				<if test="deleteUserScope != null">
+					AND delete_user_scope=#{deleteUserScope}
+				</if>
+				<if test="editUser != null">
+					AND edit_user=#{editUser}
+				</if>
+				<if test="editUserScope != null">
+					AND edit_user_scope=#{editUserScope}
+				</if>
+				<if test="editDate != null">
+					AND edit_date=#{editDate}
+				</if>
+		</where>
+	</select>
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseNews">
+		INSERT INTO 
+			t_gb_enterprise_news(
+				enterprise_id,
+				title,
+				images,
+				summary,
+				content,
+				content_text,
+				is_top,
+				top_date,
+				click_count,
+				create_user,
+				create_date,
+				is_delete,
+				delete_user,
+				delete_date,
+				create_user_scope,
+				delete_user_scope,
+				edit_user,
+				edit_user_scope,
+				edit_date
+			)VALUES(
+				#{enterpriseId},
+				#{title},
+				#{images},
+				#{summary},
+				#{content},
+				#{contentText},
+				#{isTop},
+				#{topDate},
+				#{clickCount},
+				#{createUser},
+				#{createDate},
+				#{isDelete},
+				#{deleteUser},
+				#{deleteDate},
+				#{createUserScope},
+				#{deleteUserScope},
+				#{editUser},
+				#{editUserScope},
+				#{editDate}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.tcbci.gkit.business.domain.enterprise.EnterpriseNews">
+		UPDATE
+			<include refid="TableName" />
+		<set>
+					<if test="id != null">
+						id=#{id},
+					</if>
+					<if test="enterpriseId != null">
+						enterprise_id=#{enterpriseId},
+					</if>
+					<if test="title != null">
+						title=#{title},
+					</if>
+					<if test="images != null">
+						images=#{images},
+					</if>
+					<if test="summary != null">
+						summary=#{summary},
+					</if>
+					<if test="content != null">
+						content=#{content},
+					</if>
+					<if test="contentText != null">
+						content_text=#{contentText},
+					</if>
+					<if test="isTop != null">
+						is_top=#{isTop},
+					</if>
+					<if test="topDate != null">
+						top_date=#{topDate},
+					</if>
+					<if test="clickCount != null">
+						click_count=#{clickCount},
+					</if>
+					<if test="createUser != null">
+						create_user=#{createUser},
+					</if>
+					<if test="createDate != null">
+						create_date=#{createDate},
+					</if>
+					<if test="isDelete != null">
+						is_delete=#{isDelete},
+					</if>
+					<if test="deleteUser != null">
+						delete_user=#{deleteUser},
+					</if>
+					<if test="deleteDate != null">
+						delete_date=#{deleteDate},
+					</if>
+					<if test="createUserScope != null">
+						create_user_scope=#{createUserScope},
+					</if>
+					<if test="deleteUserScope != null">
+						delete_user_scope=#{deleteUserScope},
+					</if>
+					<if test="editUser != null">
+						edit_user=#{editUser},
+					</if>
+					<if test="editUserScope != null">
+						edit_user_scope=#{editUserScope},
+					</if>
+					<if test="editDate != null">
+						edit_date=#{editDate},
+					</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="deleteOne" parameterType="Integer">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id=#{id}
+	</delete>
+	
+	<select id="listByIds" resultMap="enterprisenewsResultMap">
+		SELECT
+		<include refid="Field"></include>
+		FROM
+		<include refid="TableName"></include>
+		WHERE
+			id
+		IN
+        <foreach collection="array" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+	</select>
+	
+	<delete id="deleteByIds">
+		DELETE FROM
+			<include refid="TableName" />
+		WHERE
+			id
+		IN
+			<foreach collection="array" item="id" index="index"
+	            open="(" close=")" separator=",">
+	            #{id}
+        	</foreach>
+	</delete>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		INSERT INTO 
+			t_gb_enterprise_news(
+				<include refid="Field" />
+			)VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+		           (
+		           				#{item.id},
+		           				#{item.enterpriseId},
+		           				#{item.title},
+		           				#{item.images},
+		           				#{item.summary},
+		           				#{item.content},
+		           				#{item.contentText},
+		           				#{item.isTop},
+		           				#{item.topDate},
+		           				#{item.clickCount},
+		           				#{item.createUser},
+		           				#{item.createDate},
+		           				#{item.isDelete},
+		           				#{item.deleteUser},
+		           				#{item.deleteDate},
+		           				#{item.createUserScope},
+		           				#{item.deleteUserScope},
+		           				#{item.editUser},
+		           				#{item.editUserScope},
+		           				#{item.editDate}
+		           )
+        		</foreach>
+	</insert>
+	
+	<select id="query" parameterType="com.tcbci.gkit.business.domain.page.EnterpriseNewsParams" resultMap="enterprisenewsResultMap">
+		SELECT
+			<include refid="Field" />
+		FROM
+			<include refid="TableName" />
+		<where>
+				<if test="e.keyword != null">
+					AND
+						title like CONCAT('%',#{e.keyword},'%')
+				</if>
+				<if test="e.isDelete != null">
+					AND
+						is_delete=#{e.isDelete}
+				</if>
+				<if test="e.enterpriseId != null">
+					AND enterprise_id=#{e.enterpriseId}
+				</if>
+		</where>
+	</select>
+</mapper>

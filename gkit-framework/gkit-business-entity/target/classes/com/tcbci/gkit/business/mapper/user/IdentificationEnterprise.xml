@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tcbci.gkit.business.entity.user.IdentificationEnterpriseMapper">
+	<sql id="tableName">
+		[IdentificationEnterprise]
+	</sql>
+	<select id="selectByUserId" resultType="com.tcbci.gkit.business.domain.user.IdentificationEnterprise">
+		SELECT * FROM
+		<include refid="tableName" />
+		WHERE UserID=#{userId}
+	</select>
+	<select id="selectByEnterpriseId" resultType="com.tcbci.gkit.business.domain.user.IdentificationEnterprise">
+		SELECT * FROM
+		<include refid="tableName" />
+		WHERE EnterpriseID=#{enterpriseId}
+	</select>
+</mapper>
